@@ -1,5 +1,6 @@
-.idea
-dist
-node_modules
-typings
-npm-debug.log
+/home/liz/Projects/Angular2NodeEnv/.idea
+/home/liz/Projects/Angular2NodeEnv/dist
+/home/liz/Projects/Angular2NodeEnv/node_modules
+/home/liz/Projects/Angular2NodeEnv/typings
+/home/liz/Projects/Angular2NodeEnv/npm-debug.log
+/home/liz/Projects/Angular2NodeEnv/.DS_Store
