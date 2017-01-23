@@ -112,6 +112,11 @@ $color-bk4: #FDD475;
   color: white;
 }*/
 /*set selection colors - end*/
+
+
+//Media queries
+
+
 .flex-menu {
   display:flex;
   margin: 0;
@@ -119,13 +124,20 @@ $color-bk4: #FDD475;
   flex-direction:row-reverse;
   flex-wrap: wrap;
   background: $color1;
+  p {
+    margin: 0;
+    padding: 0;
+  }
+  img {
+    margin-right: 5px;
+  }
 }
 .flex-menu-item {
   display:flex;
-  flex-flow: row wrap;
+  flex-flow: row nowrap;
   align-items: center;
   justify-content: center ;
-  width: 150px;
+  //width: 170px;
   padding: 0;
   transition: all 300ms;
   border-bottom: 4px solid $color1;
@@ -161,7 +173,7 @@ $color-bk4: #FDD475;
   overflow-y: auto;
 }
 .flex-main-container--item {
-  background: #fff;
+  background: lightblue;
   width: 200px;
   height:150px;
   margin:10px;
@@ -170,9 +182,6 @@ $color-bk4: #FDD475;
   overflow: hidden;
   border-radius: 2px;
   transition: all 300ms;
-  /*box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
-  /*word-break: normal;*/
-
 }
 .flex-main-container--item--hover:hover {
   //max-width: 210px;
@@ -196,7 +205,6 @@ $color-bk4: #FDD475;
 }
 .flex-footer-container--item {
   display: flex;
-  padding: 0;
   margin: 4px;
   /*height: 24px;*/
   width: auto;
@@ -204,7 +212,7 @@ $color-bk4: #FDD475;
   padding: 2px 0 0 0;
 }
 .flex-footer-container--item--link:hover {
-  background: white;
+  background: lightblue;
   color: $color3;
   cursor:pointer;
 }
@@ -235,7 +243,7 @@ $color-bk4: #FDD475;
 
   order: 1;
   align-content: flex-end;
-  font-family: 'IM Fell English SC';
+  font-family: 'IM Fell English SC', serif;
   font-size:xx-large;
   font-weight: bold;
   white-space: nowrap;
@@ -346,7 +354,7 @@ $color-bk4: #FDD475;
 }
 .content-flex-column::first-letter {
   font-size:xx-large ;
-  font-family: "DejaVu Serif";
+  font-family: "DejaVu Serif", serif;
   color: darkred;
 }
 .content-flex-column::first-line {
@@ -609,7 +617,7 @@ h1::first-letter, h2::first-letter, h3::first-letter {
   box-sizing: border-box;
   padding: 10px;
   margin: 10px;
-  font-family: Purisa;
+  font-family: Purisa, courier, serif;
   background: ghostwhite;
   color: gray;
   transition: all 0.5s;
@@ -650,7 +658,7 @@ h1::first-letter, h2::first-letter, h3::first-letter {
   flex: 0 0 auto;
 }
 .frm-other1 input[id="info-1"] {
-  font-family: Sawasdee;
+  font-family: Sawasdee, courier, serif;
   line-height: 100px;
   padding: 1px;
   margin: 10px;
@@ -709,7 +717,7 @@ h1::first-letter, h2::first-letter, h3::first-letter {
   padding-left: 40px;
   padding-top:4px;
 
-  font-family: Sawasdee;
+  font-family: Sawasdee, courier, serif;
   font-size:large;
   font-weight: bold;
 }
@@ -740,7 +748,7 @@ h1::first-letter, h2::first-letter, h3::first-letter {
   box-sizing: border-box;
   padding: 5px;
   margin: 5px;
-  font-family:Sawasdee;
+  font-family:Sawasdee, courier, serif;
   font-size: medium;
   transition: border 0.5s;
   background: #f1f1f1;
@@ -765,7 +773,7 @@ h1::first-letter, h2::first-letter, h3::first-letter {
 }
 
 .frm-other4 {
-  font-family: MugursFont;
+  font-family: MugursFont, courier, serif;
   display: flex;
   flex-flow: row wrap;
   /*flex: 1 1 auto;*/
@@ -921,7 +929,6 @@ h1::first-letter, h2::first-letter, h3::first-letter {
   content: attr(the-color);
 }
 .div-fill {
-  display:inline-block;
   font-family: MugursFont, Sawasdee, sans-serif;
   font-weight: bold;
   position: relative;
@@ -1019,7 +1026,6 @@ h1::first-letter, h2::first-letter, h3::first-letter {
 .div-skew {
   border: 1px solid #44cce2;
   background: lightcyan;
-  border: 1px solid lightgray;
   width:100px;
   height: 100px;
   transition: 0.2s ease-in;
@@ -1054,7 +1060,7 @@ h1::first-letter, h2::first-letter, h3::first-letter {
     z-index: -1;
 }
 .fancy-button::after {
-    content: attr(name-of-button);
+    content: attr(data-name-of-button);
     position: absolute;
     left: 0;
     top: 0;
@@ -1093,7 +1099,6 @@ h1::first-letter, h2::first-letter, h3::first-letter {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  background: white;
   color: red;
   border-bottom:2px solid black;
   transition: all 0.2s ease-in-out;
@@ -1108,7 +1113,7 @@ h1::first-letter, h2::first-letter, h3::first-letter {
   cursor: pointer;
 }
 .fancy-button::after {
-  content: attr(name-of-button);
+  content: attr(data-name-of-button);
   position: absolute;
   top: calc(100% + 2px);
   left: 0;
@@ -1236,7 +1241,7 @@ h1::first-letter, h2::first-letter, h3::first-letter {
   transform-style: preserve-3d;
 }
 .fancy-button-3d::after {
-  content: attr(name-of-button);
+  content: attr(data-name-of-button);
   position: absolute;
   top: 0;
   left: 0;
@@ -1335,7 +1340,7 @@ h1::first-letter, h2::first-letter, h3::first-letter {
   transform-style: preserve-3d;
 }
 .fancy-button-3d1::after {
-  content: attr(name-of-button);
+  content: attr(data-name-of-button);
   position: absolute;
   top: 0;
   left: 0;
@@ -1421,7 +1426,7 @@ div.anim2:hover {
   animation-name: anim2;
   animation-duration: 1s;
   /*animation-direction: reverse;*/
-  animatin-duration-count: 1;
+  /*animation-duration: 1s;*/
   animation-timing-function: ease-in-out;
   animation-fill-mode: forwards;
 }
@@ -1457,7 +1462,7 @@ div.anim2:hover {
   align-content:center;
   justify-content:center;
   position: absolute;
-  content: attr(theText);
+  content: attr(data-theText);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -1512,7 +1517,7 @@ div.anim2:hover {
   transform-style: preserve-3d;
 }
 .fancy-button-3d2 .another-one {
-  /*content: attr(name-of-button);*/
+  /*content: attr(data-name-of-button);*/
   position: absolute;
   top: 0;
   left: 0;
@@ -1698,7 +1703,7 @@ div.anim2:hover {
   color: lightgray;
   /*font-weight:bold;*/
 
-  margin: 10px 1px 0px 1px;
+  margin: 10px 1px 0 1px;
   padding: 0 5px 0 5px;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
@@ -1842,7 +1847,7 @@ div.anim2:hover {
   color: #929292;
   /*font-weight:bold;*/
 
-  margin: 10px 1px 0px 1px;
+  margin: 10px 1px 0 1px;
   padding: 0 5px 0 5px;
   cursor: pointer;
   transition: all 0.4s ease-in-out;
@@ -1915,7 +1920,7 @@ div.anim2:hover {
   transform-style: preserve-3d;
 }
 .fancy-button-3d3 .another-one {
-  /*content: attr(name-of-button);*/
+  /*content: attr(data-name-of-button);*/
   position: absolute;
   top: 0;
   left: 0;
@@ -2376,7 +2381,7 @@ ul.pagination li a {
   height: 120px;
   border-radius: 0 100% 0 0;
   box-shadow: 1px 1px 3px gray, -1px -1px 3px gray;
-  trasition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
   z-index: 100;
   .corner-menu-holder-inside {
     position: relative;
@@ -2535,7 +2540,7 @@ ul.pagination li a {
 }
 //working 2nd version
 .corner-menu-holder-old {
-  font-family: Raleway, Verdana;
+  font-family: Raleway, Verdana, Arial, serif;
   position: fixed;
   left: 0;
   bottom: 0;
@@ -2785,7 +2790,6 @@ ul.pagination li a {
       flex-flow: column nowrap;
       /*stiling corner - start*/
       border: 1px solid darken(gray, 15%);
-      padding: 0;
       background: lighten(gray,10%);
       color: darken($color-bk1, 30%);
       font-weight: bold;
@@ -2956,7 +2960,223 @@ ul.pagination li a {
 }
 
 .newspaper {
-  column-count: 4;
+  column-count: 3;
   column-gap: 50px;
-  column-fill: red;
+  column-fill: balance;
+  column-rule: 10px solid lightblue;
+  column-span: page;
+  column-width: 60px;
 }
+.txt-area {
+  margin: 5px;
+  padding: 10px;
+  color: gray;
+  text-shadow: 1px 1px 2px white;
+  border-radius: 4px;
+  background: #804e71 url(../assets/images/intro.svg) top right no-repeat;
+  resize: both;
+}
+.txt-area:active {
+  outline: none;
+}
+
+.container {
+  display: flex;
+  align-items:flex-start;
+  align-content:center;
+  justify-content: center;
+}
+
+.f1 {
+  display: inline-flex;
+  flex-flow:column nowrap;
+  align-items: stretch;
+  align-content:center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  width: 200px;
+
+}
+
+.f2 {
+  width: calc( 100vw - 200px);
+  display: inline-flex;
+  flex-flow:row nowrap;
+  align-items: stretch;
+  align-content:center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+}
+.c1, .c2, .c3, .c2-1, .c2-2 {
+  width: 200px;
+  background-color: indianred;
+  border: 1px solid red;
+  flex: 1;
+  box-sizing: border-box;
+  margin: 0;
+}
+.c2-1 {
+  flex: 1;
+}
+.c2-2 {
+  flex: 2;
+}
+
+.c1, .c2, .c3 {
+  background-color: greenyellow;
+  border: 1px solid green;
+}
+
+
+.flex-testing {
+  display: flex;
+  flex-flow: row wrap;
+  align-items:center;
+  //align-content:center;
+  //justify-content:flex-start;
+  width:100%;
+  height:200px;
+  background: $color-bk1;
+
+
+  margin: 10px;
+  .f {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items:center;
+    justify-content:center;
+    text-shadow: 1px 1px 2px black;
+    //text-shadow: hoff voff blur #000;
+    text-outline:2px 2px red;
+    color: white;
+    cursor: pointer;
+  }
+  .f-1 {
+    background: $color-bk2;
+    border: 1px solid darken($color-bk2, 30%);
+    margin-right: auto;
+    &:hover {
+      background: darken($color-bk2, 10%);
+    }
+  }
+  .f-2 {
+    background: $color-bk3;
+    border: 1px solid darken($color-bk3, 30%);
+    &:hover {
+      background: darken($color-bk3, 10%);
+    }
+  }
+  .f-3 {
+
+    background: $color-bk4;
+    border: 1px solid darken($color-bk4, 30%);
+    &:hover {
+      background: darken($color-bk4, 10%);
+    }
+    &:nth-child(2n+1) {
+      margin-left: auto;
+    }
+  }
+
+
+}
+
+.button-effect3-background-effect {
+  width: 200px;
+  //height: 100px;
+  padding: 15px 10px;
+
+  overflow: hidden;
+  background: $color-bk2;
+  border: 1px solid darken($color-bk2,30%);
+  cursor: pointer;
+
+  .background {
+    position:relative;
+    width: 100%;
+    height: 100%;
+
+    .button-name {
+      display: flex;
+      flex-flow: row nowrap;
+      align-items:center;
+      justify-content:center;
+
+      width: 100%;
+      height: 100%;
+      //z-index: 1;
+      background: transparent;
+      p {
+        margin: 0;
+        padding: 0;
+      }
+    }
+    .background-effect {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 518px;
+      height: 378px;
+      transform: translate(100%, 100%);
+      transition: 1s ease-in-out;
+      background: url(../assets/images/cubes.svg) top right no-repeat;
+      opacity: 1;
+      //z-index: 0;
+    }
+  }
+
+  &:hover {
+    .background {
+      .background-effect {
+        transform: translate( -100%, -100% );
+        z-index: 100;
+      }
+    }
+  }
+}
+
+@media all and (max-width: 905px) and (min-width: 300px) {
+  .flex-menu {
+    display: flex;
+    flex-flow: row-reverse wrap;
+    align-items:center;
+    align-content:center;
+    justify-content:center;
+  }
+  .flex-header {
+    display: flex;
+    flex-flow: column nowrap;
+    width: 100%;
+  }
+  .logo {
+    order: -1;
+    display: flex;
+    align-items:center;
+    justify-content:center;
+  }
+}
+
+@media all and (max-width: 299px)  {
+  .flex-menu {
+    display: flex;
+    flex-flow: column-reverse wrap;
+    align-items:center;
+    align-content:center;
+    justify-content:center;
+  }
+  .flex-header {
+    display: flex;
+    flex-flow: column nowrap;
+    width: 100%;
+  }
+  .logo {
+    order: -1;
+    display: flex;
+    align-items:center;
+    justify-content:center;
+  }
+}
+
