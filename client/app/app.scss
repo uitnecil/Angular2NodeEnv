@@ -3142,7 +3142,7 @@ ul.pagination li a {
   .flex-menu {
     display: flex;
     flex-flow: row-reverse wrap;
-    align-items:center;
+    align-items: stretch;
     align-content:center;
     justify-content:center;
   }
