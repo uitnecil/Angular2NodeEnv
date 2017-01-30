@@ -1,3 +1,4 @@
+
 @font-face {
   font-family: MugursFont;
   src: url(../assets/fonts/WOFF/sansation_light.woff);
@@ -234,6 +235,8 @@ $color-bk4: #FDD475;
   user-select: none;
   margin: 0;
   padding: 0;
+  z-index: 100;
+  box-shadow: 0 1px 2px black;
 }
 .logo {
   background: $color2;
@@ -371,6 +374,7 @@ $color-bk4: #FDD475;
   margin: 25px;
 }
 .text-over-photo {
+  box-sizing: border-box;
   background: white;
   opacity: 0.6;
   margin: 30px;
@@ -602,6 +606,11 @@ h1::first-letter, h2::first-letter, h3::first-letter {
 }
 /* sprite menu - end */
 
+.few-controls {
+  width: 50%;
+  margin: 0;
+  padding: 0;
+}
 .frm-usr-id {
   display: flex;
   flex-flow: column wrap;
@@ -624,13 +633,13 @@ h1::first-letter, h2::first-letter, h3::first-letter {
   text-overflow: ellipsis;
 }
 .frm-usr-id input[type="text"] {
-  width:250px;
+  width:80%;
 }
 .frm-usr-id label {
-  width:250px;
+  width:80%;
 }
 .frm-usr-id select {
-  width: 250px;
+  width: 80%;
 }
 .frm-usr-id input[type="text"]:focus,
 .frm-usr-id select:focus {
@@ -663,7 +672,7 @@ h1::first-letter, h2::first-letter, h3::first-letter {
   padding: 1px;
   margin: 10px;
   box-sizing: border-box;
-  width: 300px;
+  width: 80%;
   height: 35px;
   color: gray;
   border: 2px solid lightgray;
@@ -1271,7 +1280,7 @@ h1::first-letter, h2::first-letter, h3::first-letter {
 
 .border-down {
   border-bottom: 1px solid black;
-  margin-bottom: 5px;
+  margin: 0 0 5px 0;
 }
 
 /*try 3d effect button enhanced*/
@@ -2749,7 +2758,6 @@ ul.pagination li a {
 
 //final
 .corner-menu-holder {
-  //font-family: Raleway, Verdana;
   display: flex;
   flex-flow: column nowrap;
   align-items: flex-start;
@@ -2764,7 +2772,6 @@ ul.pagination li a {
   height: $main-element-height;
   border-radius: 0 100% 0 0;
   transition: 0s ;
-  //border: 1px solid red;
   .corner-menu-holder-inside {
     position: relative;
     width: $main-element-width;
@@ -2826,6 +2833,7 @@ ul.pagination li a {
       align-items:center;
       align-content:center;
       justify-content: center;
+      text-decoration: none;
 
       width: $current-considered-width;
       height: $current-considered-height;
@@ -2966,6 +2974,8 @@ ul.pagination li a {
   column-rule: 10px solid lightblue;
   column-span: page;
   column-width: 60px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 .txt-area {
   margin: 5px;
@@ -2996,7 +3006,7 @@ ul.pagination li a {
   padding: 0;
   margin: 0;
   width: 200px;
-
+  visibility: visible;
 }
 
 .f2 {
@@ -3049,7 +3059,6 @@ ul.pagination li a {
     align-items:center;
     justify-content:center;
     text-shadow: 1px 1px 2px black;
-    //text-shadow: hoff voff blur #000;
     text-outline:2px 2px red;
     color: white;
     cursor: pointer;
@@ -3140,11 +3149,10 @@ ul.pagination li a {
 
 @media all and (max-width: 905px) and (min-width: 300px) {
   .flex-menu {
-    display: flex;
     flex-flow: row-reverse wrap;
     align-items: stretch;
-    align-content:center;
     justify-content:center;
+
   }
   .flex-header {
     display: flex;
@@ -3160,6 +3168,10 @@ ul.pagination li a {
 }
 
 @media all and (max-width: 299px)  {
+  .corner-menu-holder {
+    //visibility: hidden;
+    display: none;
+  }
   .flex-menu {
     display: flex;
     flex-flow: column-reverse wrap;
@@ -3180,3 +3192,228 @@ ul.pagination li a {
   }
 }
 
+@media all and (max-width: 700px) and (min-width: 300px) {
+  .corner-menu-holder {
+    //visibility: hidden;
+    display: none;
+  }
+}
+
+@media all and (max-width: 500px) and (min-width: 300px) {
+  .newspaper {
+    column-count: 2;
+  }
+}
+
+@media all and (max-width: 299px) {
+  .newspaper {
+    column-count: 1;
+  }
+}
+
+
+/*@import url("../mixins.scss"); <-- NU MERGE, adica nu gaseste mixinurile*/
+@import "../mixins.scss";
+
+
+.test1-border-around {
+  padding: 0;
+  margin: 10px 0 10px 0;
+  border: 1px solid gray;
+  border-radius: 2px;
+  & .test1-middle-side *:not(p):not(.test1-columns-left) {
+    box-sizing: border-box;
+    margin: 5px 5px 0 5px;
+  }
+}
+.test1-header {
+  display: flex;
+  align-items:center;
+  align-content:center;
+  justify-content:center;
+  background: $color-bk1;
+  //border: 1px solid darken($color-bk1, 30%);
+  min-height: 5vh;
+  margin-bottom: 5px;
+}
+.test1-middle-side {
+  display: flex;
+  flex-flow:row wrap;
+  justify-content: center;
+
+  @include mobile {
+    flex-flow: column nowrap;
+  };
+  @include tablet-small {};
+  @include tablet-medium {};
+  @include tablet-large {};
+  @include desktop {};
+  @include desktop-large {};
+
+  .test1-columns-left {
+    flex: 2;
+    display: inline-flex;
+    flex-flow: column nowrap;
+    align-items:stretch;
+    align-content:center;
+    justify-content:flex-start;
+
+    @include mobile {
+      display: flex;
+      margin-bottom: 20px;
+      //border: 5px solid greenyellow;
+      align-self: stretch;
+    }
+    @include tablet-small {
+      //margin-right: 50px;
+      //background: red;
+      align-self: stretch;
+    };
+    @include tablet-medium {};
+    @include tablet-large {};
+    @include desktop {};
+    @include desktop-large {};
+
+    .test1-columns-left-item {
+      background-color: $color-bk2;
+      //border: 1px solid darken($color-bk2, 30%);
+      border-radius: 4px;
+      //box-shadow: 2px 2px 5px gray;
+      margin-top: 5px;
+      padding: 15px;
+      //width: 90%;
+      transition:0.3s ease-in-out;
+
+      &:hover {
+        background: darken($color-bk2, 10%);
+        cursor: pointer;
+      }
+    }
+  }
+  .test1-main-content {
+    flex: 7;
+    padding: 5px;
+    display: inline-flex;
+    flex-flow: column;
+    background: $color-bk3;
+    border: 1px solid darken($color-bk3,30%);
+  }
+  .test1-right-side {
+    align-self:flex-start;
+    display: inline-flex;
+    flex-flow: column nowrap;
+    align-items:stretch;
+    align-content:center;
+    justify-content: space-between;
+    background: $color-bk4;
+    border: 1px solid darken($color-bk4,30%);
+    flex: 3;
+    @include mobile {
+      align-self: stretch;
+    };
+    @include tablet-small {};
+    @include tablet-medium {};
+    @include tablet-large {};
+    @include desktop {};
+    @include desktop-large {};
+    .test1-right-side-item {
+      border-bottom: 1px solid darken($color-bk4, 10%);
+    }
+  }
+}
+.test1-footer {
+  display: flex;
+  background: darkgray;
+  margin-top: 10px;
+  padding: 10px 0 ;
+}
+
+/*
+@media all and (max-width: 700px) {
+  .test1-middle-side {
+    [class *= "test1-"] {
+      margin: 10px;
+    }
+    flex-flow: column nowrap;
+    .test1-columns-left {
+      display: flex;
+      margin-bottom: 20px;
+    }
+    .test1-right-side {
+      align-self: stretch;
+    }
+  }
+
+}*/
+.flexible {
+  flex: 1 1 100%;
+}
+.mg-box-shadow {
+  box-shadow: 2px 2px 3px gray;
+}
+.mg-table {
+  margin: 10px;
+  border-spacing: 0;
+  border: 1px solid lighten($color-bk1, 5%);
+  border-radius: 50%;
+  overflow: hidden;
+  transition: 0.4s ease-in-out;
+
+  &:hover {
+    border-radius: 2px;
+  }
+  * {
+    border: none;
+    margin: 0;
+    padding: 0;
+    color: dimgray;
+    border-collapse: collapse;
+  }
+
+  tr {
+    border: 0;
+    &:hover {
+      background-color: $color-bk1;
+      th {
+        background: darken($color-bk1, 20%);
+      }
+    }
+    &:first-of-type:hover {
+      background-color: lighten($color-bk1, 12%);
+      color: white;
+    }
+    &:nth-of-type(2n+1) {
+      background-color: lighten($color-bk1, 12%);
+      &:hover {
+        background-color: lighten($color-bk1, 5%);
+      }
+    }
+
+    th {
+      $darken-value: 100%;
+      $was-in-while: false;
+      @while (darken($color-bk1,$darken-value) == black) {
+        $darken-value: $darken-value - 1%;
+        @if ($was-in-while==false) {$was-in-while: true;}
+      }
+
+      @if ($was-in-while == true) {
+        $darken-value: $darken-value - 30%;
+        @debug "While entered. Decreasing darken value with 30% to avoid dark colors. New value for $darken-value is:  "  $darken-value " color after darkening: "  darken($color-bk1,$darken-value);
+      }
+      @debug "darken-value: "  $darken-value " color: "  darken($color-bk1,$darken-value);
+
+      //color: darkslategray;
+      color: white;
+      background: darken($color-bk1,$darken-value);
+      padding: 5px 10px;
+      text-align: left;
+      font-weight: bold;
+
+    }
+
+    td {
+      padding: 5px 10px;
+    }
+  }
+}
