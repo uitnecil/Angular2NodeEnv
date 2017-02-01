@@ -61,7 +61,7 @@ $color4: #535353;
 //$color3: #B3DE81;
 //$color4: #FDFFFF;
 
-$color-bk1: #C1E1DC;
+$color-bk1: #c1e1dc;
 $color-bk2: #FFCCAC;
 $color-bk3: #FFEB94;
 $color-bk4: #FDD475;
@@ -115,7 +115,34 @@ $color-bk4: #FDD475;
 /*set selection colors - end*/
 
 
-//Media queries
+.div-flex-row {
+  display: flex;
+  flex-flow: row wrap;
+  flex: 1 1 auto;
+  width: 100%;
+}
+
+
+.div-flex-column {
+  display: flex;
+  flex-flow: column wrap;
+  flex: 1 1 auto;
+  align-items: flex-start;
+  align-content: space-between;
+  justify-content:flex-start;
+}
+
+.div-flex-column-distance-border {
+  margin: 5px;
+  border: 1px solid lightgray;
+  padding: 5px;
+  border-radius: 2px;
+  transition: border 0.2s ease-in-out;
+
+  &:hover, &:focus {
+    border: 1px solid darken($color-bk1,30%);
+  }
+}
 
 
 .flex-menu {
@@ -163,6 +190,7 @@ $color-bk4: #FDD475;
   overflow: hidden;
 }
 .flex-body-main-container {
+  position: relative;
   overflow-y: auto;
 }
 .flex-main-container {
@@ -499,28 +527,34 @@ div.triangle2::after {
   margin: 30px;
   /*padding: 30px;*/
 }
-.the-hinted-div {
+
+.hinted {
   position: relative;
   border-bottom: 1px dotted black;
   display:inline-block;
   margin: 10px;
 }
-.the-hinted-div:hover .hint {
+.hinted:hover .hint {
   visibility: visible;
 }
-.the-hinted-div:hover {
+.hinted:hover {
   cursor: pointer;
   /*display: inline-block;*/
 }
+
+$hint-bk-color: darken($color-bk1, 30%);
+$hint-border-color: $hint-bk-color;
+$hint-txt-color: lighten($color-bk1,30%);
+
 .hint {
   visibility: hidden;
-  width:150px;
-  color: white;
-  background: black;
-  border: 1px solid black;
+  max-width:500px;
+  color: $hint-txt-color;
+  background: $hint-bk-color;
+  border: 1px solid $hint-border-color;
 
   margin:0;
-  padding: 5px 0;
+  padding: 5px 10px;
   border-radius:2px;
 
   position: absolute;
@@ -530,14 +564,13 @@ div.triangle2::after {
 }
 .hint::after {
   content:"";
-  /*z-index: 8884;*/
-
   position: absolute;
   top: 100%;
   left: 25%;
-  border-style:solid;
-  border-width: 7px;
-  border-color: green transparent transparent transparent;
+  border: 7px solid;
+  //border-style:solid;
+  //border-width: 7px;
+  border-color: $hint-bk-color transparent transparent transparent;
 }
 h1, h2, h3 {
   padding: 5px;
@@ -1147,11 +1180,6 @@ h1::first-letter, h2::first-letter, h3::first-letter {
   opacity: 1;
 }
 
-.div-flex-row {
-  display: flex;
-  flex-flow: row wrap;
-  flex: 1 1 auto;
-}
 
 /*3d cube*/
 .wrap {
@@ -1959,6 +1987,11 @@ div.anim2:hover {
 .another-one img {
   height:70%;
 }
+.another-one i {
+  font-size:48px;
+  width: 100%;
+  height: 100%;
+}
 
 @keyframes anim-icon {
 /*  10% { transform: rotateZ(-15deg) rotateY(-10deg);}
@@ -1980,12 +2013,15 @@ div.anim2:hover {
   90% { transform: rotateZ(-1deg);}
   100% { transform: rotateZ(0deg);}
 }
-.fancy-button-3d3-form:hover .another-one:hover img {
+.fancy-button-3d3-form:hover .another-one:hover img,
+.fancy-button-3d3-form:hover .another-one:hover i {
   animation-name: anim-icon;
   animation-timing-function: ease-in-out;
   animation-duration: 1s ;
 }
-.fancy-button-3d3-form .another-one img:hover {
+.fancy-button-3d3-form .another-one img:hover,
+.fancy-button-3d3-form .another-one i:hover
+{
   animation-name: anim-icon;
   animation-timing-function: ease-in-out;
   animation-duration: 1s ;
@@ -2885,6 +2921,7 @@ ul.pagination li a {
   &:hover {
     width: 4 * $main-element-width;
     height: 4 * $main-element-height;
+    z-index: 98;
     .corner-menu-holder-inside {
       .main-bubble-content {
         background: #77dd37;
@@ -3008,7 +3045,6 @@ ul.pagination li a {
   width: 200px;
   visibility: visible;
 }
-
 .f2 {
   width: calc( 100vw - 200px);
   display: inline-flex;
@@ -3416,4 +3452,109 @@ ul.pagination li a {
       padding: 5px 10px;
     }
   }
+}
+
+.modify-me {
+  display: block;
+  width: 100%;
+  background: rebeccapurple;
+  margin-bottom: 10px;
+}
+
+.mg-button {
+}
+
+//cannot use before and after on self-closing elements!!!! need other solution.
+.mg-input {
+  box-sizing: border-box;
+  position: relative;
+  border-width: 0 1px 2px 0;
+  $color-border: darken($color-bk1,30%);
+  border-color: transparent  $color-border $color-border transparent ;
+  padding: 5px 5px 5px 5px;
+  margin: 5px;
+  transition: 0.3s all;
+
+  font-family: inherit;
+  font-size: inherit;
+  color: darken($color-bk1,30%);
+  background-color: lighten($color-bk1, 17%);
+  //box-shadow: 1px 1px 2px lightgray;
+  flex: 1;
+
+  text-overflow: ellipsis;
+
+  &:focus {
+    outline: none;
+    background: lighten($color-bk2,10%);
+    /*border-color: transparent  transparent darken($color-bk2,30%) transparent ;*/
+    border-color: transparent red red transparent;
+    color: darken($color-bk2,30%);
+    //border-radius: 2px 0 0 30px/10px;
+
+
+    /*    &::before {
+          border-color: transparent  transparent darken($color-bk1,30%) transparent ;
+        }
+        &::after {
+          transform: scale(0.5) translate(-100%, -100%);
+        }*/
+  }
+  /* & > * {
+   box-sizing: border-box;
+ }
+ //top border
+ &::before {
+
+   content: '';
+   position: absolute;
+   top: 0;
+   left: 0;
+   bottom: 0;
+   right: 0;
+
+   border-width:  0 0 2px 0;
+   border-color: transparent;
+   border-style: solid;
+   transition: 0.3s ease-in-out;
+   //flex: 1 1 auto;
+   transform: translate(-100%, -100%);
+ }
+
+ &::after {
+   content: attr(data-name);
+   position: absolute;
+   padding: 10px;
+   margin: 10px;
+   top: 0;
+   left: 0;
+   bottom: 0;
+   right: 0;
+   transition: 0.3s ease-in-out;
+   color: black;
+ }*/
+}
+
+fieldset {
+  legend {
+    color: lightgray;
+    transition: 0.2s ease-in-out;
+    font-weight:bold;
+  }
+  &:hover, &:focus {
+    legend {
+      color: darken($color-bk1,30%);
+    }
+  }
+}
+
+.mg-box-shadow1 {
+}
+
+input[type=range]:focus {
+  outline: none;
+}
+
+.material-icons.red600 {
+  color: red;
 }
