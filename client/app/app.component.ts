@@ -12,6 +12,5 @@ import './app.scss';
 })
 export class App {
     title = "Let's get started";
-
 }
 
