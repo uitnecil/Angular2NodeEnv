@@ -14,9 +14,11 @@ module.exports = {
         loaders: [
             {test: /\.ts$/, loaders: ['ts', 'angular2-template-loader'], exclude: /node_modules/},
             {test: /\.html$/, loader: 'html'},
-            {test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot)([\?]?.*)$/, loader: 'file'},
+            {test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|webm)([\?]?.*)$/, loader: 'file'},
             {test: /\.scss$/, loaders: ['to-string', 'style', 'css', 'resolve-url', 'sass?sourceMap', 'postcss'], include: [path.resolve(rootDir, 'client')]},
             {test: /\.css$/, loader: 'raw'}
+            // ,{test: /\.(webm|mp4)$/, loader: 'file'}
+
         ]
     },
     resolve: {

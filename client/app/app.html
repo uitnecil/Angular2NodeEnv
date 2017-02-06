@@ -106,31 +106,104 @@
         <div class="div-space"></div>
         <div class="div-space"></div>
 
-        <div class="hinted"> Move mouse over.
-            <span class="hint"> One of the best things that could happen right now is for the background to move away. </span>
-        </div>
+        <!--<div class="mg-hinted"> Move mouse over.-->
+        <!--<span class="mg-hint"> One of the best things that could happen right now is for the background to move away. </span>-->
+        <!--</div>-->
 
         <!--Mugur &#8713; SV-->
-        <form name="information1" action="#">
+        <form name="information1" action="#" autocomplete="off">
             <div class="div-flex-row border-down flexible " style="margin-bottom: 50px;">
-
                 <div class="div-flex-row" style="align-items: center; margin: 5px;">
+<!--                    <div class="div-flex-column div-flex-column-distance-border mg-box-shadow1">
+                        <p>My map</p>
+                        <div id="map"></div>
+                    </div>-->
+                    <div class="div-flex-column div-flex-column-distance-border mg-box-shadow1">
+                        <video width="300" height="200" controls>
+                            <source src="/assets/videos/recording.webm" type="video/webm">
+                            Your browser doesn't support the video tag.
+                        </video>
+                    </div>
+                </div>
+                <div class="div-flex-row" style="align-items: center; margin: 5px;">
+                    <div class="div-flex-row" style="align-items: center; margin: 5px; ">
+                        <fieldset class="div-flex-row div-flex-column-distance-border mg-box-shadow1">
+                            <label for="sample-input2" id="label-sample-input2">Sample input1 text disabled.</label>
+                            <input type="text" class="mg-input-2" id="sample-input2" value="init1"
+                                   pattern="[A-Za-z]{3}">
+                        </fieldset>
+                        <fieldset class="div-flex-row div-flex-column-distance-border mg-box-shadow1">
+                            <label for="sample-input1" id="label-sample-input1">Sample input1 text disabled.</label>
+                            <input type="text" class="mg-input-1" id="sample-input1" value="init1" disabled
+                                   title="disabled">
+                        </fieldset>
+                        <fieldset class="div-flex-row div-flex-column-distance-border mg-box-shadow1">
+                            <label for="sample-input" id="label-sample-input">Sample input text read-only.</label>
+                            <input type="text" class="mg-input-1" id="sample-input" value="init" readonly
+                                   title="readonly">
+                        </fieldset>
+                        <fieldset class="div-flex-row div-flex-column-distance-border mg-box-shadow1 mg-login-box"
+                                  style="flex: 0; flex-basis: 30%; margin:auto;">
+                            <legend>Lo9in Mu9ur</legend>
+                            <div class="div-flex-row"
+                                 style="align-items: center; justify-content: space-between; margin: 5px; ">
+                                <label for="test-usr-name" style="margin:auto; "> <span
+                                        class="mg-hinted">Username: <span
+                                        class="mg-hint">Your username or email address.</span></span></label>
+                                <input type="text" class="mg-input-1" style="width: 300px; margin-left:auto;"
+                                       id="test-usr-name" name="test-usr-name" autocomplete="false"
+                                       value="">
+                            </div>
+                            <div class="div-flex-row"
+                                 style="align-items: center;justify-content: space-between; margin: 5px;">
+                                <label for="password" id="label-password" style="margin:auto;"><span class="mg-hinted">Password:
+                                    <span class="mg-hint"> Password for your account </span>
+                                </span>
+                                </label>
+                                <input type="password" style=" width: 300px; margin-left: auto;" class="mg-input-1"
+                                       id="password" name="password" value="">
+                            </div>
+                            <div class="div-flex-row" style="">
+                                <button type="submit" class="button-effect1-ripple-hover" style="margin-left: auto;">
+                                    Login
+                                </button>
+                                <button type="reset" class="button-effect1-ripple-hover" style="">Reset data</button>
+                            </div>
+                        </fieldset>
+                    </div>
                     <fieldset class="div-flex-row div-flex-column-distance-border mg-box-shadow1">
-                        <label id="label-m-email" for="m-email" >type=email: &nbsp;</label>
+                        <label for="image-select" id="label-image-select" style="flex: 0">type=
+                            <span class="mg-hinted">image
+                                    <span class="mg-hint"> The input type="image" sends the X and Y coordinates of the click that activated the image button. </span>
+                                </span>
+                        </label>
+                        <input type="image" id="image-select" name="image-select">
+                    </fieldset>
+                    <fieldset class="div-flex-row div-flex-column-distance-border mg-box-shadow1">
+                        <label for="file-select" id="label-file-select" style="flex: 0">type=
+                            <span class="mg-hinted">file
+                                    <span class="mg-hint"> This would help when uploading files ? </span>
+                                </span>
+                        </label>
+                        <input type="file" id="file-select" name="file-select">
+                    </fieldset>
+                    <fieldset class="div-flex-row div-flex-column-distance-border mg-box-shadow1">
+                        <label id="label-m-email" for="m-email">type=email: &nbsp;</label>
                         <input type="email" id="m-email" name="m-email" value="mugur@mugur.org">
                         <!--<button class="fancy-button" onclick="myFunc()"></button>-->
                         <!--Teh button-->
-                        <p>Button icon is created using the material font.</p>
-                        <div class="fancy-button-3d3-form" onclick="myFunc(); createNewInput();" style="margin: 10px;">
+                        <!--<p>Button icon is created using the material font.</p>-->
+                        <div class="fancy-button-3d3-form mg-hinted" onclick="myFunc();" style="margin: 10px;">
                             <div class="fancy-button-3d3">
                                 <p>Get Email</p>
                                 <div class="another-one">
                                     <!--<img src="../assets/icons/icon-mail.svg">-->
                                     <!--<i class="material-icons" >&#xE87C;</i>-->
-                                    <i class="material-icons" style="color: green; ">email</i>
-                                    <!--<i class="material-icons red600">&#xE0BE;</i>-->
+                                    <!--<i class="material-icons" style="color: green; ">email</i>-->
+                                    <i class="material-icons " style="color: green; user-select: none;">&#xE0BE;</i>
                                 </div>
                             </div>
+                            <span class="mg-hint"> This button uses a material font symbol </span>
                         </div>
                         Email is:&nbsp; <p id="demo"></p>
                     </fieldset>
@@ -146,7 +219,7 @@
                     <form name="calculate-sum" action="#" oninput="x.value=parseInt(a.value)+parseInt(b.value)">
                         <fieldset class="div-flex-row div-flex-column-distance-border mg-box-shadow1">
                             <legend>range</legend>
-                            <div class="div-flex-row" style="align-items: center; margin: 5px;">'
+                            <div class="div-flex-row" style="align-items: center; margin: 5px;">
                                 <label for="a">Select value using slider</label>
                                 <input type="range" id="a" name="a" value="50" min="0" max="50"
                                        oninput="a_value.value=parseInt(a.value)">
@@ -155,12 +228,14 @@
                             </div>
                             <div class="div-flex-row" style="align-items: center; margin: 5px;">
                                 <label for="b">Select value using slider:</label>
-                                <input type="range" id="b" name="b" value="50" oninput="b_value.value=parseInt(b.value)">
+                                <input type="range" id="b" name="b" value="50"
+                                       oninput="b_value.value=parseInt(b.value)">
                                 &nbsp;:
                                 <output id="b_value" for="b">50</output>
                             </div>
                             <div class="div-flex-row" style="align-items: center; margin: 5px;">
-                            Sum: &nbsp;<output id="x">100</output>
+                                Sum: &nbsp;
+                                <output id="x">100</output>
                             </div>
                         </fieldset>
                     </form>
@@ -1285,22 +1360,22 @@
             </div>
         </div>
         <br>
-<!--        <h2>with padding>0 and multi color borders</h2>
-        <div class="triangle0"></div>
-        <h2>without padding=0 and with multi color borders</h2>
-        <div class="triangle"></div>
-        <h2>without both padding and color borders made transparent, only the black one remains visible </h2>
-        <div class="triangle1"></div>
-        <h2>[wrong !!] - with only top border defined. no other borders</h2>
-        <div class="triangle2"></div>
-        <h2>the entire hint with green arrow</h2>
-        <div class="the-hinted-div"> Move mouse over.
-            <span class="hint"> This is a hint ! </span>
-        </div>
-        <br>
-        <br>
-        <br>
-        <br>-->
+        <!--        <h2>with padding>0 and multi color borders</h2>
+                <div class="triangle0"></div>
+                <h2>without padding=0 and with multi color borders</h2>
+                <div class="triangle"></div>
+                <h2>without both padding and color borders made transparent, only the black one remains visible </h2>
+                <div class="triangle1"></div>
+                <h2>[wrong !!] - with only top border defined. no other borders</h2>
+                <div class="triangle2"></div>
+                <h2>the entire hint with green arrow</h2>
+                <div class="the-mg-hinted-div"> Move mouse over.
+                    <span class="hint"> This is a hint ! </span>
+                </div>
+                <br>
+                <br>
+                <br>
+                <br>-->
         <h2>Menu using sprites (sprite image used seen below)</h2>
         <div>
             <!--<img src="../assets/images/nav-sprite-ex.jpg">-->

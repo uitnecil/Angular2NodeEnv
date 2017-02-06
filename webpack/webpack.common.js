@@ -9,6 +9,7 @@ const webpack = require('webpack');
 const HtmlWebpack = require('html-webpack-plugin');
 const ChunkWebpack = webpack.optimize.CommonsChunkPlugin;
 const autoprefixer = require('autoprefixer');
+// const videos = require('../client/assets/videos/recording.webm');
 
 module.exports = {
     entry: {
@@ -25,6 +26,11 @@ module.exports = {
             {test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot)([\?]?.*)$/, loader: 'file'},
             {test: /\.scss$/, loaders: ['to-string', 'style', 'css', 'resolve-url', 'sass?sourceMap', 'postcss'], include: [path.resolve(rootDir, 'client')]},
             {test: /\.css$/, loader: 'raw'}
+            // {test: /\.webm$/, loader: 'url?limit=10000&mimetype=video/webm'}webm
+            // ,{test: /\.(webm)([\?]?.*)$/, loader: 'file'}
+            ,{ test: /\.(mp4|webm)$/, loader: 'url-loader?limit=100000000&name=videos/[path][name].[ext]' }
+           // ,{ test: /\.html$/, loader: 'html-loader?attrs[]=video:src'},
+           //  ,{ test: /\.webm$/, loader: 'file'}
         ]
     },
     postcss: [autoprefixer({browsers: ['last 2 version']})],

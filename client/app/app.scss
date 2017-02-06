@@ -528,50 +528,15 @@ div.triangle2::after {
   /*padding: 30px;*/
 }
 
-.hinted {
-  position: relative;
-  border-bottom: 1px dotted black;
-  display:inline-block;
-  margin: 10px;
-}
-.hinted:hover .hint {
-  visibility: visible;
-}
-.hinted:hover {
-  cursor: pointer;
-  /*display: inline-block;*/
-}
 
-$hint-bk-color: darken($color-bk1, 30%);
+//TO USE FURTHER!
+$hint-bk-color: darken($color-bk1, 40%);
 $hint-border-color: $hint-bk-color;
 $hint-txt-color: lighten($color-bk1,30%);
 
-.hint {
-  visibility: hidden;
-  max-width:500px;
-  color: $hint-txt-color;
-  background: $hint-bk-color;
-  border: 1px solid $hint-border-color;
 
-  margin:0;
-  padding: 5px 10px;
-  border-radius:2px;
 
-  position: absolute;
-  bottom:150%;
-  left: 50%;
-  text-align: center;
-}
-.hint::after {
-  content:"";
-  position: absolute;
-  top: 100%;
-  left: 25%;
-  border: 7px solid;
-  //border-style:solid;
-  //border-width: 7px;
-  border-color: $hint-bk-color transparent transparent transparent;
-}
+
 h1, h2, h3 {
   padding: 5px;
 }
@@ -1919,7 +1884,11 @@ div.anim2:hover {
 
 /*try 3d effect button*/
 /*3d square effect button with icon on hover*/
+
+//USE FURTHER!
+
 .fancy-button-3d3-form {
+  user-select: none;
   display: flex;
   align-items:center;
   align-content: center;
@@ -1934,6 +1903,7 @@ div.anim2:hover {
   border-radius: 2px;
   perspective: 150px;
   cursor: pointer;
+  border: 0 !important;
 }
 .fancy-button-3d3-form div {
   font-weight:bold;
@@ -2369,7 +2339,7 @@ ul.pagination li a {
   }
   p + p {
     flex: 0;
-    font-family: 'Alex Brush', cursive;
+    font-family: 'Alex Brush', cursive, Verdana;
     margin-top: 15px;
     padding-top: 5px;
     width: 90%;
@@ -3558,3 +3528,115 @@ input[type=range]:focus {
 .material-icons.red600 {
   color: red;
 }
+
+.mg-input-1 {
+  border: 1px solid lightgray;
+  border-radius: 2px;
+  box-sizing: border-box;
+  padding: 10px;
+  margin: 10px;
+  font-family: Purisa, courier, serif;
+  background: ghostwhite;
+  color: gray;
+  transition: all 0.5s;
+  text-overflow: ellipsis;
+  &:read-only {
+    border: 1px solid gray;
+    background-color: lightgray;
+    opacity: 0.8;
+  }
+  &:disabled {
+    color: #1A0315;
+    border: 1px solid gray;
+    background-color: lightgray;
+    opacity: 0.5;
+  }
+  &:not(:read-only):not(:disabled):focus {
+    border: 1px solid darkslateblue;
+    outline: none;
+  }
+  //input[type="text"]:not(:focus):hover
+  &:not(:focus):not(:read-only):not(:disabled):hover {
+      background: antiquewhite;
+  }
+  &:-webkit-autofill {
+    background: lightgreen !important;
+  }
+}
+
+.mg-hinted {
+  position: relative;
+  border-bottom: 1px dotted $hint-border-color;
+  display:inline;
+  margin: 0;
+  .mg-hint {
+    visibility: hidden;
+    width:150px;
+    color: $hint-txt-color;
+    background: $hint-bk-color;
+    border: 1px solid $hint-border-color;
+
+    margin:0;
+    padding: 5px 10px;
+    border-radius:2px;
+
+    position: absolute;
+    bottom:150%;
+    left: 50%;
+    text-align: center;
+    font-size: small;
+    font-weight:normal;
+  }
+  .mg-hint::after {
+    content:"";
+    position: absolute;
+    top: 100%;
+    left: 10%;
+    border: 7px solid;
+    border-color: $hint-bk-color transparent transparent transparent;
+  }
+  &:hover {
+    cursor: help;
+    .mg-hint {
+      visibility: visible;
+    }
+  }
+}
+
+.mg-login-box {
+  background-color: lighten($color-bk1,10%);
+  legend {
+    padding: 10px;
+    //width: 100%;
+    //border: 1px solid lightgray;
+    //border-radius: 4px;
+    background-color: aliceblue;
+    transition: 0.3s ease-in-out;
+    box-shadow: 1px 1px 2px gray;
+  }
+  &:hover {
+    legend {
+      //border: 1px solid darken($color-bk1,30%);
+    }
+  }
+}
+
+/*
+myHero {
+  display: flex;
+  align-items:center;
+  align-content:center;
+  justify-content:center;
+  margin: 5px;
+  padding: 10px;
+  background: #307be1;
+  border: 2px solid #e10687;
+  color: #e11200;
+  width: 100%;
+}
+
+#map {
+  width: 400px;
+  height: 400px;
+  margin: 10px;
+}*/
