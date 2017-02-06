@@ -10,4 +10,8 @@ import './app.scss';
     selector: 'my-app',
     templateUrl: './app.html',
 })
-export class App {}
+export class App {
+    title = "Let's get started";
+
+}
+
