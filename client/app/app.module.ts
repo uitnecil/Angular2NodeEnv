@@ -7,6 +7,8 @@ import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { App } from './app.component';
 
+import  '../external-js/javascript-exercises.js';
+
 @NgModule({
     imports: [ BrowserModule ], // because it's a web application and it runs in the browser
     declarations: [ App],

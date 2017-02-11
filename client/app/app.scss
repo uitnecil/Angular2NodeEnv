@@ -8,11 +8,13 @@
   src: url(../assets/fonts/WOFF/sansation_bold.woff);
   font-weight: bold;
 }
-/*Fonts from Google: https://fonts.google.com */
-@import url('https://fonts.googleapis.com/css?family=IM+Fell+English+SC|Raleway');
 /*
+!*Fonts from Google: https://fonts.google.com *!
+@import url('https://fonts.googleapis.com/css?family=IM+Fell+English+SC|Raleway');
+!*
 font-family: 'IM Fell English SC', serif;
 font-family: Raleway;
+*!
 */
 
 
@@ -3640,3 +3642,46 @@ myHero {
   height: 400px;
   margin: 10px;
 }*/
+
+.form-tricks {
+  padding: 0;
+  margin: 5px;
+  display: inline-flex;
+  flex-flow: row nowrap;
+  align-items:stretch;
+  align-content:space-around;
+  justify-content:flex-start;
+
+  label {
+    background-color: $color3;
+    color: $color2;
+    margin: 0;
+    font-size: small;
+    padding: 10px 10px;
+    font-family: inherit;
+
+    display: flex;
+    align-items:center;
+    justify-content:flex-start;
+    font-weight:600;
+    min-width:100px;
+  }
+
+  input {
+    border-width: 0 0 0 3px;
+    border-left: 10px solid $color3;
+    background-color: #404040;
+    color: #A5A9BD;
+    //color: #535353;
+    min-width:250px;
+    margin: 0;
+    padding: 10px 10px;
+    font-family: inherit;
+    font-weight: 800;
+    transition: 0.3s ease-in-out;
+    &:focus {
+      outline: none;
+      border-color: $color2;
+    }
+  }
+}
