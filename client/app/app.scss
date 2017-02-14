@@ -33,21 +33,21 @@ div.code {
   counter-reset: code-lines;
 }
 
-$color1: #6E3667;
-$color2: #88D317;
-$color3: #1A0315;
-$color4: #535353;
+//$color1: #6E3667;
+//$color2: #88D317;
+//$color3: #1A0315;
+//$color4: #535353;
 
 //$color1: #011A27;
 //$color2: #063852;
 //$color3: #F0810F;
 //$color4: #E6DF44;
 
-//$color1: #FEDC3D;
-//$color2: #000000;
-//$color3: #01ABAA;
-//$color4: #FEA680;
-
+$color1: #FEDC3D;
+$color2: #000000;
+$color3: #01ABAA;
+$color4: #FEA680;
+//
 //$color1: #CDA34F;
 //$color2: #E9E7DA;
 //$color3: #636B46;
@@ -57,7 +57,7 @@ $color4: #535353;
 //$color2: #D5C3AA;
 //$color3: #867666;
 //$color4: #E1B80D;
-
+//
 //$color1: #265C00;
 //$color2: #68A225;
 //$color3: #B3DE81;
@@ -146,6 +146,7 @@ $color-bk4: #FDD475;
   }
 }
 
+$background_color_flex_menu: $color1;
 
 .flex-menu {
   display:flex;
@@ -153,7 +154,7 @@ $color-bk4: #FDD475;
   padding: 0;
   flex-direction:row-reverse;
   flex-wrap: wrap;
-  background: $color1;
+  background: $background_color_flex_menu;
   p {
     margin: 0;
     padding: 0;
@@ -170,9 +171,10 @@ $color-bk4: #FDD475;
   //width: 170px;
   padding: 0;
   transition: all 300ms;
-  border-bottom: 4px solid $color1;
+  border-bottom: 4px solid $background_color_flex_menu;
   cursor: pointer;
-  color: white;
+  color: invert($background_color_flex_menu);
+
 }
 /*
 .flex-menu-item:hover {
@@ -340,7 +342,16 @@ $color-bk4: #FDD475;
   /*transition: all 500ms;*/
 }
 .sub-menu-products--item:hover {
-  background: lighten($color1,50%);
+
+  $bk_color_sub-menu-products_item: $color1;
+  $temp_color: $bk_color_sub-menu-products_item;
+  @while ($temp_color != #ffffff) {
+    $bk_color_sub-menu-products_item: $temp_color;
+    $temp_color: lighten($temp_color, 10%);
+  }
+  $bk_color_sub-menu-products_item: darken($bk_color_sub-menu-products_item, 10%);
+
+  background: $bk_color_sub-menu-products_item;
   cursor: pointer;
   /*border-color: dodgerblue;*/
 }
@@ -1941,9 +1952,13 @@ div.anim2:hover {
   align-items:center;
   align-content:center;
   justify-content:center;
-  background: $color2;
+  $color2_lighten: $color2;
+  @if( ($color2 == #000000) or ($color2 == #ffffff)) {
+    $color2_lighten : lighten($color2, 50%);
+    //$color2_lighten : lighten($color1, 10%);
+  }
+  background: $color2_lighten;
   color: white;
-
   transform: translateY(100%) rotateX(-90deg) ;
   transform-origin: center top;
   transition: all 0.3s ease-in-out;
@@ -3682,6 +3697,71 @@ myHero {
     &:focus {
       outline: none;
       border-color: $color2;
+    }
+  }
+}
+
+.mg-link-effect-container {
+  position: relative;
+  margin: 10px;
+  box-sizing: border-box;
+  min-width: 200px;
+  min-height: 50px;
+  overflow: hidden;
+  .text-label {
+    position:absolute;
+    top: 2px;
+    left: 2px;
+    bottom: 2px;
+    right: 2px;
+    box-sizing: border-box;
+    font-family:  Verdana, courier;
+    background-color: white;
+    color: #8f938a;
+    font-size: 22px;
+    letter-spacing: 8px;
+    line-height: 32px;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items:center;
+    justify-content:center;
+    transition: 0.3s ease-in-out;
+    &::after {
+      content:'';
+      position: absolute;
+      height: 4px;
+      bottom: -2px;
+      left: 0;
+      right: 0;
+      background-color: #19f6e8;
+      opacity: 1;
+      transition: 0.3s ease-in-out;
+    }
+  }
+  .effect {
+    z-index: -  1;
+    position:absolute;
+    background: #19f6e8;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    transition: 0.6s ease-in-out;
+    transform-origin: right top;
+    transform:  translateY(100%) translateX(25%) rotateZ(-5deg) scale(2);
+  }
+  &:hover {
+    cursor: pointer;
+    .effect {
+      transform-origin: right top;
+      transform: translateY(-50%) translateX(25%) rotateZ(-5deg) scale(2);
+    }
+    .text-label {
+      &::after {
+        opacity: 0;
+        height: 2px;
+        bottom: -2px;
+      }
     }
   }
 }
