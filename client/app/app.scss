@@ -1937,6 +1937,7 @@ div.anim2:hover {
   background: $color3;
   color: white;
   text-shadow: 1px 1px 2px gray;
+  //perspective: 0;
   transform-style: preserve-3d;
 }
 .fancy-button-3d3 .another-one {
@@ -2394,7 +2395,7 @@ ul.pagination li a {
 }
 
 //working 1st version
-.corner-menu-holder-1st-version {
+/*.corner-menu-holder-1st-version {
   position: fixed;
   left: 0;
   bottom: 0;
@@ -2474,11 +2475,11 @@ ul.pagination li a {
 
       &:nth-of-type(5n+1) {
         @include sub-menu-bubble-option-theme($color-bk1);
-        transform: translateX(0%) translateY(-110%) scale(0.4) /*rotateX(90deg)*/;
+        transform: translateX(0%) translateY(-110%) scale(0.4) !*rotateX(90deg)*!;
       }
       &:nth-of-type(5n+2) {
         @include sub-menu-bubble-option-theme($color-bk2);
-        transform: rotateZ(22deg) translateX(0%) translateY(-110%) scale(0.4) rotateZ(-22deg); /*rotateX(90deg);*/
+        transform: rotateZ(22deg) translateX(0%) translateY(-110%) scale(0.4) rotateZ(-22deg); !*rotateX(90deg);*!
       }
       &:nth-of-type(5n+3) {
         @include sub-menu-bubble-option-theme($color-bk3);
@@ -2492,10 +2493,10 @@ ul.pagination li a {
         @include sub-menu-bubble-option-theme($color-bk1);
         transform: rotateZ(88deg) translateX(0%) translateY(-110%) scale(0.4) rotateZ(-88deg);
       }
-      /*
+      !*
       $scale-normal: 0.4;
       @include sub-menu-bubble-option-theme($scale-normal);
-      */
+      *!
 
       p {
         margin: 0;
@@ -2522,23 +2523,23 @@ ul.pagination li a {
           //show the menus ?
         &:hover {
 
-/*          $scale_hover: 0.8;
-          @include sub-menu-bubble-option-theme($scale_hover);*/
+!*          $scale_hover: 0.8;
+          @include sub-menu-bubble-option-theme($scale_hover);*!
 
           &:nth-of-type(5n+1) {
-            transform: translateX(0%) translateY(-110%) scale(0.65) /*rotateX(90deg)*/;
+            transform: translateX(0%) translateY(-110%) scale(0.65) !*rotateX(90deg)*!;
             z-index:1;
             img {
               transform: scale(1.5);
-              transform-origin: center top;
+              //transform-origin: center top;
             }
           }
           &:nth-of-type(5n+2) {
-            transform: rotateZ(22deg) translateX(0%) translateY(-110%) scale(0.65) rotateZ(-22deg); /*rotateX(90deg);*/
+            transform: rotateZ(22deg) translateX(0%) translateY(-110%) scale(0.65) rotateZ(-22deg); !*rotateX(90deg);*!
             z-index:1;
             img {
               transform: scale(1.5);
-              transform-origin: center top;
+              //transform-origin: center top;
             }
           }
           &:nth-of-type(5n+3) {
@@ -2546,7 +2547,7 @@ ul.pagination li a {
             z-index:1;
             img {
               transform: scale(1.5);
-              transform-origin: center top;
+              //transform-origin: center top;
             }
           }
           &:nth-of-type(5n+4) {
@@ -2554,7 +2555,7 @@ ul.pagination li a {
             z-index:1;
             img {
               transform: scale(1.5);
-              transform-origin: center top;
+              //transform-origin: center top;
             }
           }
           &:nth-of-type(5n+5) {
@@ -2562,16 +2563,16 @@ ul.pagination li a {
             z-index:1;
             img {
               transform: scale(1.5);
-              transform-origin: center top;
+              //transform-origin: center top;
             }
           }
         }
       }
     }
   }
-}
+}*/
 //working 2nd version
-.corner-menu-holder-old {
+/*.corner-menu-holder-old {
   font-family: Raleway, Verdana, Arial, serif;
   position: fixed;
   left: 0;
@@ -2730,11 +2731,11 @@ ul.pagination li a {
         }
         &:hover {
 
-/*          $scale_hover: 0.8;
-          @include sub-menu-bubble-option-theme($scale_hover);*/
+!*          $scale_hover: 0.8;
+          @include sub-menu-bubble-option-theme($scale_hover);*!
 
           &:nth-of-type(5n+1) {
-            transform: translateX(0%) translateY(-110%) scale(0.65) rotateX(0deg) /*rotateX(90deg)*/;
+            transform: translateX(0%) translateY(-110%) scale(0.65) rotateX(0deg) !*rotateX(90deg)*!;
             z-index:1;
             img {
               transform: scale(1.5);
@@ -2777,7 +2778,7 @@ ul.pagination li a {
       }
     }
   }
-}
+}*/
 
 //final
 .corner-menu-holder {
@@ -2950,7 +2951,7 @@ ul.pagination li a {
             z-index:100;
             img {
               transform: scale(1.5);
-              transform-origin: center top;
+              //transform-origin: center top;
             }
           }
           &:nth-of-type(5n+2) {
@@ -2958,7 +2959,7 @@ ul.pagination li a {
             z-index:100;
             img {
               transform: scale(1.5);
-              transform-origin: center top;
+              //transform-origin: center top;
             }
           }
           &:nth-of-type(5n+3) {
@@ -2966,7 +2967,7 @@ ul.pagination li a {
             z-index:100;
             img {
               transform: scale(1.5);
-              transform-origin: center top;
+              //transform-origin: center top;
             }
           }
           &:nth-of-type(5n+4) {
@@ -2974,7 +2975,7 @@ ul.pagination li a {
             z-index:100;
             img {
               transform: scale(1.5);
-              transform-origin: center top;
+              //transform-origin: center top;
             }
           }
           &:nth-of-type(5n+5) {
@@ -2982,7 +2983,7 @@ ul.pagination li a {
             z-index:100;
             img {
               transform: scale(1.5);
-              transform-origin: center top;
+              //transform-origin: center top;
             }
           }
         }
@@ -3584,7 +3585,7 @@ input[type=range]:focus {
 .mg-hinted {
   position: relative;
   border-bottom: 1px dotted $hint-border-color;
-  display:inline;
+  //display:inline;
   margin: 0;
   .mg-hint {
     visibility: hidden;
@@ -3661,7 +3662,7 @@ myHero {
 .form-tricks {
   padding: 0;
   margin: 5px;
-  display: inline-flex;
+  display: flex;
   flex-flow: row nowrap;
   align-items:stretch;
   align-content:space-around;
@@ -3696,10 +3697,12 @@ myHero {
     transition: 0.3s ease-in-out;
     &:focus {
       outline: none;
-      border-color: $color2;
+      border-color: $color1;
     }
   }
 }
+
+$effect_duration: 1s;
 
 .mg-link-effect-container {
   position: relative;
@@ -3725,7 +3728,7 @@ myHero {
     flex-flow: row nowrap;
     align-items:center;
     justify-content:center;
-    transition: 0.3s ease-in-out;
+    transition: ($effect_duration/2) ease-out;
     &::after {
       content:'';
       position: absolute;
@@ -3735,7 +3738,7 @@ myHero {
       right: 0;
       background-color: #19f6e8;
       opacity: 1;
-      transition: 0.3s ease-in-out;
+      transition: ($effect_duration/2) ease-out;
     }
   }
   .effect {
@@ -3746,7 +3749,7 @@ myHero {
     bottom: 0;
     width: 100%;
     height: 100%;
-    transition: 0.6s ease-in-out;
+    transition: $effect_duration ease-out;
     transform-origin: right top;
     transform:  translateY(100%) translateX(25%) rotateZ(-5deg) scale(2);
   }
@@ -3762,6 +3765,46 @@ myHero {
         height: 2px;
         bottom: -2px;
       }
+    }
+  }
+}
+
+//=================
+
+.jstricks {
+  display: flex;
+  flex-flow: row wrap;
+  align-items:stretch;
+  align-content:flex-start;
+  margin: auto;
+  min-height: 100px;
+  border: 1px solid red;
+  user-select: none;
+
+  .li-style {
+    flex: 1;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: stretch;
+    align-content: center;
+    justify-content: center;
+    border: 1px solid lightblue;
+    text-decoration: none;
+
+
+    transition: 0.3s ease-in-out;
+
+    padding: 10px;
+    background: $color4;
+    min-width: 300px;
+
+    &:nth-of-type(2n) {
+      background: $color3;
+    }
+
+    &:hover {
+      background: $color1;
+      color: $color2;
     }
   }
 }

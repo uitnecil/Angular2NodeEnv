@@ -643,34 +643,34 @@
 //
 
 /*
-let set1 = [1,2,3];
-let set2 = [4,5,6];
+ let set1 = [1,2,3];
+ let set2 = [4,5,6];
 
-const sumThem = (a,b,c) => console.log(a+b+c);
+ const sumThem = (a,b,c) => console.log(a+b+c);
 
-sumThem(...set1);
+ sumThem(...set1);
 
-let square = a => a*a;
+ let square = a => a*a;
 
-console.log(square(15));
+ console.log(square(15));
 
-let planet = 'Mars';
+ let planet = 'Mars';
 
-let string = '';
+ let string = '';
 
-string = `we are on a planet called ${planet} on which living is pretty difficult.`;
+ string = `we are on a planet called ${planet} on which living is pretty difficult.`;
 
-console.log(string);
+ console.log(string);
 
 
-const createArray = n => {
-    let identifier = Math.round(Math.random() * 100);
-    let temp=[];
-    for (let i = 0; i < n; i++) {
-        temp.push([`property-identif_${identifier}-${i}`, Math.round(Math.random() * 100)]);
-    }
-    return temp;
-}*/
+ const createArray = n => {
+ let identifier = Math.round(Math.random() * 100);
+ let temp=[];
+ for (let i = 0; i < n; i++) {
+ temp.push([`property-identif_${identifier}-${i}`, Math.round(Math.random() * 100)]);
+ }
+ return temp;
+ }*/
 
 // let a = createArray(1000000);
 // let b = createArray(1000000);
@@ -691,60 +691,60 @@ const createArray = n => {
 //     // console.log(c);
 // }
 
-import { sumTwo, sumThree, s } from './sum_functions';
-import { people } from '../external-js/data/dataObjects';
+import {sumTwo, sumThree, s} from './sum_functions';
+import {people} from '../external-js/data/dataObjects';
 // import {susu} from 'data/dataObjects';
 
 // console.log(susu);
-console.log(`square: ${s(2)}`);
-
-console.log(people);
-
-// Object
-let {color, position} = {
-    color: "red",
-    name: "John",
-    state: 'New York',
-    position: 'CEO'
-}
-
-console.log(`color: ${color}`);
-console.log(`position: ${position}`);
-
-// function
-function generateObj(){
-    return {
-        color: "red",
-        name: "John",
-        state: "New York",
-        position: "CEO"
-    }
-}
-
-let {color:_color, position:_position} = generateObj();
-
-console.log(`color: ${_color}`);
-console.log(`position: ${_position}`);
-
-console.log('');
-//array
-let [primul,,,,,,ultimul] = ["alb", "negru", 'rosu', 'albastru', 'portocaliu', 'roz', 'lila'];
-
-console.log(`primul element din sir e: ${primul}`);
-console.log(`ultimul element din sir e: ${ultimul}`);
-console.log();
-//array of objects
-
-
-people.forEach(({firstname}) => console.log(firstname));
-
-
-let u = 1;
-people.forEach(obj => {
-    console.log (u);
-    for (let i in obj) console.log(`${i}: ${obj[i]}`);
-    u++;
-});
+// console.log(`square: ${s(2)}`);
+//
+// console.log(people);
+//
+// // Object
+// let {color, position} = {
+//     color: "red",
+//     name: "John",
+//     state: 'New York',
+//     position: 'CEO'
+// }
+//
+// console.log(`color: ${color}`);
+// console.log(`position: ${position}`);
+//
+// // function
+// function generateObj(){
+//     return {
+//         color: "red",
+//         name: "John",
+//         state: "New York",
+//         position: "CEO"
+//     }
+// }
+//
+// let {color:_color, position:_position} = generateObj();
+//
+// console.log(`color: ${_color}`);
+// console.log(`position: ${_position}`);
+//
+// console.log('');
+// //array
+// let [primul,,,,,,ultimul] = ["alb", "negru", 'rosu', 'albastru', 'portocaliu', 'roz', 'lila'];
+//
+// console.log(`primul element din sir e: ${primul}`);
+// console.log(`ultimul element din sir e: ${ultimul}`);
+// console.log();
+// //array of objects
+//
+//
+// people.forEach(({firstname}) => console.log(firstname));
+//
+//
+// let u = 1;
+// people.forEach(obj => {
+//     console.log (u);
+//     for (let i in obj) console.log(`${i}: ${obj[i]}`);
+//     u++;
+// });
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*
 // logheaza eroarea regeneratorRuntime is not defined
@@ -753,7 +753,6 @@ people.forEach(obj => {
 //         yield j;
 //     }
 // }
-
 
 
 // let j = idGenerator();
@@ -776,27 +775,27 @@ people.forEach(obj => {
 //     console.log(obj);
 //     // for (let i of obj) console.log(`${i}`)
 // });
-
-let newObj = {
-    firstname : "Clinton",
-    lastName : "Ruiz",
-    address : "P.O. Box 171, 1135 Feugiat St.",
-    email : "a@a.com",
-    phone : "1-403-987-2345"
-}
-
-let createObj = n => {
-    let rezObj = {};
-    for (let i = 0; i < n; i++) {
-        let rand_obj = Math.round(Math.random()*100);
-        let rand_prop = Math.round(Math.random()*100);
-        rezObj[`prop_${rand_obj}`] = `value_${rand_prop}`;
-    }
-    return rezObj;
-}
-
-let myObj = createObj(1000);
-console.log(myObj);
+//
+// let newObj = {
+//     firstname : "Clinton",
+//     lastName : "Ruiz",
+//     address : "P.O. Box 171, 1135 Feugiat St.",
+//     email : "a@a.com",
+//     phone : "1-403-987-2345"
+// }
+//
+// let createObj = n => {
+//     let rezObj = {};
+//     for (let i = 0; i < n; i++) {
+//         let rand_obj = Math.round(Math.random()*100);
+//         let rand_prop = Math.round(Math.random()*100);
+//         rezObj[`prop_${rand_obj}`] = `value_${rand_prop}`;
+//     }
+//     return rezObj;
+// }
+//
+// let myObj = createObj(1000);
+// console.log(myObj);
 
 // for (let i in myObj) {console.log(`${i}: ${myObj[i]}`)};
 
@@ -824,13 +823,13 @@ console.log(myObj);
 // console.log(sumThree(5,6,3));
 //
 //
-const add = a => b => a + b;
-const add2 = add(2);
-console.log(add2);
-//
-// add2(1);
-console.log(add2(1));
-//
+// const add = a => b => a + b;
+// const add2 = add(2);
+// console.log(add2);
+// //
+// // add2(1);
+// console.log(add2(1));
+// //
 //
 // {
 //     let kvArray = [['key1', 'value1'],['key2', 'value2']];
@@ -851,46 +850,170 @@ console.log(add2(1));
 //     console.log(unitedMap);
 // }
 
+// {
+// let kvArray = [['key1', 'value1'], ['key2', 'value2'], ['key3', 'value3']];
+//
+// let myMap = new Map(kvArray);
+// // console.log(myMap.get('key2'));
+// console.log(myMap);
+//
+// // Use the spread operator to transform a map into a 2D key-value Array.
+// console.log('spread operator to transform a map into a 2d key-value array');
+// console.log([...myMap]);
+//
+// console.log('using functions on Maps');
+// console.log('myMap.entries');
+// console.log([...myMap.entries()]);
+//
+// console.log('myMap.get');
+// console.log(myMap.get('key1'));
+//
+// console.log('myMap.delete, removes second key');
+// if (myMap.delete('key2')) console.log(myMap);
+//
+// console.log('myMap.get');
+// console.log(`${myMap.has('key2')}`);
+
+// function* fibonacci() { // a generator function
+//     let [prev, curr] = [1, 1];
+//     while (true) {
+//         [prev, curr] = [curr, prev + curr];
+//         yield curr;
+//     }
+// }
+//
+// for (let n of fibonacci()) {
+//     console.log(n);
+//     // truncate the sequence at 1000
+//     if (n >= 1000) {
+//         break;
+//     }
+// }
+// let string = 'abcd';
+// for (let i of string) {console.log(i)};
+// for (let i in string) {console.log(string[i])};
+// }
+
+console.log('======================');
+// console.log(document);
+
+
+window.onload = addElementsToJsTricks;
+
+
+function addElementsToJsTricks() {
+    // console.log(window.document);
+    // console.log(`inside getThem() function`);
+    let list = document.getElementById('jstricks');
+    console.log(list);
+    console.log(``);
+
+    for (let i = 0; i < 33; i++) {
+        let elem = document.createElement('a');
+        elem.style.cssText = 'list-style-type: none; cursor: pointer;';
+        // elem.setAttribute('href', 'http://www.google.com');
+        // elem.setAttribute('target', '_new');
+        elem.setAttribute('class', 'li-style');
+        elem.appendChild(document.createTextNode(`this is item ${i}`));
+
+        elem.onclick = function (ev) {
+            console.log(`clicked on element ${i} + ${ev.toString()}`);
+        };
+        list.appendChild(elem);
+    }
+}
+
+// let aaa = () => {
+//     var xx = 1;
+//     let yy = 1;
+//     console.log(this.xx);
+//     console.log(this.yy);
+// }
+//
+// aaa();
+
+var MyConstructor;
+
 {
-    let kvArray = [['key1', 'value1'], ['key2', 'value2'], ['key3', 'value3']];
+    // let myScope = Object.create(null); // has no prototype
+    let myScope = {};
 
-    let myMap = new Map(kvArray);
-    // console.log(myMap.get('key2'));
-    console.log(myMap);
+    //prototype;
+    MyConstructor = function MyConstructor() {
+        this.publicName = 'Andrew Public';
+        myScope.secretName = 'Lorenzo secret';
+    }
 
-    // Use the spread operator to transform a map into a 2D key-value Array.
-    console.log('spread operator to transform a map into a 2d key-value array');
-    console.log([...myMap]);
+    //add a method to prototype
+    MyConstructor.prototype.showPublic = function () {
+        console.log(`this is the public name: %c${this.publicName}`, 'padding: 0 5px; background: lightgreen; color: darkgreen;');
+    }
 
-    console.log('using functions on Maps');
-    console.log('myMap.entries');
-    console.log([...myMap.entries()]);
+    MyConstructor.prototype.showSecret = function () {
+        console.log(`this is the secret name: %c${myScope.secretName}`, 'padding: 0 5px; background: red; color: white;');
+    }
 
-    console.log('myMap.get');
-    console.log(myMap.get('key1'));
+    console.log(` %cmyScope for this block is:`, 'background: #f432fc; color: white; padding: 0 5px;');
+    console.log(myScope);
+}
 
-    console.log('myMap.delete, removes second key');
-    if (myMap.delete('key2')) console.log(myMap);
+let myConstr = new MyConstructor();
 
-    console.log('myMap.get');
-    console.log(`${myMap.has('key2')}`);
+myConstr.showPublic();
+myConstr.showSecret();
 
-    // function* fibonacci() { // a generator function
-    //     let [prev, curr] = [1, 1];
-    //     while (true) {
-    //         [prev, curr] = [curr, prev + curr];
-    //         yield curr;
-    //     }
-    // }
-    //
-    // for (let n of fibonacci()) {
-    //     console.log(n);
-    //     // truncate the sequence at 1000
-    //     if (n >= 1000) {
-    //         break;
-    //     }
-    // }
-    // let string = 'abcd';
-    // for (let i of string) {console.log(i)};
-    // for (let i in string) {console.log(string[i])};
+// class MyClass2
+//     calculate(a) {
+//         return a + 1;
+//     }
+// }
+//
+// class MyClass {
+//     constructor(MyClass2) {
+//         this.MyClass2 = MyClass2
+//     }
+//
+//     myMethod() {
+//
+//     }
+// }
+import {setValuesConcat, createRandomMap} from './customFunctions';
+import {functionReturn as noReturn} from './customFunctions';
+import {magic as leMagique, gimmeTypeOf as gimme} from './customFunctions';
+
+
+{
+    let mySeriousMap = createRandomMap(1000);
+    console.log(mySeriousMap);
+
+    let sumOfAllValues = setValuesConcat(mySeriousMap);
+    console.log(`sumOfAllValues: ${sumOfAllValues}`);
+
+    let asdf = {a: 1, b: 5};
+    let sumOfAllValues1 = setValuesConcat(asdf);
+    console.log(`sumOfAllValues: ${sumOfAllValues1}`);
+
+
+}
+
+{
+
+    let u = 10;
+    console.log(u);
+    noReturn();
+    let myVar = leMagique();
+    console.log('myVar:');
+    console.log(myVar);
+    // console.log(myVar());
+
+    let myArr = [1, 2, 3, 4, 5, 6, 7];
+    let myS = new Set(myArr);
+    let myArr1 = [['a', 1], ['b', 2]];
+    let myM = new Map(myArr1);
+
+    console.log('Input Number - returned by function :' + gimme(u));
+    console.log('Input Function - returned by function: ' + gimme(myVar));
+    console.log('Input Set - returned by function: ' + gimme(myS));
+    console.log('Input Map - returned by function: ' + gimme(myM));
+
 }
