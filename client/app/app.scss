@@ -120,8 +120,8 @@ $color-bk4: #FDD475;
 .div-flex-row {
   display: flex;
   flex-flow: row wrap;
-  flex: 1 1 auto;
-  width: 100%;
+  flex: 1 1 100%;
+  //width: 100%;
 }
 
 
@@ -1958,7 +1958,7 @@ div.anim2:hover {
     $color2_lighten : lighten($color2, 50%);
     //$color2_lighten : lighten($color1, 10%);
   }
-  background: $color2_lighten;
+  background: linear-gradient(to bottom , $color2_lighten, lighten($color2_lighten,20%)) ;
   color: white;
   transform: translateY(100%) rotateX(-90deg) ;
   transform-origin: center top;
@@ -3659,6 +3659,8 @@ myHero {
   margin: 10px;
 }*/
 
+
+/*TODO: include in a final version*/
 .form-tricks {
   padding: 0;
   margin: 5px;
@@ -3702,8 +3704,9 @@ myHero {
   }
 }
 
-$effect_duration: 1s;
+/*TODO: include in a final version*/
 
+$effect_duration: 1s;
 .mg-link-effect-container {
   position: relative;
   margin: 10px;

@@ -894,9 +894,10 @@ import {people} from '../external-js/data/dataObjects';
 // for (let i in string) {console.log(string[i])};
 // }
 
-console.log('======================');
+// console.log('======================');
 // console.log(document);
 
+/*
 
 window.onload = addElementsToJsTricks;
 
@@ -1015,5 +1016,344 @@ import {magic as leMagique, gimmeTypeOf as gimme} from './customFunctions';
     console.log('Input Function - returned by function: ' + gimme(myVar));
     console.log('Input Set - returned by function: ' + gimme(myS));
     console.log('Input Map - returned by function: ' + gimme(myM));
+
+}
+
+
+// {
+//     console.log('test break missing');
+//     var foo = 0;
+//     switch (foo) {
+//         case -1:
+//             console.log('negative 1');
+//             break;
+//         case 0: // foo is 0 so criteria met here so this block will run
+//             console.log(0);
+//         case 1:
+//             console.log(1);// no break statement in 'case 1:' so this case will run as well
+//         case 2:
+//             console.log(2);// no break statement in 'case 2:' so this case will run as well
+//         default:
+//             console.log('default');// no break statement in 'default:' so this case will run as well
+//     }
+// }
+
+import {pickAnimals as chooseArk} from './customFunctions';
+
+{
+    let animal = ['Bear', 'Eagle', 'Snake', 'Wolf', 'Monkey', 'Dinosaur', 'Alien', 'Human', 'Other'];
+
+    for (let i of animal) {
+        console.log(chooseArk(i));
+    }
+}
+
+import {congrats as congrat} from './customFunctions';
+
+{
+    let congratsList = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
+
+    for (let i of congratsList) {
+        console.log(congrat(i));
+    }
+}
+
+// import {erroring as errorItOut} from './customFunctions';
+//
+// {
+//     let o = false, e;
+//
+//     //first level
+//     try {
+//
+//         errorItOut();
+//
+//         console.log('lvl 1: this is me!    ');
+//     }
+//     catch (e) {
+//         console.error(`lvl 1: Error: ${e.message}`);
+//     }
+//
+// }
+
+
+// import {errorCode as throwErrorTypes} from './customFunctions';
+//
+// {
+//     let didItThrowError = false;
+//     try {
+//         // throwErrorTypes(1);
+//         throwErrorTypes(2);
+//         // throwErrorTypes(3);
+//     }
+//     catch (err) {
+//         if (err instanceof TypeError) console.error(`Type error (1) was encountered: ${err.message}`);
+//         if (err instanceof RangeError) console.error(`Range error (2) was encountered: ${err.message}`);
+//         if (err instanceof EvalError) console.error(`Eval error (3) was encountered: ${err.message}`);
+//         didItThrowError = true;
+//     }
+//     finally {
+//         if (didItThrowError) console.info('Finally: Rolling back everything');
+//     }
+// }
+
+import {varVsLet} from './customFunctions';
+
+{
+    // varVsLet();
+}
+
+{
+    var a = 'A';
+    var b = a;
+
+    console.log(`a: ${a} - b: ${b}`);
+
+    var x, y = x = 'A';
+
+    console.log(`x: ${x} - y: ${y}`);
+}
+
+import {createElements} from './customFunctions';
+
+{
+    window.onload = createElements;
+}
+
+import {createSet as _createSet} from './customFunctions';
+
+{
+    let mySet = _createSet();
+
+    console.log(mySet);
+}
+
+//ARRAY
+*/
+
+import * as _arr from './ArrayFunctions';
+
+{
+    //create Array
+    let myColors = ['White','Red','Pink','Orange','Yellow','Blue','Light Blue','Light Gray','Gray','Dark Gray','Marine','Mugurish','Stinkish'];
+    let myNumbering = ['1st','2nd','3rd','4th','5th','6th','7th','8th','9th','10th','11th','12th','13th'];
+
+    console.log (`myArr.length: ${myColors.length}`);
+
+    for (let i = 0; i < myColors.length; i++) {
+        console.log(`At position ${i} in the array is the element: ${myColors[i]}`);
+    }
+
+    myColors.forEach((value, index, array) => {
+        console.log(`At position ${index} in the array is the element: ${value}`);
+    });
+
+
+    myColors.push('Orangish', 'DARKISH');
+
+    myColors.forEach((value, index) => console.log(`at position ${index} of the array is ${value}`));
+
+    console.log('===============');
+    let lastColor = myColors.pop();
+    console.info(`removed last element ${lastColor} from the array by using console.pop()`);
+
+    myColors.forEach((value, index) => console.log(`at position ${index} from the array is ${myColors[index]}`));
+
+    let firstColor = myColors.shift();
+    console.info(`removed first element ${firstColor.toUpperCase()} of the array with myColors.shift`);
+
+    myColors.forEach((value, index) => console.info(`at index ${index} in the array is ${value.toUpperCase()}`));
+    let secondColor = myColors.shift();
+
+    myColors.forEach((v, i) => console.log(`at pos ${i} in the array is %c${v.toUpperCase()}`, 'background-color: red; color: white; padding: 0 5px; font-weight: bold;'));
+
+    let oneofLast = myColors.pop();
+    console.info(`removed element %c${oneofLast.toUpperCase()}%c from last position of the array`, 'background-color: yellow; padding: 0 5px; color: red;', 'background-color: transparent');
+
+    myColors.forEach((v, i) => console.info(`at position ${i} in the array is %c${v.toUpperCase()}`, 'background-color: orange; color: white; padding: 0 10px;'));
+
+    let newLength = myColors.unshift('FirstColor');
+    console.info(`Added a new element at the beginning of the array. New Array length is ${newLength}`);
+    myColors.forEach((v, i) => console.info(`at position ${i} in the array is [ %c${v}%c ]`, 'background-color: red; color: white; padding: 0 10px;', 'background-color: transparent;'));
+
+    let newLength1 = myColors.push('TheColor');
+
+    myColors.forEach((v, i) => console.info(`index ${i} has value ${v}`));
+
+    //slice
+    let C = myNumbering.splice(1,1);
+    console.log(`removed color at position 1 ${C[0]} from array `);
+    console.log(C);
+
+    myNumbering.forEach((v,i) => console.log(`index ${i}: value ${v}`));
+
+    _arr.showArray(C);
+
+    let C1 = myNumbering.splice(1,5);
+
+    _arr.showArray(myNumbering);
+
+
+    newLength1 = myNumbering.push('14th');
+    console.log('new length, after adding a new element is: ' + newLength1);
+    _arr.showArray(myNumbering);
+
+
+    newLength1 = myNumbering.push('1st');
+    console.log(``);
+
+}
+
+{
+    let myNumbers = [0,1,2,3,4,5,6,7,8,9];
+    _arr.showArray(myNumbers);
+    let temp1 = 10;
+    myNumbers.push(temp1);
+    console.log(`added number ${temp1} to the end of the array...`);
+    _arr.showArray(myNumbers);
+    let last = myNumbers.pop();
+    console.log(`Eliminate last element of the array: ${last}`);
+    console.log(myNumbers);
+    let first = myNumbers.shift();
+    console.log(`Eliminate the first element of the array ${first}`);
+    console.log(myNumbers);
+    let newLength = myNumbers.unshift(-5,-4,-3,-2,-1,0);
+    console.log(`Add at the beginning of the Array. New Array length ${newLength}`);
+    console.log(myNumbers);
+    _arr.sumArray(myNumbers);
+    //eliminate last element from Array
+    last = myNumbers.pop();
+    console.log(`Removed last element from the Array: ${last}`);
+    //recalculate sum of all elements of the Array
+    _arr.sumArray(myNumbers);
+    newLength = myNumbers.push(99);
+    console.log(`Added at the end of the Array a new value`);
+    console.log(myNumbers);
+    _arr.sumArray(myNumbers);
+    console.log(`Removed first element of the Array`);
+    myNumbers.shift();
+    console.log(myNumbers);
+    _arr.sumArray(myNumbers);
+    console.log(`removing 7th element of the array with value ${myNumbers.splice(6,1)}`);
+    console.log(myNumbers);
+    _arr.sumArray(myNumbers);
+    console.log(`removing sub Array starting from position 2, a number of 5 elements`);
+    let myRemovedSubArray = myNumbers.splice(3,5);
+    _arr.showArray(myNumbers,2);
+    _arr.showArray(myRemovedSubArray,2);
+
+    let myNewArray = _arr.createNumericArray(100);
+    _arr.showArray(myNewArray,2);
+    console.log(myNewArray.length);
+
+    console.time('duplicateThroughReassignation');
+    let myNewArray1 = myNewArray;
+    console.timeEnd('duplicateThroughReassignation');
+    console.log(myNewArray.length);
+
+
+    _arr.showArray(myNewArray1,2);
+
+
+    console.time('duplicateUsingSlice');
+    let myNewArray2 = myNewArray.slice();
+    console.timeEnd('duplicateUsingSlice');
+    _arr.showArray(myNewArray2,2);
+
+    console.time('duplicateUsingSpread');
+    let myNewArray3 = [...myNewArray];
+    console.timeEnd('duplicateUsingSpread');
+    console.log(`myNewArray[0]: ${myNewArray[0]}`);
+    myNewArray3[0]++;
+    console.log(`myNewArray3[0]++: ${myNewArray3[0]}`);
+    console.log(`myNewArray[0]: ${myNewArray[0]}`);
+    _arr.showArray(myNewArray,2);
+    _arr.showArray(myNewArray3,2);
+
+
+
+
+    //create new Array
+    // console.time('new array[1000*1000]');
+    // let Array1 = new Array(1000 * 1000);
+    //
+    // for (let oo = 0; oo < 1000*1000; oo++) {
+    //     Array1[oo] = Math.floor(Math.random()*100);
+    // }
+    // console.timeEnd('new array[1000*1000]');
+    //
+    // console.log(Array1);
+    //
+
+    let myA = [1,2,3,4,5,6,7,8,9];
+    let myB = myA; //shallow copy ?
+
+    // console.log('myA[0]: ' + myA[0]); // myA[0] = 1
+    // myB[0]++; //  myB[0] = 2
+    // console.log('myB[0]: ' + myB[0]); // myB[0] = 2
+    // console.log('myA[0]: ' + myA[0]); // myA[0] = 2 !!!!!!!
+
+    let myC = myA.slice(0);
+    _arr.showArray(myA,2);
+    _arr.showArray(myC,2);
+
+    myA.length=1;
+    _arr.showArray(myA,2);
+    console.log(`Array size: ${myA.length}`);
+    myA.length=9;
+    _arr.showArray(myA,2)
+
+
+console.clear();
+
+}
+
+{
+    let myArr = _arr.createNumericArray(30);
+    console.log(myArr);
+
+    let newLen = myArr.push(101);
+    console.log(myArr);
+
+    console.log('remove element');
+    let removedElem = myArr.pop();
+
+    console.log(`Element removed from the end is ${removedElem}`);
+    console.log(myArr);
+
+    console.log(`remove element from the start of the array`);
+
+    let arrayFirstRemovedElement = myArr.shift();
+    console.log(arrayFirstRemovedElement);
+    console.log(myArr);
+    console.log(`Array length: ${myArr.length}`);
+    let newLen1 = myArr.unshift(100);
+    console.log(`Array length after unshift - added element 100 at beginning of array: ${myArr.length}`);
+    console.log(myArr);
+
+    let myArr1 = [...myArr].reverse();
+    console.log(`myArr: `);
+    console.log(myArr);
+
+    console.log(`myArr1: `);
+    console.log(myArr1);
+
+
+    let tr = myArr.includes(100);
+    console.log(tr);
+
+    let myA = [1,2,3,4,5,6,7,8,9];
+
+    console.log(`_arr.stringifyMyArray(myA): ${_arr.stringifyMyArray(myA)}`);
+    // myArr.splice(3,5,myA.forEach((v) => v)); why not work ?
+    myArr.splice( 3, 5, _arr.stringifyMyArray(myA));
+    console.log((myArr));
+
+    myA.forEach((v,i,arr) => console.log(v));
+    let msg = '';
+    console.log(myA.forEach(v => msg += ',' + v));
+
+    let myArr2 = myArr.slice();
+    console.log(myArr2);
 
 }
