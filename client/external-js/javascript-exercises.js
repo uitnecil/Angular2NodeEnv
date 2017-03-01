@@ -1132,6 +1132,7 @@ import {createSet as _createSet} from './customFunctions';
 */
 
 import * as _arr from './ArrayFunctions';
+/*
 
 {
     //create Array
@@ -1307,6 +1308,15 @@ import * as _arr from './ArrayFunctions';
 console.clear();
 
 }
+*/
+
+let agen = (n) => {
+    let mA= [];
+    for (let i = 0; i<n; i++) {
+        mA.push(Math.floor(Math.random()*1000));
+    }
+    return mA;
+}
 
 {
     let myArr = _arr.createNumericArray(30);
@@ -1344,16 +1354,292 @@ console.clear();
 
     let myA = [1,2,3,4,5,6,7,8,9];
 
-    console.log(`_arr.stringifyMyArray(myA): ${_arr.stringifyMyArray(myA)}`);
+    // console.log(`_arr.stringifyMyArray(myA): ${_arr.stringifyMyArray(myA)}`);
     // myArr.splice(3,5,myA.forEach((v) => v)); why not work ?
-    myArr.splice( 3, 5, _arr.stringifyMyArray(myA));
+    // myArr.splice( 3, 5, _arr.stringifyMyArray(myA));
+
+    let args = [3,5].concat([...myA]);
+    console.log(`args: ${args}`);
+    myArr.splice.apply(myArr, args);
+    console.log(`===============================  here i work! ==================================`);
+
+    // let args = [3,5].concat([...myA]);
+    // console.log(args);
+    // myArr.splice.apply( args);
     console.log((myArr));
 
-    myA.forEach((v,i,arr) => console.log(v));
-    let msg = '';
-    console.log(myA.forEach(v => msg += ',' + v));
+    // myA.forEach((v,i,arr) => console.log(v));
+    // let msg = '';
+    // myA.forEach(v => msg += ',' + v);
 
-    let myArr2 = myArr.slice();
-    console.log(myArr2);
+    // let myArr2 = myArr.slice();
+    // console.log(myArr2);
+
+    console.log([0,1,2,3,4,5].reduce((acc,v) => acc += v));
+
+    myArr.push(NaN);
+    console.log(myArr);
+    let myMax = myArr.reduce( (acc,v) => {
+        if ( (typeof v == 'number') && !isNaN(v) ) {
+            return Math.max(acc,v);
+        };
+        return acc;
+    }, 0);
+
+    console.log(`max of the Array is: ${myMax}`);
+    console.log(typeof NaN);
+
+
+    let myFarr = [0,[1,[2,[3,[4]]]]];
+
+    let liniarized = myFarr.reduce((acc,v) => acc.concat(v),[]);
+    console.log(liniarized);
+
+
+
+
+    let mA = agen(100000);
+    _arr.showArray(mA, 2);
+
+    mA.push(100000);
+
+    let max = mA.reduce((cc,v) => Math.max(cc,v) ,0);
+    console.log(`max: ${max}`);
+
+    let sum = mA.reduce((accum,value) => accum += value, 0);
+    console.log(`sum of all elements in array is: ${sum}`);
+
+    let SS = 0;
+    for (let i of mA)  {
+        SS += i;
+    }
+    console.log(SS);
+
+    let min = mA.reduce((accum, vl) => Math.min(accum,vl));
+    console.log(`min value in array is: ${min}`);
+
+    let minn = mA[1];
+    for (let i of mA) {
+        minn = Math.min(minn,i);
+    }
+    console.log(`min value in array is: ${minn}`);
+
+
+    console.log('add element at the end');
+    mA.push(101);
+    console.log(mA);
+
+    let fin = mA.pop();
+    console.log(`remove element ${fin} from the end`);
+    console.log(mA);
+
+    let st = mA.shift();
+    console.log(`remove element ${st} from the start`);
+    console.log(mA);
+
+    console.log('add element at the beginning');
+    mA.unshift(100);
+    console.log(mA);
+
+    console.log(`duplicating array`);
+    let mB = mA.slice();
+
+    console.log(`pushed element 1000 to mB`);
+    mB.push(1000);
+    console.log(`last element from mB is: ${mB[mB.length-1]} and array length is ${mB.length}`);
+    console.log(`last element from mA is: ${mA[mA.length-1]} and array length is ${mA.length}`);
+
+    console.log(`removed x elementss from list and added a new one`);
+    console.time('apply');
+
+    // mB.length=0;
+    let minArray = Math.min.apply('',mB);
+    console.timeEnd('apply');
+
+    console.log(`(apply) min array mB is: ${minArray}`);
+
+    console.time('reduce');
+    let minRed = mA.reduce((acc,v) => Math.min(acc,v),+Infinity);
+    console.timeEnd('reduce');
+
+    let minRed1 = Math.min.apply(null, mA);
+    console.log('minRed1:' + minRed1);
+
+    console.log(`(reduce) min array mB is: ${minRed}`);
+
+    mB.sort((v,arr) => arr[0]);
+    console.log(mB);
+
+    console.log();
+
+    let mC = [1,2,3,4,3,2,1,0,99];
+    let mJ = [0,1,2,3,4,5];
+
+    console.log(`mC before splice`);
+    console.log(mC);
+
+
+    let mm = Array.prototype.splice.apply(mC,[3,5].concat([...mJ]));
+    console.log(mC);
+    console.log(`mm: ${mm}`);
+
+
+
+    console.clear('===============');
 
 }
+
+let myNamesGen = n => {
+    let oTemp = [];
+    for (let i = 0; i++; i<n) {
+        oTemp.push()
+    }
+    return oTemp;
+}
+
+{
+    let myArray = agen(10);
+    console.log(myArray);
+
+    //min value using reduce
+    let minValueReduce = myArray.reduce((acc, v) => Math.min(acc,v), +Infinity);
+    console.log(`Min Value of array using reduce: ${minValueReduce}`);
+
+    //min value using apply
+    let minValueApply = Math.min.apply(null, myArray);
+    console.log(`Min value of array using apply: ${minValueApply}`);
+
+    //max value using reduce
+    let maxValueReduce = myArray.reduce((acc, v) => Math.max(acc,v), -Infinity);
+    console.log(`Max value of array using reduce: ${maxValueReduce}`);
+
+    //max value using apply
+    let maxValueApply = Math.max.apply(null, myArray);
+    console.log(`Max value of array using apply: ${maxValueApply}`);
+
+
+
+    let myNames = [];
+
+
+
+}
+
+
+console.clear();
+
+
+
+
+//Arrays declaration
+
+/**
+ * Function that generates a random number from 0 to max;
+ * @param max {number}
+ */
+const random = max => Math.floor(Math.random()*max);
+
+ArrayDeclarationBlockLabel: {
+    let n = 1000;
+
+    // TODO: WHICH ONE IS TO BE USED ?
+
+    // ====================================================
+    // TODO: VERSION 1
+    let a = [], value;
+    for (let i = 0; i<n; i++) {
+        value = random(100);
+        a.push(value);
+    }
+
+    //custom display array function
+    _arr.showArray(a,2);
+
+    // ====================================================
+    //TODO: VERSION 2
+    let b = new Array(n);
+
+    for (let i=0; i<n; i++) {
+        value = random(100);
+        b[i] = value;
+    }
+
+    //custom display array function
+    _arr.showArray(b,2);
+}
+
+
+{
+    let arr = [1,2,3,4,5];
+    let arr1 = [6,6,6,7,7,7,6,6,6,6,6];
+    _arr.showArray(arr1,2);
+
+  // let myRet = arr1.splice(3,3,[...arr]);
+  //   let myRet1 = arr1.splice([3,3].concat([...arr]));
+
+    // let myRet = Array.prototype.splice.apply(arr1, [3,3].concat([...arr]));
+    // _arr.showArray(arr1,2);
+    // _arr.showArray(arr1,2);
+
+    let arr2 = [...arr,...arr1];
+    let arr3 =
+    console.log(arr2);
+
+}
+
+console.clear();
+
+{
+    const mygen = (n) => {
+        let myAT = [], value;
+        for (let i = 0; i<n; i++) {
+            value = Math.floor(Math.random()*(-100));
+            myAT.push(value);
+        }
+        return myAT;
+    }
+
+    let myArray = mygen(100);
+
+    console.log(myArray);
+    //
+    // myArray.push(-1);
+    //
+    // myArray.length=0;
+    // myArray.delete;
+
+    // let minVal = myArray.reduce((acc, v) => Math.min(acc,v),+Infinity);
+    // console.log(minVal);
+
+    let arr = [1,2,3,4,5];
+
+    let max =  arr.reduce((acc,v) => Math.max(acc,v));
+    console.log(max);
+
+    let max1 = Math.max.apply(null,arr);
+    console.log(max1);
+
+    let myArray1 = myArray.concat([arr]);
+    console.log(myArray1);
+}
+
+const countNoOfEncounters = (arr) => {
+    let a =  arr.reduce((enc,v) => {
+        if (v in enc) {
+            enc[v]++;
+        } else {
+            enc[v]=1;
+        }
+        return enc;
+    },{});
+    return a;
+};
+
+{
+    let names = ['Andrei','Tudor','Ionel','Andrei','Lice','Lice'];
+    console.log(names);
+
+    console.log((countNoOfEncounters(names)));
+
+}
+

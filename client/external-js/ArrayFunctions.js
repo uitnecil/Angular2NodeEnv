@@ -7,7 +7,7 @@
  * @param arr {Array}
  * @param displayType {[0,1]}
  */
-export let showArray = (arr, displayType = 1) => {
+export const showArray = (arr, displayType = 1) => {
     let colors = ['blue', 'green', 'red', 'magenta', 'orange', 'black'];
     let randomColorIndex = Math.floor(Math.random() * (colors.length - 1));
 
@@ -25,7 +25,7 @@ export let showArray = (arr, displayType = 1) => {
  * @param arr {Array}
  * @returns {number}
  */
-export let sumArray = (arr) => {
+export const sumArray = (arr) => {
     let tempSum = 0;
     arr.forEach((v, i) => tempSum += v);
     console.log(`Sum of all array elements is: ${tempSum}`);
@@ -37,7 +37,7 @@ export let sumArray = (arr) => {
  * @param n {number}
  * @returns {Array}
  */
-export let createNumericArray = (n = 100) => {
+export const createNumericArray = (n = 100) => {
     let tempArr = [];
     let i = 0;
     let tempVal = 0;
@@ -55,7 +55,7 @@ export let createNumericArray = (n = 100) => {
  * @param arr {Array}
  * @returns {string}
  */
-export let stringifyMyArray = (arr) => {
+export const stringifyMyArray = (arr) => {
     let str = '';
     if (Array.isArray(arr)) {
         arr.forEach((v, i, mArr) => {
@@ -66,3 +66,6 @@ export let stringifyMyArray = (arr) => {
     }
     return str;
 };
+
+
+export const getMax = (a,b) => Math.max(a,b);
