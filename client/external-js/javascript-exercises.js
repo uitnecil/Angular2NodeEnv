@@ -1542,10 +1542,8 @@ const random = max => Math.floor(Math.random()*max);
 ArrayDeclarationBlockLabel: {
     let n = 1000;
 
-    // TODO: WHICH ONE IS TO BE USED ?
 
     // ====================================================
-    // TODO: VERSION 1
     let a = [], value;
     for (let i = 0; i<n; i++) {
         value = random(100);
@@ -1556,7 +1554,6 @@ ArrayDeclarationBlockLabel: {
     _arr.showArray(a,2);
 
     // ====================================================
-    //TODO: VERSION 2
     let b = new Array(n);
 
     for (let i=0; i<n; i++) {
