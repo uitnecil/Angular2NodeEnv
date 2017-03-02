@@ -899,421 +899,421 @@ import {people} from '../external-js/data/dataObjects';
 
 /*
 
-window.onload = addElementsToJsTricks;
+ window.onload = addElementsToJsTricks;
 
 
-function addElementsToJsTricks() {
-    // console.log(window.document);
-    // console.log(`inside getThem() function`);
-    let list = document.getElementById('jstricks');
-    console.log(list);
-    console.log(``);
+ function addElementsToJsTricks() {
+ // console.log(window.document);
+ // console.log(`inside getThem() function`);
+ let list = document.getElementById('jstricks');
+ console.log(list);
+ console.log(``);
 
-    for (let i = 0; i < 33; i++) {
-        let elem = document.createElement('a');
-        elem.style.cssText = 'list-style-type: none; cursor: pointer;';
-        // elem.setAttribute('href', 'http://www.google.com');
-        // elem.setAttribute('target', '_new');
-        elem.setAttribute('class', 'li-style');
-        elem.appendChild(document.createTextNode(`this is item ${i}`));
+ for (let i = 0; i < 33; i++) {
+ let elem = document.createElement('a');
+ elem.style.cssText = 'list-style-type: none; cursor: pointer;';
+ // elem.setAttribute('href', 'http://www.google.com');
+ // elem.setAttribute('target', '_new');
+ elem.setAttribute('class', 'li-style');
+ elem.appendChild(document.createTextNode(`this is item ${i}`));
 
-        elem.onclick = function (ev) {
-            console.log(`clicked on element ${i} + ${ev.toString()}`);
-        };
-        list.appendChild(elem);
-    }
-}
+ elem.onclick = function (ev) {
+ console.log(`clicked on element ${i} + ${ev.toString()}`);
+ };
+ list.appendChild(elem);
+ }
+ }
 
-// let aaa = () => {
-//     var xx = 1;
-//     let yy = 1;
-//     console.log(this.xx);
-//     console.log(this.yy);
-// }
-//
-// aaa();
+ // let aaa = () => {
+ //     var xx = 1;
+ //     let yy = 1;
+ //     console.log(this.xx);
+ //     console.log(this.yy);
+ // }
+ //
+ // aaa();
 
-var MyConstructor;
+ var MyConstructor;
 
-{
-    // let myScope = Object.create(null); // has no prototype
-    let myScope = {};
+ {
+ // let myScope = Object.create(null); // has no prototype
+ let myScope = {};
 
-    //prototype;
-    MyConstructor = function MyConstructor() {
-        this.publicName = 'Andrew Public';
-        myScope.secretName = 'Lorenzo secret';
-    }
+ //prototype;
+ MyConstructor = function MyConstructor() {
+ this.publicName = 'Andrew Public';
+ myScope.secretName = 'Lorenzo secret';
+ }
 
-    //add a method to prototype
-    MyConstructor.prototype.showPublic = function () {
-        console.log(`this is the public name: %c${this.publicName}`, 'padding: 0 5px; background: lightgreen; color: darkgreen;');
-    }
+ //add a method to prototype
+ MyConstructor.prototype.showPublic = function () {
+ console.log(`this is the public name: %c${this.publicName}`, 'padding: 0 5px; background: lightgreen; color: darkgreen;');
+ }
 
-    MyConstructor.prototype.showSecret = function () {
-        console.log(`this is the secret name: %c${myScope.secretName}`, 'padding: 0 5px; background: red; color: white;');
-    }
+ MyConstructor.prototype.showSecret = function () {
+ console.log(`this is the secret name: %c${myScope.secretName}`, 'padding: 0 5px; background: red; color: white;');
+ }
 
-    console.log(` %cmyScope for this block is:`, 'background: #f432fc; color: white; padding: 0 5px;');
-    console.log(myScope);
-}
+ console.log(` %cmyScope for this block is:`, 'background: #f432fc; color: white; padding: 0 5px;');
+ console.log(myScope);
+ }
 
-let myConstr = new MyConstructor();
+ let myConstr = new MyConstructor();
 
-myConstr.showPublic();
-myConstr.showSecret();
+ myConstr.showPublic();
+ myConstr.showSecret();
 
-// class MyClass2
-//     calculate(a) {
-//         return a + 1;
-//     }
-// }
-//
-// class MyClass {
-//     constructor(MyClass2) {
-//         this.MyClass2 = MyClass2
-//     }
-//
-//     myMethod() {
-//
-//     }
-// }
-import {setValuesConcat, createRandomMap} from './customFunctions';
-import {functionReturn as noReturn} from './customFunctions';
-import {magic as leMagique, gimmeTypeOf as gimme} from './customFunctions';
-
-
-{
-    let mySeriousMap = createRandomMap(1000);
-    console.log(mySeriousMap);
-
-    let sumOfAllValues = setValuesConcat(mySeriousMap);
-    console.log(`sumOfAllValues: ${sumOfAllValues}`);
-
-    let asdf = {a: 1, b: 5};
-    let sumOfAllValues1 = setValuesConcat(asdf);
-    console.log(`sumOfAllValues: ${sumOfAllValues1}`);
+ // class MyClass2
+ //     calculate(a) {
+ //         return a + 1;
+ //     }
+ // }
+ //
+ // class MyClass {
+ //     constructor(MyClass2) {
+ //         this.MyClass2 = MyClass2
+ //     }
+ //
+ //     myMethod() {
+ //
+ //     }
+ // }
+ import {setValuesConcat, createRandomMap} from './customFunctions';
+ import {functionReturn as noReturn} from './customFunctions';
+ import {magic as leMagique, gimmeTypeOf as gimme} from './customFunctions';
 
 
-}
+ {
+ let mySeriousMap = createRandomMap(1000);
+ console.log(mySeriousMap);
 
-{
+ let sumOfAllValues = setValuesConcat(mySeriousMap);
+ console.log(`sumOfAllValues: ${sumOfAllValues}`);
 
-    let u = 10;
-    console.log(u);
-    noReturn();
-    let myVar = leMagique();
-    console.log('myVar:');
-    console.log(myVar);
-    // console.log(myVar());
-
-    let myArr = [1, 2, 3, 4, 5, 6, 7];
-    let myS = new Set(myArr);
-    let myArr1 = [['a', 1], ['b', 2]];
-    let myM = new Map(myArr1);
-
-    console.log('Input Number - returned by function :' + gimme(u));
-    console.log('Input Function - returned by function: ' + gimme(myVar));
-    console.log('Input Set - returned by function: ' + gimme(myS));
-    console.log('Input Map - returned by function: ' + gimme(myM));
-
-}
+ let asdf = {a: 1, b: 5};
+ let sumOfAllValues1 = setValuesConcat(asdf);
+ console.log(`sumOfAllValues: ${sumOfAllValues1}`);
 
 
-// {
-//     console.log('test break missing');
-//     var foo = 0;
-//     switch (foo) {
-//         case -1:
-//             console.log('negative 1');
-//             break;
-//         case 0: // foo is 0 so criteria met here so this block will run
-//             console.log(0);
-//         case 1:
-//             console.log(1);// no break statement in 'case 1:' so this case will run as well
-//         case 2:
-//             console.log(2);// no break statement in 'case 2:' so this case will run as well
-//         default:
-//             console.log('default');// no break statement in 'default:' so this case will run as well
-//     }
-// }
+ }
 
-import {pickAnimals as chooseArk} from './customFunctions';
+ {
 
-{
-    let animal = ['Bear', 'Eagle', 'Snake', 'Wolf', 'Monkey', 'Dinosaur', 'Alien', 'Human', 'Other'];
+ let u = 10;
+ console.log(u);
+ noReturn();
+ let myVar = leMagique();
+ console.log('myVar:');
+ console.log(myVar);
+ // console.log(myVar());
 
-    for (let i of animal) {
-        console.log(chooseArk(i));
-    }
-}
+ let myArr = [1, 2, 3, 4, 5, 6, 7];
+ let myS = new Set(myArr);
+ let myArr1 = [['a', 1], ['b', 2]];
+ let myM = new Map(myArr1);
 
-import {congrats as congrat} from './customFunctions';
+ console.log('Input Number - returned by function :' + gimme(u));
+ console.log('Input Function - returned by function: ' + gimme(myVar));
+ console.log('Input Set - returned by function: ' + gimme(myS));
+ console.log('Input Map - returned by function: ' + gimme(myM));
 
-{
-    let congratsList = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
-
-    for (let i of congratsList) {
-        console.log(congrat(i));
-    }
-}
-
-// import {erroring as errorItOut} from './customFunctions';
-//
-// {
-//     let o = false, e;
-//
-//     //first level
-//     try {
-//
-//         errorItOut();
-//
-//         console.log('lvl 1: this is me!    ');
-//     }
-//     catch (e) {
-//         console.error(`lvl 1: Error: ${e.message}`);
-//     }
-//
-// }
+ }
 
 
-// import {errorCode as throwErrorTypes} from './customFunctions';
-//
-// {
-//     let didItThrowError = false;
-//     try {
-//         // throwErrorTypes(1);
-//         throwErrorTypes(2);
-//         // throwErrorTypes(3);
-//     }
-//     catch (err) {
-//         if (err instanceof TypeError) console.error(`Type error (1) was encountered: ${err.message}`);
-//         if (err instanceof RangeError) console.error(`Range error (2) was encountered: ${err.message}`);
-//         if (err instanceof EvalError) console.error(`Eval error (3) was encountered: ${err.message}`);
-//         didItThrowError = true;
-//     }
-//     finally {
-//         if (didItThrowError) console.info('Finally: Rolling back everything');
-//     }
-// }
+ // {
+ //     console.log('test break missing');
+ //     var foo = 0;
+ //     switch (foo) {
+ //         case -1:
+ //             console.log('negative 1');
+ //             break;
+ //         case 0: // foo is 0 so criteria met here so this block will run
+ //             console.log(0);
+ //         case 1:
+ //             console.log(1);// no break statement in 'case 1:' so this case will run as well
+ //         case 2:
+ //             console.log(2);// no break statement in 'case 2:' so this case will run as well
+ //         default:
+ //             console.log('default');// no break statement in 'default:' so this case will run as well
+ //     }
+ // }
 
-import {varVsLet} from './customFunctions';
+ import {pickAnimals as chooseArk} from './customFunctions';
 
-{
-    // varVsLet();
-}
+ {
+ let animal = ['Bear', 'Eagle', 'Snake', 'Wolf', 'Monkey', 'Dinosaur', 'Alien', 'Human', 'Other'];
 
-{
-    var a = 'A';
-    var b = a;
+ for (let i of animal) {
+ console.log(chooseArk(i));
+ }
+ }
 
-    console.log(`a: ${a} - b: ${b}`);
+ import {congrats as congrat} from './customFunctions';
 
-    var x, y = x = 'A';
+ {
+ let congratsList = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
 
-    console.log(`x: ${x} - y: ${y}`);
-}
+ for (let i of congratsList) {
+ console.log(congrat(i));
+ }
+ }
 
-import {createElements} from './customFunctions';
+ // import {erroring as errorItOut} from './customFunctions';
+ //
+ // {
+ //     let o = false, e;
+ //
+ //     //first level
+ //     try {
+ //
+ //         errorItOut();
+ //
+ //         console.log('lvl 1: this is me!    ');
+ //     }
+ //     catch (e) {
+ //         console.error(`lvl 1: Error: ${e.message}`);
+ //     }
+ //
+ // }
 
-{
-    window.onload = createElements;
-}
 
-import {createSet as _createSet} from './customFunctions';
+ // import {errorCode as throwErrorTypes} from './customFunctions';
+ //
+ // {
+ //     let didItThrowError = false;
+ //     try {
+ //         // throwErrorTypes(1);
+ //         throwErrorTypes(2);
+ //         // throwErrorTypes(3);
+ //     }
+ //     catch (err) {
+ //         if (err instanceof TypeError) console.error(`Type error (1) was encountered: ${err.message}`);
+ //         if (err instanceof RangeError) console.error(`Range error (2) was encountered: ${err.message}`);
+ //         if (err instanceof EvalError) console.error(`Eval error (3) was encountered: ${err.message}`);
+ //         didItThrowError = true;
+ //     }
+ //     finally {
+ //         if (didItThrowError) console.info('Finally: Rolling back everything');
+ //     }
+ // }
 
-{
-    let mySet = _createSet();
+ import {varVsLet} from './customFunctions';
 
-    console.log(mySet);
-}
+ {
+ // varVsLet();
+ }
 
-//ARRAY
-*/
+ {
+ var a = 'A';
+ var b = a;
+
+ console.log(`a: ${a} - b: ${b}`);
+
+ var x, y = x = 'A';
+
+ console.log(`x: ${x} - y: ${y}`);
+ }
+
+ import {createElements} from './customFunctions';
+
+ {
+ window.onload = createElements;
+ }
+
+ import {createSet as _createSet} from './customFunctions';
+
+ {
+ let mySet = _createSet();
+
+ console.log(mySet);
+ }
+
+ //ARRAY
+ */
 
 import * as _arr from './ArrayFunctions';
 /*
 
-{
-    //create Array
-    let myColors = ['White','Red','Pink','Orange','Yellow','Blue','Light Blue','Light Gray','Gray','Dark Gray','Marine','Mugurish','Stinkish'];
-    let myNumbering = ['1st','2nd','3rd','4th','5th','6th','7th','8th','9th','10th','11th','12th','13th'];
+ {
+ //create Array
+ let myColors = ['White','Red','Pink','Orange','Yellow','Blue','Light Blue','Light Gray','Gray','Dark Gray','Marine','Mugurish','Stinkish'];
+ let myNumbering = ['1st','2nd','3rd','4th','5th','6th','7th','8th','9th','10th','11th','12th','13th'];
 
-    console.log (`myArr.length: ${myColors.length}`);
+ console.log (`myArr.length: ${myColors.length}`);
 
-    for (let i = 0; i < myColors.length; i++) {
-        console.log(`At position ${i} in the array is the element: ${myColors[i]}`);
-    }
+ for (let i = 0; i < myColors.length; i++) {
+ console.log(`At position ${i} in the array is the element: ${myColors[i]}`);
+ }
 
-    myColors.forEach((value, index, array) => {
-        console.log(`At position ${index} in the array is the element: ${value}`);
-    });
-
-
-    myColors.push('Orangish', 'DARKISH');
-
-    myColors.forEach((value, index) => console.log(`at position ${index} of the array is ${value}`));
-
-    console.log('===============');
-    let lastColor = myColors.pop();
-    console.info(`removed last element ${lastColor} from the array by using console.pop()`);
-
-    myColors.forEach((value, index) => console.log(`at position ${index} from the array is ${myColors[index]}`));
-
-    let firstColor = myColors.shift();
-    console.info(`removed first element ${firstColor.toUpperCase()} of the array with myColors.shift`);
-
-    myColors.forEach((value, index) => console.info(`at index ${index} in the array is ${value.toUpperCase()}`));
-    let secondColor = myColors.shift();
-
-    myColors.forEach((v, i) => console.log(`at pos ${i} in the array is %c${v.toUpperCase()}`, 'background-color: red; color: white; padding: 0 5px; font-weight: bold;'));
-
-    let oneofLast = myColors.pop();
-    console.info(`removed element %c${oneofLast.toUpperCase()}%c from last position of the array`, 'background-color: yellow; padding: 0 5px; color: red;', 'background-color: transparent');
-
-    myColors.forEach((v, i) => console.info(`at position ${i} in the array is %c${v.toUpperCase()}`, 'background-color: orange; color: white; padding: 0 10px;'));
-
-    let newLength = myColors.unshift('FirstColor');
-    console.info(`Added a new element at the beginning of the array. New Array length is ${newLength}`);
-    myColors.forEach((v, i) => console.info(`at position ${i} in the array is [ %c${v}%c ]`, 'background-color: red; color: white; padding: 0 10px;', 'background-color: transparent;'));
-
-    let newLength1 = myColors.push('TheColor');
-
-    myColors.forEach((v, i) => console.info(`index ${i} has value ${v}`));
-
-    //slice
-    let C = myNumbering.splice(1,1);
-    console.log(`removed color at position 1 ${C[0]} from array `);
-    console.log(C);
-
-    myNumbering.forEach((v,i) => console.log(`index ${i}: value ${v}`));
-
-    _arr.showArray(C);
-
-    let C1 = myNumbering.splice(1,5);
-
-    _arr.showArray(myNumbering);
+ myColors.forEach((value, index, array) => {
+ console.log(`At position ${index} in the array is the element: ${value}`);
+ });
 
 
-    newLength1 = myNumbering.push('14th');
-    console.log('new length, after adding a new element is: ' + newLength1);
-    _arr.showArray(myNumbering);
+ myColors.push('Orangish', 'DARKISH');
+
+ myColors.forEach((value, index) => console.log(`at position ${index} of the array is ${value}`));
+
+ console.log('===============');
+ let lastColor = myColors.pop();
+ console.info(`removed last element ${lastColor} from the array by using console.pop()`);
+
+ myColors.forEach((value, index) => console.log(`at position ${index} from the array is ${myColors[index]}`));
+
+ let firstColor = myColors.shift();
+ console.info(`removed first element ${firstColor.toUpperCase()} of the array with myColors.shift`);
+
+ myColors.forEach((value, index) => console.info(`at index ${index} in the array is ${value.toUpperCase()}`));
+ let secondColor = myColors.shift();
+
+ myColors.forEach((v, i) => console.log(`at pos ${i} in the array is %c${v.toUpperCase()}`, 'background-color: red; color: white; padding: 0 5px; font-weight: bold;'));
+
+ let oneofLast = myColors.pop();
+ console.info(`removed element %c${oneofLast.toUpperCase()}%c from last position of the array`, 'background-color: yellow; padding: 0 5px; color: red;', 'background-color: transparent');
+
+ myColors.forEach((v, i) => console.info(`at position ${i} in the array is %c${v.toUpperCase()}`, 'background-color: orange; color: white; padding: 0 10px;'));
+
+ let newLength = myColors.unshift('FirstColor');
+ console.info(`Added a new element at the beginning of the array. New Array length is ${newLength}`);
+ myColors.forEach((v, i) => console.info(`at position ${i} in the array is [ %c${v}%c ]`, 'background-color: red; color: white; padding: 0 10px;', 'background-color: transparent;'));
+
+ let newLength1 = myColors.push('TheColor');
+
+ myColors.forEach((v, i) => console.info(`index ${i} has value ${v}`));
+
+ //slice
+ let C = myNumbering.splice(1,1);
+ console.log(`removed color at position 1 ${C[0]} from array `);
+ console.log(C);
+
+ myNumbering.forEach((v,i) => console.log(`index ${i}: value ${v}`));
+
+ _arr.showArray(C);
+
+ let C1 = myNumbering.splice(1,5);
+
+ _arr.showArray(myNumbering);
 
 
-    newLength1 = myNumbering.push('1st');
-    console.log(``);
-
-}
-
-{
-    let myNumbers = [0,1,2,3,4,5,6,7,8,9];
-    _arr.showArray(myNumbers);
-    let temp1 = 10;
-    myNumbers.push(temp1);
-    console.log(`added number ${temp1} to the end of the array...`);
-    _arr.showArray(myNumbers);
-    let last = myNumbers.pop();
-    console.log(`Eliminate last element of the array: ${last}`);
-    console.log(myNumbers);
-    let first = myNumbers.shift();
-    console.log(`Eliminate the first element of the array ${first}`);
-    console.log(myNumbers);
-    let newLength = myNumbers.unshift(-5,-4,-3,-2,-1,0);
-    console.log(`Add at the beginning of the Array. New Array length ${newLength}`);
-    console.log(myNumbers);
-    _arr.sumArray(myNumbers);
-    //eliminate last element from Array
-    last = myNumbers.pop();
-    console.log(`Removed last element from the Array: ${last}`);
-    //recalculate sum of all elements of the Array
-    _arr.sumArray(myNumbers);
-    newLength = myNumbers.push(99);
-    console.log(`Added at the end of the Array a new value`);
-    console.log(myNumbers);
-    _arr.sumArray(myNumbers);
-    console.log(`Removed first element of the Array`);
-    myNumbers.shift();
-    console.log(myNumbers);
-    _arr.sumArray(myNumbers);
-    console.log(`removing 7th element of the array with value ${myNumbers.splice(6,1)}`);
-    console.log(myNumbers);
-    _arr.sumArray(myNumbers);
-    console.log(`removing sub Array starting from position 2, a number of 5 elements`);
-    let myRemovedSubArray = myNumbers.splice(3,5);
-    _arr.showArray(myNumbers,2);
-    _arr.showArray(myRemovedSubArray,2);
-
-    let myNewArray = _arr.createNumericArray(100);
-    _arr.showArray(myNewArray,2);
-    console.log(myNewArray.length);
-
-    console.time('duplicateThroughReassignation');
-    let myNewArray1 = myNewArray;
-    console.timeEnd('duplicateThroughReassignation');
-    console.log(myNewArray.length);
+ newLength1 = myNumbering.push('14th');
+ console.log('new length, after adding a new element is: ' + newLength1);
+ _arr.showArray(myNumbering);
 
 
-    _arr.showArray(myNewArray1,2);
+ newLength1 = myNumbering.push('1st');
+ console.log(``);
+
+ }
+
+ {
+ let myNumbers = [0,1,2,3,4,5,6,7,8,9];
+ _arr.showArray(myNumbers);
+ let temp1 = 10;
+ myNumbers.push(temp1);
+ console.log(`added number ${temp1} to the end of the array...`);
+ _arr.showArray(myNumbers);
+ let last = myNumbers.pop();
+ console.log(`Eliminate last element of the array: ${last}`);
+ console.log(myNumbers);
+ let first = myNumbers.shift();
+ console.log(`Eliminate the first element of the array ${first}`);
+ console.log(myNumbers);
+ let newLength = myNumbers.unshift(-5,-4,-3,-2,-1,0);
+ console.log(`Add at the beginning of the Array. New Array length ${newLength}`);
+ console.log(myNumbers);
+ _arr.sumArray(myNumbers);
+ //eliminate last element from Array
+ last = myNumbers.pop();
+ console.log(`Removed last element from the Array: ${last}`);
+ //recalculate sum of all elements of the Array
+ _arr.sumArray(myNumbers);
+ newLength = myNumbers.push(99);
+ console.log(`Added at the end of the Array a new value`);
+ console.log(myNumbers);
+ _arr.sumArray(myNumbers);
+ console.log(`Removed first element of the Array`);
+ myNumbers.shift();
+ console.log(myNumbers);
+ _arr.sumArray(myNumbers);
+ console.log(`removing 7th element of the array with value ${myNumbers.splice(6,1)}`);
+ console.log(myNumbers);
+ _arr.sumArray(myNumbers);
+ console.log(`removing sub Array starting from position 2, a number of 5 elements`);
+ let myRemovedSubArray = myNumbers.splice(3,5);
+ _arr.showArray(myNumbers,2);
+ _arr.showArray(myRemovedSubArray,2);
+
+ let myNewArray = _arr.createNumericArray(100);
+ _arr.showArray(myNewArray,2);
+ console.log(myNewArray.length);
+
+ console.time('duplicateThroughReassignation');
+ let myNewArray1 = myNewArray;
+ console.timeEnd('duplicateThroughReassignation');
+ console.log(myNewArray.length);
 
 
-    console.time('duplicateUsingSlice');
-    let myNewArray2 = myNewArray.slice();
-    console.timeEnd('duplicateUsingSlice');
-    _arr.showArray(myNewArray2,2);
-
-    console.time('duplicateUsingSpread');
-    let myNewArray3 = [...myNewArray];
-    console.timeEnd('duplicateUsingSpread');
-    console.log(`myNewArray[0]: ${myNewArray[0]}`);
-    myNewArray3[0]++;
-    console.log(`myNewArray3[0]++: ${myNewArray3[0]}`);
-    console.log(`myNewArray[0]: ${myNewArray[0]}`);
-    _arr.showArray(myNewArray,2);
-    _arr.showArray(myNewArray3,2);
+ _arr.showArray(myNewArray1,2);
 
 
+ console.time('duplicateUsingSlice');
+ let myNewArray2 = myNewArray.slice();
+ console.timeEnd('duplicateUsingSlice');
+ _arr.showArray(myNewArray2,2);
+
+ console.time('duplicateUsingSpread');
+ let myNewArray3 = [...myNewArray];
+ console.timeEnd('duplicateUsingSpread');
+ console.log(`myNewArray[0]: ${myNewArray[0]}`);
+ myNewArray3[0]++;
+ console.log(`myNewArray3[0]++: ${myNewArray3[0]}`);
+ console.log(`myNewArray[0]: ${myNewArray[0]}`);
+ _arr.showArray(myNewArray,2);
+ _arr.showArray(myNewArray3,2);
 
 
-    //create new Array
-    // console.time('new array[1000*1000]');
-    // let Array1 = new Array(1000 * 1000);
-    //
-    // for (let oo = 0; oo < 1000*1000; oo++) {
-    //     Array1[oo] = Math.floor(Math.random()*100);
-    // }
-    // console.timeEnd('new array[1000*1000]');
-    //
-    // console.log(Array1);
-    //
-
-    let myA = [1,2,3,4,5,6,7,8,9];
-    let myB = myA; //shallow copy ?
-
-    // console.log('myA[0]: ' + myA[0]); // myA[0] = 1
-    // myB[0]++; //  myB[0] = 2
-    // console.log('myB[0]: ' + myB[0]); // myB[0] = 2
-    // console.log('myA[0]: ' + myA[0]); // myA[0] = 2 !!!!!!!
-
-    let myC = myA.slice(0);
-    _arr.showArray(myA,2);
-    _arr.showArray(myC,2);
-
-    myA.length=1;
-    _arr.showArray(myA,2);
-    console.log(`Array size: ${myA.length}`);
-    myA.length=9;
-    _arr.showArray(myA,2)
 
 
-console.clear();
+ //create new Array
+ // console.time('new array[1000*1000]');
+ // let Array1 = new Array(1000 * 1000);
+ //
+ // for (let oo = 0; oo < 1000*1000; oo++) {
+ //     Array1[oo] = Math.floor(Math.random()*100);
+ // }
+ // console.timeEnd('new array[1000*1000]');
+ //
+ // console.log(Array1);
+ //
 
-}
-*/
+ let myA = [1,2,3,4,5,6,7,8,9];
+ let myB = myA; //shallow copy ?
+
+ // console.log('myA[0]: ' + myA[0]); // myA[0] = 1
+ // myB[0]++; //  myB[0] = 2
+ // console.log('myB[0]: ' + myB[0]); // myB[0] = 2
+ // console.log('myA[0]: ' + myA[0]); // myA[0] = 2 !!!!!!!
+
+ let myC = myA.slice(0);
+ _arr.showArray(myA,2);
+ _arr.showArray(myC,2);
+
+ myA.length=1;
+ _arr.showArray(myA,2);
+ console.log(`Array size: ${myA.length}`);
+ myA.length=9;
+ _arr.showArray(myA,2)
+
+
+ console.clear();
+
+ }
+ */
 
 let agen = (n) => {
-    let mA= [];
-    for (let i = 0; i<n; i++) {
-        mA.push(Math.floor(Math.random()*1000));
+    let mA = [];
+    for (let i = 0; i < n; i++) {
+        mA.push(Math.floor(Math.random() * 1000));
     }
     return mA;
 }
@@ -1352,13 +1352,13 @@ let agen = (n) => {
     let tr = myArr.includes(100);
     console.log(tr);
 
-    let myA = [1,2,3,4,5,6,7,8,9];
+    let myA = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
     // console.log(`_arr.stringifyMyArray(myA): ${_arr.stringifyMyArray(myA)}`);
     // myArr.splice(3,5,myA.forEach((v) => v)); why not work ?
     // myArr.splice( 3, 5, _arr.stringifyMyArray(myA));
 
-    let args = [3,5].concat([...myA]);
+    let args = [3, 5].concat([...myA]);
     console.log(`args: ${args}`);
     myArr.splice.apply(myArr, args);
     console.log(`===============================  here i work! ==================================`);
@@ -1375,14 +1375,15 @@ let agen = (n) => {
     // let myArr2 = myArr.slice();
     // console.log(myArr2);
 
-    console.log([0,1,2,3,4,5].reduce((acc,v) => acc += v));
+    console.log([0, 1, 2, 3, 4, 5].reduce((acc, v) => acc += v));
 
     myArr.push(NaN);
     console.log(myArr);
-    let myMax = myArr.reduce( (acc,v) => {
-        if ( (typeof v == 'number') && !isNaN(v) ) {
-            return Math.max(acc,v);
-        };
+    let myMax = myArr.reduce((acc, v) => {
+        if ((typeof v == 'number') && !isNaN(v)) {
+            return Math.max(acc, v);
+        }
+        ;
         return acc;
     }, 0);
 
@@ -1390,12 +1391,10 @@ let agen = (n) => {
     console.log(typeof NaN);
 
 
-    let myFarr = [0,[1,[2,[3,[4]]]]];
+    let myFarr = [0, [1, [2, [3, [4]]]]];
 
-    let liniarized = myFarr.reduce((acc,v) => acc.concat(v),[]);
+    let liniarized = myFarr.reduce((acc, v) => acc.concat(v), []);
     console.log(liniarized);
-
-
 
 
     let mA = agen(100000);
@@ -1403,24 +1402,24 @@ let agen = (n) => {
 
     mA.push(100000);
 
-    let max = mA.reduce((cc,v) => Math.max(cc,v) ,0);
+    let max = mA.reduce((cc, v) => Math.max(cc, v), 0);
     console.log(`max: ${max}`);
 
-    let sum = mA.reduce((accum,value) => accum += value, 0);
+    let sum = mA.reduce((accum, value) => accum += value, 0);
     console.log(`sum of all elements in array is: ${sum}`);
 
     let SS = 0;
-    for (let i of mA)  {
+    for (let i of mA) {
         SS += i;
     }
     console.log(SS);
 
-    let min = mA.reduce((accum, vl) => Math.min(accum,vl));
+    let min = mA.reduce((accum, vl) => Math.min(accum, vl));
     console.log(`min value in array is: ${min}`);
 
     let minn = mA[1];
     for (let i of mA) {
-        minn = Math.min(minn,i);
+        minn = Math.min(minn, i);
     }
     console.log(`min value in array is: ${minn}`);
 
@@ -1446,20 +1445,20 @@ let agen = (n) => {
 
     console.log(`pushed element 1000 to mB`);
     mB.push(1000);
-    console.log(`last element from mB is: ${mB[mB.length-1]} and array length is ${mB.length}`);
-    console.log(`last element from mA is: ${mA[mA.length-1]} and array length is ${mA.length}`);
+    console.log(`last element from mB is: ${mB[mB.length - 1]} and array length is ${mB.length}`);
+    console.log(`last element from mA is: ${mA[mA.length - 1]} and array length is ${mA.length}`);
 
     console.log(`removed x elementss from list and added a new one`);
     console.time('apply');
 
     // mB.length=0;
-    let minArray = Math.min.apply('',mB);
+    let minArray = Math.min.apply('', mB);
     console.timeEnd('apply');
 
     console.log(`(apply) min array mB is: ${minArray}`);
 
     console.time('reduce');
-    let minRed = mA.reduce((acc,v) => Math.min(acc,v),+Infinity);
+    let minRed = mA.reduce((acc, v) => Math.min(acc, v), +Infinity);
     console.timeEnd('reduce');
 
     let minRed1 = Math.min.apply(null, mA);
@@ -1467,22 +1466,21 @@ let agen = (n) => {
 
     console.log(`(reduce) min array mB is: ${minRed}`);
 
-    mB.sort((v,arr) => arr[0]);
+    mB.sort((v, arr) => arr[0]);
     console.log(mB);
 
     console.log();
 
-    let mC = [1,2,3,4,3,2,1,0,99];
-    let mJ = [0,1,2,3,4,5];
+    let mC = [1, 2, 3, 4, 3, 2, 1, 0, 99];
+    let mJ = [0, 1, 2, 3, 4, 5];
 
     console.log(`mC before splice`);
     console.log(mC);
 
 
-    let mm = Array.prototype.splice.apply(mC,[3,5].concat([...mJ]));
+    let mm = Array.prototype.splice.apply(mC, [3, 5].concat([...mJ]));
     console.log(mC);
     console.log(`mm: ${mm}`);
-
 
 
     console.clear('===============');
@@ -1491,7 +1489,7 @@ let agen = (n) => {
 
 let myNamesGen = n => {
     let oTemp = [];
-    for (let i = 0; i++; i<n) {
+    for (let i = 0; i++; i < n) {
         oTemp.push()
     }
     return oTemp;
@@ -1502,7 +1500,7 @@ let myNamesGen = n => {
     console.log(myArray);
 
     //min value using reduce
-    let minValueReduce = myArray.reduce((acc, v) => Math.min(acc,v), +Infinity);
+    let minValueReduce = myArray.reduce((acc, v) => Math.min(acc, v), +Infinity);
     console.log(`Min Value of array using reduce: ${minValueReduce}`);
 
     //min value using apply
@@ -1510,7 +1508,7 @@ let myNamesGen = n => {
     console.log(`Min value of array using apply: ${minValueApply}`);
 
     //max value using reduce
-    let maxValueReduce = myArray.reduce((acc, v) => Math.max(acc,v), -Infinity);
+    let maxValueReduce = myArray.reduce((acc, v) => Math.max(acc, v), -Infinity);
     console.log(`Max value of array using reduce: ${maxValueReduce}`);
 
     //max value using apply
@@ -1518,17 +1516,13 @@ let myNamesGen = n => {
     console.log(`Max value of array using apply: ${maxValueApply}`);
 
 
-
     let myNames = [];
-
 
 
 }
 
 
 console.clear();
-
-
 
 
 //Arrays declaration
@@ -1537,7 +1531,7 @@ console.clear();
  * Function that generates a random number from 0 to max;
  * @param max {number}
  */
-const random = max => Math.floor(Math.random()*max);
+const random = max => Math.floor(Math.random() * max);
 
 ArrayDeclarationBlockLabel: {
     let n = 1000;
@@ -1545,52 +1539,109 @@ ArrayDeclarationBlockLabel: {
 
     // ====================================================
     let a = [], value;
-    for (let i = 0; i<n; i++) {
+    for (let i = 0; i < n; i++) {
         value = random(100);
         a.push(value);
     }
 
     //custom display array function
-    _arr.showArray(a,2);
+    _arr.showArray(a, 2);
 
     // ====================================================
     let b = new Array(n);
 
-    for (let i=0; i<n; i++) {
+    for (let i = 0; i < n; i++) {
         value = random(100);
         b[i] = value;
     }
 
     //custom display array function
-    _arr.showArray(b,2);
+    _arr.showArray(b, 2);
 }
 
 
 {
-    let arr = [1,2,3,4,5];
-    let arr1 = [6,6,6,7,7,7,6,6,6,6,6];
-    _arr.showArray(arr1,2);
+    let arr = [1, 2, 3, 4, 5];
+    let arr1 = [6, 6, 6, 7, 7, 7, 6, 6, 6, 6, 6];
+    _arr.showArray(arr1, 2);
 
-  // let myRet = arr1.splice(3,3,[...arr]);
-  //   let myRet1 = arr1.splice([3,3].concat([...arr]));
+    // let myRet = arr1.splice(3,3,[...arr]);
+    //   let myRet1 = arr1.splice([3,3].concat([...arr]));
 
     // let myRet = Array.prototype.splice.apply(arr1, [3,3].concat([...arr]));
     // _arr.showArray(arr1,2);
     // _arr.showArray(arr1,2);
 
-    let arr2 = [...arr,...arr1];
+    let arr2 = [...arr, ...arr1];
     let arr3 =
-    console.log(arr2);
+        console.log(arr2);
 
 }
+
+
+/*
+ console.clear();
+
+ const getNewJob = (obj) => {
+ if (obj instanceof Object) {
+ if (obj.flexibleHours && !(obj.companyCulture === 100)) {
+ job.location = 'frlnc';
+ } else if (obj.flexibleHours && (obj.companyCulture === 100)) {
+ job.location = 'Some other company';
+ }
+ }
+ };
+
+
+ class role {
+ constructor(role, location) {
+ this.role = role;
+ this.location = location;
+ };
+
+ sucks() {
+ return true; // :))
+ }
+ }
+
+ class prsn {
+ constructor(name) {
+ this.name = name;
+ };
+
+ isBored() {
+ return true;
+ }
+ }
+
+ myBlockLabel: {
+ let dev = new prsn('Dev101');
+ var job = new role('DEV/QA', 'TehCompany');
+
+ //show stats prior
+ console.log(`Show stats before:`);
+ console.log(dev);
+ console.log(job);
+ console.log('\nEverything looks good... until... boom ... \n\n\n');
+
+ if (dev.isBored() || job.sucks()) {
+ getNewJob({flexibleHours: true, companyCulture: 100});
+ }
+
+ //show stats after
+ console.log(`Show stats after:`);
+ console.log(dev);
+ console.log(job);
+ }*/
+
 
 console.clear();
 
 {
     const mygen = (n) => {
         let myAT = [], value;
-        for (let i = 0; i<n; i++) {
-            value = Math.floor(Math.random()*(-100));
+        for (let i = 0; i < n; i++) {
+            value = Math.floor(Math.random() * (-100));
             myAT.push(value);
         }
         return myAT;
@@ -1608,35 +1659,211 @@ console.clear();
     // let minVal = myArray.reduce((acc, v) => Math.min(acc,v),+Infinity);
     // console.log(minVal);
 
-    let arr = [1,2,3,4,5];
+    let arr = [1, 2, 3, 4, 5];
 
-    let max =  arr.reduce((acc,v) => Math.max(acc,v));
+    let max = arr.reduce((acc, v) => Math.max(acc, v));
     console.log(max);
 
-    let max1 = Math.max.apply(null,arr);
+    let max1 = Math.max.apply(null, arr);
     console.log(max1);
 
     let myArray1 = myArray.concat([arr]);
     console.log(myArray1);
 }
 
-const countNoOfEncounters = (arr) => {
-    let a =  arr.reduce((enc,v) => {
-        if (v in enc) {
-            enc[v]++;
-        } else {
-            enc[v]=1;
+{
+    let names = ['Andrei', 'Tudor', 'Ionel', 'Andrei', 'Lic', 'Lic', 'George', 'Szabi', 'Rudi', 'George'];
+    console.log(_arr.countEncounters(names));
+    console.log(_arr.countEncountersRTL(names));
+
+    let n = [1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 2, 3];
+    console.log(_arr.countEncounters(n));
+}
+
+{
+    let names = ['Andrei', 'Tudor', 'Ionel', 'Andrei', 'Lic', 'Lic', 'George', 'Szabi', 'Rudi', 'George'];
+    let newNames = ['Iuliu', 'Stefan', 'Lucian'];
+
+    //concat
+    console.log(names.concat(newNames));
+
+    console.log(names.concat(newNames).indexOf('Lic'));
+    console.log(names.concat(newNames).length);
+
+}
+
+
+const findAll = (arr, searchValue) => {
+    let found = [];
+    if (arr instanceof Array) {
+        let fndIdx = arr.indexOf(searchValue, 0);
+        while (fndIdx >= 0) {
+            found.push(fndIdx);
+            fndIdx = arr.indexOf(searchValue, fndIdx + 1);
         }
-        return enc;
-    },{});
-    return a;
+    }
+    return found;
 };
 
 {
-    let names = ['Andrei','Tudor','Ionel','Andrei','Lice','Lice'];
-    console.log(names);
+    let arr1 = [0, 1, 2, 3, 4, 3, 2, 1, 0];
+    let arr = [0, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 1, 1, 1];
+    console.log(findAll(arr, 1)); //1,4,7,10,11,12,13
+    console.log(findAll(arr, 2)); //2,5,8
+    console.log(findAll(arr, 100));
+    console.log(findAll(arr1, 100));
 
-    console.log((countNoOfEncounters(names)));
+    console.log(arr.lastIndexOf(1));
 
+    console.log(arr1.copyWithin(5, 0, 5));
+    console.log(arr1.fill(1));
+
+    let newA = new Array(100);
+    console.log(newA);
+
+    //fill
+    newA.fill(1);
+    console.log(newA);
+
+    let newB = [1, 2, 3, 4, 5];
+    console.log(newB);
+    newB.reverse();
+    console.log(newB);
+
+    newB.sort();
+    console.log(newB);
+}
+
+{
+    let mA = [12, 12, 13, 12, 15, 16];
+    const condition = (v, i) => ((v >= 12) && (i > -1));
+
+    console.log(`all elements of the array are greater than 12 ? ${mA.every(condition)}`);
+}
+
+
+function isBigEnough(v, i, arr) {
+    return v > 12;
+}
+
+
+{
+    let mA = [12, 12, 13, 12, 15, 16];
+    console.log(mA);
+    let mB = mA.filter(isBigEnough);
+    console.log(mB);
+
+    console.log(mA.find(isBigEnough));
+    console.log(mA.findIndex(isBigEnough));
+
+    mA.forEach(function (v, i, arr) {
+        console.log(`${i}: ${v}`);
+    });
+
+    let max = mA.reduce((acc, v) => Math.max(acc, v));
+    console.log(max);
+
+    mA.splice(3, 5, 1, 2, 3);
+    console.log(mA);
+
+    console.log(mA.shift());
+    console.log(mA.shift());
+    console.log(mA.shift());
+    console.log(mA);
+
+    mA.unshift(102);
+    mA.unshift(101);
+    mA.unshift(100);
+    console.log(mA);
+
+    let mAGreaterThan100 = mA.filter((v, i, arr) => v > 100);
+    console.log(mAGreaterThan100);
+
+    let greatest = mA.reduce((acc, v) => Math.max(acc, v));
+    console.log(`GreatestReduce: ${greatest}`);
+
+    let greatestMath = Math.max.apply(null, mA);
+    console.log(`GreatestMath: ${greatestMath}`);
+}
+
+const createArray = (numberOfRecords) => {
+    let localArray = [],
+        i = 0,
+        tempVal;
+    while (i < numberOfRecords) {
+        tempVal = Math.floor(Math.random() * 100);
+        localArray.push(tempVal);
+        i++;
+    }
+    return localArray;
+};
+
+
+const extendArrayNames = (arrayFN, arrayLN, noOfRecords) => {
+    let tempArray = [],
+        i = 0;
+    if ((Array.isArray(arrayFN)) && (Array.isArray(arrayLN)) && (typeof noOfRecords == 'number')) {
+        for (let i = 0; i < arrayFN.length; i++) {
+            for (let j = 0; j < arrayLN.length; j++) {
+                if (tempArray.length > noOfRecords) {
+                    return tempArray;
+                }
+                tempArray.push(`${arrayFN[i]} ${arrayLN[j]}`);
+            }
+        }
+    }
+    return tempArray;
+};
+
+
+{
+    if (!Array.isArray1) {
+        Array.isArray1 = (obj) => {
+            return Object.prototype.toString.call(obj) == '[object Array]';
+        }
+    }
+    console.log(Array.isArray1([1, 2, 3]));
+    console.log(Array.isArray1(['a', 'b', 'c']));
+    console.log(Array.isArray1([]));
+    console.log(Array.isArray1(5));
+}
+
+
+const extendArrayNamesFN = (arrayFN) => {
+    if (Array.isArray(arrayFN)) {
+        return arrayFN.reduce((acc, v, i, arr) => {
+            for (let idx = 0; idx < arr.length; idx++) {
+                if (idx === i) continue;
+                acc.push(`${v} ${arr[idx]}`);
+            }
+            return acc;
+        }, []);
+    } else {
+        console.log(`Parameter received is not an array`);
+    }
+    return [];
+};
+
+{
+    let myArray = createArray(100);
+    console.log(myArray);
+
+    let arrayFN = ['Lice', 'Zori', 'Andrei', 'Silviu'];
+    let arrayLN = ['Kovacs', 'Popescu', 'Muresan', 'Lung'];
+
+    let myNames = extendArrayNames(arrayFN, arrayLN, 100);
+    console.log(myNames);
+
+    let combinedFNnames = extendArrayNamesFN(arrayFN);
+    _arr.showArray(arrayFN, 2);
+    _arr.showArray(combinedFNnames, 2);
+
+    ///find all names that start with S
+    let filteredNames = combinedFNnames.filter((v,i,arr) => v.toString()[0] === 'S');
+    console.log(filteredNames);
+
+    let newArray = arrayFN.map(() => {
+
+    });
 }
 

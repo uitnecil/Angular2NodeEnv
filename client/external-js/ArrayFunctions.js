@@ -67,5 +67,40 @@ export const stringifyMyArray = (arr) => {
     return str;
 };
 
+/**
+ * returns the max value between a and b passed as parameters
+ * @param a {Number}
+ * @param b {Number}
+ */
+export const getMax = (a, b) => Math.max(a, b);
 
-export const getMax = (a,b) => Math.max(a,b);
+/**
+ * Function returns an object containing the number of encounters for each element in the array passed as argument {name:encounters...}. It goes through the Array from Left to Right.
+ * @param arr {Array}
+ */
+export const countEncounters = (arr) => {
+    return arr.reduce((names, currentValue) => {
+        if (currentValue in names) {
+            names[currentValue]++;
+        } else {
+            names[currentValue] = 1;
+        }
+        return names;
+    }, {});
+};
+
+/**
+ * Function returns an object containing the number of encounters for each element in the array passed as argument {name:encounters...}. It goes through the Array from Right to Left.
+ * @param theArray
+ * @returns {*}
+ */
+export const countEncountersRTL = (theArray) => {
+    return theArray.reduceRight( (theNames, curr) => {
+        if (curr in theNames) {
+            theNames[curr]++;
+        } else {
+            theNames[curr] = 1;
+        }
+        return theNames;
+    },{});
+};
