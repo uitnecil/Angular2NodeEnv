@@ -8,6 +8,7 @@ const rootDir = path.resolve(__dirname, '..');
 const webpackMerge = require('webpack-merge');
 const commonConfig = require('./webpack.common.js');
 
+
 module.exports = webpackMerge(commonConfig, {
     debug: true,
     devServer: {

@@ -307,6 +307,8 @@ $background_color_flex_menu: $color1;
 .menu-column {
   display: flex;
   position: relative;
+  perspective: 150px;
+  perspective-origin: 10% 10%;
 }
 .sub-menu-products:not(:empty) {
   position:absolute;
@@ -318,12 +320,14 @@ $background_color_flex_menu: $color1;
   padding: 0;
   border-radius: 2px;
   border: 1px solid rgba(152, 164, 183, 0.6);
-  /*box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);*/
   box-shadow: 0 1px 5px 0 rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.12);
 
   visibility: hidden;
   opacity: 0;
-  /*height: 0;*/
+  transform-origin: top center;
+  transform: rotateX(-90deg);
+  transform-style: preserve-3d;
+
   transition: all 0.3s;
   z-index: 1 ;
 }
@@ -334,6 +338,7 @@ $background_color_flex_menu: $color1;
 
   /* support for animation */
   visibility: visible;
+  transform: rotateX(0deg);
   opacity: 1;
   /*height: 100%;*/
   /* support for animation */

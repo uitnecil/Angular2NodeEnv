@@ -1,4 +1,4 @@
-import {people,sampleObject} from '../external-js/data/dataObjects';
+ import {people,sampleObject} from '../external-js/data/dataObjects';
 
 
 /*
@@ -2877,21 +2877,248 @@ import {processIncommingArguments as processIncommingArguments} from './customFu
 
 
  */
+//
+// const getArrayDate = (date) => {
+//     let aD = [];
+//     aD.push.apply(aD,[date.getFullYear(), date.getMonth()+1, date.getDate(), date.getHours(), date.getMinutes(), date.getSeconds(), date.getMilliseconds()]);
+//
+//     console.log([date.getFullYear(), date.getMonth()+1, date.getDate()+1, date.getHours(), date.getMinutes(), date.getSeconds(), date.getMilliseconds()]);
+//
+// /*    let aD1 = [];
+//     Array.prototype.push.apply(aD1,[...mD]);
+//     console.log(`aD1`);
+//     console.log(aD1);
+//
+//     let aD2 = [];
+//     aD2.push.call(aD2, ...mD);
+//     console.log(`aD2`);
+//     console.log(aD2);
+//
+//     let aD3 = [];
+//     Array.prototype.push.call(aD3, ...mD);
+//
+//     console.log(`aD3`);
+//     console.log(aD3);
+// */
+//     return (date instanceof Date) ? aD  : date;
+// };
+//
+// dates: {
+//
+//     let date1 = new Date();
+//     console.log(date1);
+//     console.log(date1.toString());
+//
+//     let date2 = date1.toJSON();
+//     console.log(`date2: ${date2}`);
+//     console.log(`date2.toString(): ${date2.toString()}`);
+//
+//     let date3 = date2.toString();
+//     let utcDate = new Date(date3);
+//
+//     console.log(utcDate);
+//
+//     utcDate = utcDate.toISOString();
+//     console.log({date: utcDate});
+//
+//
+//     let mD = new Date();
+//     console.log(mD);
+//     let aD = getArrayDate(mD);
+//
+//     let nD = new Date(...aD);
+//     console.log(nD);
+//
+//     console.log(...aD);
+//
+//     let start = new Date();
+//     let truth = (start instanceof Date) ? true : false;
+//     let end = new Date();
+//     console.log(end.getTime() - start.getTime() + 'ms');
+//
+//
+//     let cd = new Date();
+//
+//
+// }
+// //
+// // {
+// //     var animals = [
+// //         { species: 'Lion', name: 'King' },
+// //         { species: 'Whale', name: 'Fail' }
+// //     ];
+// //
+// //     for (var i = 0; i < animals.length; i++) {
+// //         (function(i) {
+// //             this.print = function() {
+// //                 console.log('#' + i + ' ' + this.species
+// //                     + ': ' + this.name);
+// //             }
+// //             this.print();
+// //         }).call(animals[i], i);
+// //     }
+// // }
+// const processIncomingObject = (incomingObject, nameMappings) => {
+//     return incomingObject.map((currentValue) => {
+//         let tempObject = cloneObject(currentValue);
+//         for (let {name : projName, nicknames} of nameMappings) {
+//             if (nicknames.indexOf(currentValue.name) >= 0) {
+//                 tempObject.name = projName;
+//             }
+//         }
+//         return tempObject;
+//     });
+// };
+//
+// const duration = (st) => {
+//     let gDate = new Date();
+//     let gMsecs = Date.now();
+//     console.log(gDate);
+//     console.log(gMsecs);
+// };
+//
+//
+// {
+//     duration ();
+//
+//     let i = new Date();
+//
+//     let st = new Date();
+//     console.log(st);
+//     console.log(st.toDateString());
+//
+//     let aDate = new Date(1983,1,2);
+//     console.log(aDate);
+//
+//     let newDate = Date.UTC(1983,1,2);
+//     let newDateUTC = new Date(newDate);
+//
+//     console.log(`Date.UTC: ${newDate}`);
+//     console.log(`new Date.UTC: ${newDateUTC}`);
+//     console.log(`new Date(1983,1,2): ${aDate}`);
+//
+//
+//     let anotherDate = new Date();
+//     anotherDate.setUTCFullYear(1983); //year
+//     anotherDate.setUTCDate(2); //day
+//     anotherDate.setUTCMonth(2) //month
+//     anotherDate.setUTCHours(0,0,0,0);
+//
+//     console.log(`anotherDate: ${anotherDate}`);
+//
+//     let justAnotherDate = new Date(Date.UTC(1983,2,2));
+//     console.log(`justAnotherDate              : ${justAnotherDate}`);
+//     console.log(`justAnotherDate.toString()   : ${justAnotherDate.toString()}`);
+//     console.log(`justAnotherDate.toUTCString(): ${justAnotherDate.toUTCString()}`);
+//     console.log(`justAnotherDate.toISOString(): ${justAnotherDate.toISOString()}`);
+//     console.log(`========================`);
+//     console.log(`aDate              : ${aDate}`);
+//     console.log(`aDate.toString()   : ${aDate.toString()}`);
+//     console.log(`aDate.toUTCString(): ${aDate.toUTCString()}`);
+//     console.log(`aDate.toISOString(): ${aDate.toISOString()}`);
+//
+//
+//     let newUTCDate = new Date(1983,2,2,2,0,0,0);
+//     console.log(`newUTCDate: ${newUTCDate}`);
+//     console.log(`newUTCDate.toString(): ${newUTCDate.toString()}`);
+//     console.log(`newUTCDate.toUTCString(): ${newUTCDate.toUTCString()}`);
+//     console.log(`newUTCDate.toISOString(): ${newUTCDate.toISOString()}`);
+//     console.log('');
+//
+//     const dateString = (arr) => {
+//         let tDate = new Date();
+//         let tuRet = [...arr].concat([(-1)* tDate.getTimezoneOffset()/60, 0, 0]);
+//         return tuRet;
+//     };
+//
+//     let _1Date = new Date(...dateString([1983,1,2]));
+//     console.log(`_1Date: ${_1Date}`);
+//     console.log(`_1Date.toString(): ${_1Date.toString()}`);
+//     console.log(`_1Date.toUTCString(): ${_1Date.toUTCString()}`);
+//     console.log(`_1Date.toISOString(): ${_1Date.toISOString()}`);
+//     console.log('');
+//
+//     let _3Date = new Date(...((arr) => [...arr].concat([((new Date()).getTimezoneOffset() <= 0) ? (-1*(new Date()).getTimezoneOffset()/60) : (24 - (new Date()).getTimezoneOffset()/60), 0, 0]))([1983,1,2]));
+//
+//     console.log(`_3Date: ${_3Date}`);
+//     console.log(`_3Date.toString(): ${_3Date.toString()}`);
+//     console.log(`_3Date.toUTCString(): ${_3Date.toUTCString()}`);
+//     console.log(`_3Date.toISOString(): ${_3Date.toISOString()}`);
+//
+//     console.log('');
+//
+//     let _2Date = new Date();
+//     console.log(`_2Date.getTimezoneOffset(): ${_2Date.getTimezoneOffset()}`);
+//     let _2DateOff = [1983,2,2].concat([(-1)* _2Date.getTimezoneOffset()/60, 0, 0]);
+//     let tuRet = [...[1983,2,2].concat([(-1)* _2Date.getTimezoneOffset()/60, 0, 0])];
+//
+//     console.log(_2DateOff);
+//     console.log(tuRet);
+//
+//
+//     let _4Date = new Date();
+//
+//     console.log(_4Date.toLocaleTimeString('en-US', { hour12: false }));
+//     var options = { timeZone: 'UTC', timeZoneName: 'short' };
+//
+//     console.log(_4Date.toLocaleTimeString('en-US', { hour12: false }));
+//     console.log(_4Date.toLocaleTimeString('en-US', options));
+//
+//
+// };
+//
+//
+// {
+//     let myA = [1,4,9,16,25];
+//     let myB = myA.map(Math.sqrt);
+//     let myC = myA.map(Math.exp);
+//     console.log(myB);
+//     console.log(myC);
+//     let myBA = new Float64Array(50);
+//     console.log(myBA);
+// }
+//
+//  {
+//      var unboundSlice = Array.prototype.slice;
+//      var slice = Function.prototype.apply.bind(unboundSlice);
+//
+//      let a = slice([1,2,3,4,5,6]);
+//      console.log(a);
+//  }
+//
 
-dates: {
+ {
 
-    let date1 = new Date();
-    console.log(date1);
+     var x = 15;
 
-    let date2 = date1.toJSON();
-    console.log(`date2: ${date2}`);
-    console.log(`date2.toString(): ${date2.toString()}`);
+     function createVirtualValue1() {
+         let x = 10;
+         return new Function('return x');
+     }
 
-    let date3 = date2.toString();
-    let utcDate = new Date(date3);
+     function createVirtualValue2() {
+         var x = 20;
 
-    console.log(utcDate);
+         function f() {
+             return x;
+         }
+         return f;
+     }
 
-    utcDate = utcDate.toISOString();
-    console.log({date: utcDate});
-}
+     let f1 = createVirtualValue1();
+     // console.log(f1());
+
+     let f2 = createVirtualValue2();
+     console.log(f2());
+ }
+
+ // function* noGen() {
+ //     let i = 0;
+ //     while (true) {
+ //         yield i++;
+ //     }
+ // }
+
+ {
+
+ }
