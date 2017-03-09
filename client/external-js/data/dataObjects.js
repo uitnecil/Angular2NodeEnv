@@ -31,3 +31,46 @@ export let people = [
         'address': '5555 Ursenius St.'
     }
 ];
+
+export let sampleObject = {
+    name: 'ElNino',
+    myMap: '',
+    mySet: '',
+    date: '',
+    regExp: '',
+    characteristics: {
+        engine: '16v',
+        capacity: '5000mc',
+        fuel: 'gasoline'
+    },
+    looks: {
+        inside: {
+            leather: 'yes',
+            heat: 'climatronic',
+            color: 'gray',
+            displays: 'led'
+        },
+        outside: {
+            front: {
+                lights: {
+                    xenon: 'yes',
+                    whiteLight: true,
+                },
+                hood: {
+                    carbon: true,
+                    color: 'red'
+                }
+            },
+            back: {
+                lights: {
+                    xenon: 'yes',
+                    whiteLight: true,
+                },
+                trunk: {
+                    carbon: false,
+                    color: 'black'
+                }
+            }
+        }
+    }
+};

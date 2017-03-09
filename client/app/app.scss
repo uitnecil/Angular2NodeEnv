@@ -134,6 +134,10 @@ $color-bk4: #FDD475;
   justify-content:flex-start;
 }
 
+.div-flex-100percent {
+  flex: 1 1 100%;
+}
+
 .div-flex-column-distance-border {
   margin: 5px;
   border: 1px solid lightgray;
@@ -3625,9 +3629,6 @@ input[type=range]:focus {
   background-color: lighten($color-bk1,10%);
   legend {
     padding: 10px;
-    //width: 100%;
-    //border: 1px solid lightgray;
-    //border-radius: 4px;
     background-color: aliceblue;
     transition: 0.3s ease-in-out;
     box-shadow: 1px 1px 2px gray;
@@ -3810,4 +3811,41 @@ $effect_duration: 1s;
       color: $color2;
     }
   }
+}
+
+
+//TODO:  include in a final version
+.nice-btn {
+  position: relative;
+  background-color: white;
+  color: gray;
+  padding: 10px;
+  margin: 10px;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+  min-width: 50px;
+  display: flex;
+  flex-flow: row nowrap;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  &:after {
+    position: absolute;
+    content: '';
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 4px;
+    background-color: gray;
+    transition: 0.2s ease-in-out;
+  }
+  &:hover {
+    color: lime;
+    //transform: scale(1.1);
+    &:after {
+      transform: translate(0,5px) scale(1.05);
+      background-color: lime;
+    }
+  }
+
 }

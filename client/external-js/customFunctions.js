@@ -274,4 +274,20 @@ export let createSet = (n = 100) => {
 
     console.log(`number of duplicate sets that were prevented is ${subsetDuplicates}`);
     return tempSet;
-}
+};
+
+
+
+export const processIncommingArguments = () => {
+    let myArgs = Array.from(arguments);
+    for (let i = 0; i < myArgs.length; i++) {
+        let temp = (myArgs[i] instanceof Object) ? myArgs[i].constructor.toString() : typeof myArgs[i] ;
+        console.log(temp);
+    }
+    console.log(myArgs);
+
+    console.log(`args`);
+    let args = Array.prototype.slice.call(arguments);
+    console.log(args);
+    console.log(`======================`);
+};

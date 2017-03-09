@@ -22,7 +22,7 @@ module.exports = {
     module : {
         loaders: [
             {test: /\.ts$/, loaders: ['ts', 'angular2-template-loader'], exclude: /node_modules/},
-            {test: /\.js$/, loader: 'babel',  exclude: /node_modules/, query: {presets: ['es2015']}},
+            {test: /\.js$/, loader: 'babel',  exclude: /node_modules/, query: {presets: ['es2015', 'stage-2']}},
             {test: /\.html$/, loader: 'html'},
             {test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot)([\?]?.*)$/, loader: 'file'},
             {test: /\.scss$/, loaders: ['to-string', 'style', 'css', 'resolve-url', 'sass?sourceMap', 'postcss'], include: [path.resolve(rootDir, 'client')]},

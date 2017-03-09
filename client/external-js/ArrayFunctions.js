@@ -104,3 +104,4 @@ export const countEncountersRTL = (theArray) => {
         return theNames;
     },{});
 };
+
