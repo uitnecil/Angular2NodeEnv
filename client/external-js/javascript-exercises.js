@@ -1,4 +1,4 @@
- import {people,sampleObject} from '../external-js/data/dataObjects';
+import {people, sampleObject} from '../external-js/data/dataObjects';
 
 
 /*
@@ -2477,403 +2477,403 @@
 // TODO: COMMENT STARTS HERE
 /*
 
-/!**
+ /!**
  * Receives 2 array of objects and modifies the first one with the name matching from the second one
  * @param incomingObject [{Array of objects}]
  * @param nameMappings [{Array of objects}]
  *!/
-const processIncomingObject = (incomingObject, nameMappings) => {
-    return incomingObject.map((currentValue) => {
-        let tempObject = cloneObject(currentValue);
-        for (let {name : projName, nicknames} of nameMappings) {
-            if (nicknames.indexOf(currentValue.name) >= 0) {
-                tempObject.name = projName;
-            }
-        }
-        return tempObject;
-    });
-};
+ const processIncomingObject = (incomingObject, nameMappings) => {
+ return incomingObject.map((currentValue) => {
+ let tempObject = cloneObject(currentValue);
+ for (let {name : projName, nicknames} of nameMappings) {
+ if (nicknames.indexOf(currentValue.name) >= 0) {
+ tempObject.name = projName;
+ }
+ }
+ return tempObject;
+ });
+ };
 
-// ES6 Clone object
-const cloneObject = (obj) => {
-    //ownProperties = Object.getOwnPropertyNames(obj); /// and use instead of hasOwnProperty : ownProperties.indexOf(i). According to jsperf indexOf is much slower than hasOwnProperty
+ // ES6 Clone object
+ const cloneObject = (obj) => {
+ //ownProperties = Object.getOwnPropertyNames(obj); /// and use instead of hasOwnProperty : ownProperties.indexOf(i). According to jsperf indexOf is much slower than hasOwnProperty
 
-    //if normal data or empty object return it as is
-    if (obj === null || typeof obj !== 'object') return obj;
+ //if normal data or empty object return it as is
+ if (obj === null || typeof obj !== 'object') return obj;
 
-    //if Date
+ //if Date
 
-    //
+ //
 
-    //if Array
+ //if Array
 
-    //if Set
-    if (obj instanceof Set) {
-        let tempSet = new Set();
-        for (let val of obj) {
-            tempSet.add(val);
-        }
-        return tempSet;
-    }
+ //if Set
+ if (obj instanceof Set) {
+ let tempSet = new Set();
+ for (let val of obj) {
+ tempSet.add(val);
+ }
+ return tempSet;
+ }
 
-    //if Map
-    if (obj instanceof Map) {
-        let tempMap = new Map();
-        for (let [key, val] of obj) {
-            tempMap.set(key, val);
-        }
-        return tempMap;
-    }
+ //if Map
+ if (obj instanceof Map) {
+ let tempMap = new Map();
+ for (let [key, val] of obj) {
+ tempMap.set(key, val);
+ }
+ return tempMap;
+ }
 
-    //if Object
-    if (obj instanceof Object) {
-        let tempObj = {};
-        for (let i in obj) {
-            if (obj.hasOwnProperty(i)) {
-                tempObj[i] = cloneObject(obj[i]);
-            }
-        }
-        return tempObj;
-    }
+ //if Object
+ if (obj instanceof Object) {
+ let tempObj = {};
+ for (let i in obj) {
+ if (obj.hasOwnProperty(i)) {
+ tempObj[i] = cloneObject(obj[i]);
+ }
+ }
+ return tempObj;
+ }
 
-    //if nothing from above matches throw error
-    throw new Error('Unsupported data structure type');
-};
+ //if nothing from above matches throw error
+ throw new Error('Unsupported data structure type');
+ };
 
-const createProjectNamesObject = (numberOfSubObjects) => {
-    let tempArrayOfObj = [], tempName;
-    for (let i = 0; i < numberOfSubObjects; i++) {
-        tempName = getRandomText(Math.floor(Math.random() * 20) + 10);
+ const createProjectNamesObject = (numberOfSubObjects) => {
+ let tempArrayOfObj = [], tempName;
+ for (let i = 0; i < numberOfSubObjects; i++) {
+ tempName = getRandomText(Math.floor(Math.random() * 20) + 10);
 
-        let tempNicknames = [];
-        let noOfSubNames = Math.floor(Math.random() * 20) + 1;
-        for (let j = 0; j < noOfSubNames; j++) {
-            tempNicknames.push(getRandomText(Math.floor(Math.random() * 2) + 3));
-        }
-        tempArrayOfObj.push({'name': tempName, 'nicknames': tempNicknames});
-    }
-    return tempArrayOfObj;
-};
+ let tempNicknames = [];
+ let noOfSubNames = Math.floor(Math.random() * 20) + 1;
+ for (let j = 0; j < noOfSubNames; j++) {
+ tempNicknames.push(getRandomText(Math.floor(Math.random() * 2) + 3));
+ }
+ tempArrayOfObj.push({'name': tempName, 'nicknames': tempNicknames});
+ }
+ return tempArrayOfObj;
+ };
 
-const createInputObject = (namesObject, numberOfObjects) => {
-    let returnObject = [], tempName1 = '', tempDuration, tempNoOfDevs;
-    for (let i = 0; i < numberOfObjects; i++) {
-        let idxFromArray = getRandomNumber(0, namesObject.length - 1);
-        let idxFromSubArray = getRandomNumber(0, namesObject[idxFromArray].nicknames.length - 1);
-        tempName1 = namesObject[idxFromArray].nicknames[idxFromSubArray];
-        tempDuration = Math.floor(Math.random() * 10) + 'y';
-        tempNoOfDevs = Math.floor(Math.random() * 50);
-        returnObject.push({'name': tempName1, 'duration': tempDuration, 'noOfDevs': tempNoOfDevs});
-    }
-    return returnObject;
-};
+ const createInputObject = (namesObject, numberOfObjects) => {
+ let returnObject = [], tempName1 = '', tempDuration, tempNoOfDevs;
+ for (let i = 0; i < numberOfObjects; i++) {
+ let idxFromArray = getRandomNumber(0, namesObject.length - 1);
+ let idxFromSubArray = getRandomNumber(0, namesObject[idxFromArray].nicknames.length - 1);
+ tempName1 = namesObject[idxFromArray].nicknames[idxFromSubArray];
+ tempDuration = Math.floor(Math.random() * 10) + 'y';
+ tempNoOfDevs = Math.floor(Math.random() * 50);
+ returnObject.push({'name': tempName1, 'duration': tempDuration, 'noOfDevs': tempNoOfDevs});
+ }
+ return returnObject;
+ };
 
-const getRandomText = (n) => {
-    let randomText = '';
-    let allowedChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_1234567890-';
-    for (let i = 0; i < n; i++) {
-        randomText += allowedChars.charAt(Math.floor(Math.random() * allowedChars.length));
-    }
-    return randomText;
-};
+ const getRandomText = (n) => {
+ let randomText = '';
+ let allowedChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_1234567890-';
+ for (let i = 0; i < n; i++) {
+ randomText += allowedChars.charAt(Math.floor(Math.random() * allowedChars.length));
+ }
+ return randomText;
+ };
 
-const getRandomNumber = (min, max) => {
-    return (Math.floor(Math.random() * (max - min + 1)) + min);
-};
+ const getRandomNumber = (min, max) => {
+ return (Math.floor(Math.random() * (max - min + 1)) + min);
+ };
 
-{
-    let existingProjectMappings = [{
-        name: 'Perfect Project Perfect Company PN',
-        nicknames: ['PP', 'PProj', 'PP1', 'PPPC', 'Perf Comp', 'PC1']
-    },
-        {
-            name: 'Chrome PN',
-            nicknames: ['SOT', 'SOTools', 'SO', 'Nemo']
-        },
-        {
-            name: 'The Project PN',
-            nicknames: ['EL', 'EP', 'EP0', 'EPFirst']
-        }];
-    let incomingObj = [{
-        name: 'EL',
-        duration: '5y',
-        noOfDevs: 10
-    },
-        {
-            name: 'PProj',
-            duration: '6y',
-            noOfDevs: 20
-        },
-        {
-            name: 'Nemo',
-            duration: '9y',
-            noOfDevs: 40
-        }];
-
-
-    // let existingProjectMappings = createProjectNamesObject(100);
-    console.log(`%cExisting Project Mappings`, 'background-color: yellow; color: red; padding; 0 5px;');
-    console.log(existingProjectMappings);
-    console.log(`=======================================================`);
-
-    console.log(`%cIncoming Object`, 'background-color: green; color: white; padding; 0 5px;');
-    console.log(incomingObj);
+ {
+ let existingProjectMappings = [{
+ name: 'Perfect Project Perfect Company PN',
+ nicknames: ['PP', 'PProj', 'PP1', 'PPPC', 'Perf Comp', 'PC1']
+ },
+ {
+ name: 'Chrome PN',
+ nicknames: ['SOT', 'SOTools', 'SO', 'Nemo']
+ },
+ {
+ name: 'The Project PN',
+ nicknames: ['EL', 'EP', 'EP0', 'EPFirst']
+ }];
+ let incomingObj = [{
+ name: 'EL',
+ duration: '5y',
+ noOfDevs: 10
+ },
+ {
+ name: 'PProj',
+ duration: '6y',
+ noOfDevs: 20
+ },
+ {
+ name: 'Nemo',
+ duration: '9y',
+ noOfDevs: 40
+ }];
 
 
-    // let incomingObj = createInputObject(existingProjectMappings, 50);
-    // console.log(incomingObj);
+ // let existingProjectMappings = createProjectNamesObject(100);
+ console.log(`%cExisting Project Mappings`, 'background-color: yellow; color: red; padding; 0 5px;');
+ console.log(existingProjectMappings);
+ console.log(`=======================================================`);
 
-    let myNewObject = processIncomingObject(incomingObj, existingProjectMappings);
-
-    console.log(`%cBefore processing`, 'background-color:red; color: white; padding: 0 5px;');
-    console.log(incomingObj);
-
-    console.log(`%cAfter processing`, 'background-color:green; color: white; padding: 0 5px;');
-    console.log(myNewObject);
-
-}
-
-const processObj = ({name, ProjectName, projName}) => {
-
-    console.log(`name||ProjectName||projName: ${name || ProjectName || projName}`);
-    console.log(`name: ${name}`);
-    console.log(`ProjectName: ${ProjectName}`);
-    console.log(`projName: ${projName}`);
-};
-
-{
-    // let Obj = {
-    //     name: 'Visio',
-    //     ProjectName: 'The Name',
-    //     projName: ''
-    // };
-    //
-    // console.log(`typeof Obj ${typeof Obj}`);
-    //
-    // let Obj1 = {
-    //     name: 'Microsoft',
-    //     ProjectName: 'The Name'
-    // };
-    //
-    // let Obj2 = {
-    //     ProjectName: 'The Name'
-    // };
-    // console.log(`Obj ==============================`);
-    // processObj(Obj);
-    //
-    // console.log(`Obj1 ==============================`);
-    // processObj(Obj1);
-    //
-    // console.log(`Obj2 ==============================`);
-    // processObj(Obj2);
-
-    let theObject = {
-        name: 'ElNino',
-        myMap: '',
-        mySet: '',
-        date: '',
-        regExp: '',
-        characteristics: {
-            engine: '16v',
-            capacity: '5000mc',
-            fuel: 'gasoline'
-        },
-        looks: {
-            inside: {
-                leather: 'yes',
-                heat: 'climatronic',
-                color: 'gray',
-                displays: 'led'
-            },
-            outside: {
-                front: {
-                    lights: {
-                        xenon: 'yes',
-                        whiteLight: true,
-                    },
-                    hood: {
-                        carbon: true,
-                        color: 'red'
-                    }
-                },
-                back: {
-                    lights: {
-                        xenon: 'yes',
-                        whiteLight: true,
-                    },
-                    trunk: {
-                        carbon: false,
-                        color: 'black'
-                    }
-                }
-            }
-        }
-    };
-
-    let copiedObject = cloneObject(theObject);
-    theObject.name = 'SHUSHU';
-
-    console.log(`%ctheObject`, 'background-color: red; color: yellow; padding: 0 5px;');
-    console.log(theObject);
-
-    console.log(`%ccopiedObject`, 'background-color: red; color: yellow; padding: 0 5px;');
-    console.log(copiedObject);
+ console.log(`%cIncoming Object`, 'background-color: green; color: white; padding; 0 5px;');
+ console.log(incomingObj);
 
 
-    let myMap = new Map();
-    myMap.set('myKey', 'myval');
-    myMap.set('myKey1', 'myval1');
+ // let incomingObj = createInputObject(existingProjectMappings, 50);
+ // console.log(incomingObj);
 
-    let myArr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 7, 6, 5, 4, 3, 2, 1, 0, -1, -2, -3];
-    let mySet = new Set(myArr);
+ let myNewObject = processIncomingObject(incomingObj, existingProjectMappings);
 
-    console.log(mySet);
+ console.log(`%cBefore processing`, 'background-color:red; color: white; padding: 0 5px;');
+ console.log(incomingObj);
 
-    console.log(myMap);
+ console.log(`%cAfter processing`, 'background-color:green; color: white; padding: 0 5px;');
+ console.log(myNewObject);
 
-    theObject.myMap = myMap;
-    theObject.mySet = mySet;
-    console.log(theObject);
+ }
 
-    let myClone = cloneObject(theObject);
-    myClone.myMap.set('myKey1', 'SECONDVALUE');
-    console.log(myClone);
+ const processObj = ({name, ProjectName, projName}) => {
 
-    console.log(`HERE ==========================`);
-    let myObject = Object.assign({}, theObject);
-    console.log(myObject);
+ console.log(`name||ProjectName||projName: ${name || ProjectName || projName}`);
+ console.log(`name: ${name}`);
+ console.log(`ProjectName: ${ProjectName}`);
+ console.log(`projName: ${projName}`);
+ };
 
-}
+ {
+ // let Obj = {
+ //     name: 'Visio',
+ //     ProjectName: 'The Name',
+ //     projName: ''
+ // };
+ //
+ // console.log(`typeof Obj ${typeof Obj}`);
+ //
+ // let Obj1 = {
+ //     name: 'Microsoft',
+ //     ProjectName: 'The Name'
+ // };
+ //
+ // let Obj2 = {
+ //     ProjectName: 'The Name'
+ // };
+ // console.log(`Obj ==============================`);
+ // processObj(Obj);
+ //
+ // console.log(`Obj1 ==============================`);
+ // processObj(Obj1);
+ //
+ // console.log(`Obj2 ==============================`);
+ // processObj(Obj2);
 
+ let theObject = {
+ name: 'ElNino',
+ myMap: '',
+ mySet: '',
+ date: '',
+ regExp: '',
+ characteristics: {
+ engine: '16v',
+ capacity: '5000mc',
+ fuel: 'gasoline'
+ },
+ looks: {
+ inside: {
+ leather: 'yes',
+ heat: 'climatronic',
+ color: 'gray',
+ displays: 'led'
+ },
+ outside: {
+ front: {
+ lights: {
+ xenon: 'yes',
+ whiteLight: true,
+ },
+ hood: {
+ carbon: true,
+ color: 'red'
+ }
+ },
+ back: {
+ lights: {
+ xenon: 'yes',
+ whiteLight: true,
+ },
+ trunk: {
+ carbon: false,
+ color: 'black'
+ }
+ }
+ }
+ }
+ };
 
-{
-    let buffer = new ArrayBuffer(100);
-    let view = new Int32Array(buffer);
+ let copiedObject = cloneObject(theObject);
+ theObject.name = 'SHUSHU';
 
-    console.log(buffer);
-    console.log(view);
-}
+ console.log(`%ctheObject`, 'background-color: red; color: yellow; padding: 0 5px;');
+ console.log(theObject);
 
-conditionalOperatorAkaTernary: {
-    // (condition) ? ifTrue: ifFalse;
-}
-
-
-{
-    let boolObj = new Boolean(false);
-    let boolVal = false;
-
-    if (boolObj) {
-        console.log(`BoolObj `);
-    }
-
-    console.log(boolObj);
-
-    if (boolVal) {
-        console.log(`boolval`);
-    }
-
-    let string = 'true';
-    let boolean = Boolean(string);
-
-    console.log(boolean);
-    console.log(`boolObj.valueOf(): ${boolObj.valueOf()}`);
-
-    console.log((boolVal instanceof Object) ? 'is instance of Object' : 'no it is not instance of object');
-    console.log((boolObj instanceof Object) ? 'is instance of Object' : 'no it is not instance of object');
-}
-
-import * as angular from '@angular/core';
-
-{
-    let theObject = {
-        name: 'ElNino',
-        myMap: '',
-        mySet: '',
-        date: '',
-        regExp: '',
-        characteristics: {
-            engine: '16v',
-            capacity: '5000mc',
-            fuel: 'gasoline'
-        },
-        looks: {
-            inside: {
-                leather: 'yes',
-                heat: 'climatronic',
-                color: 'gray',
-                displays: 'led'
-            },
-            outside: {
-                front: {
-                    lights: {
-                        xenon: 'yes',
-                        whiteLight: true,
-                    },
-                    hood: {
-                        carbon: true,
-                        color: 'red'
-                    }
-                },
-                back: {
-                    lights: {
-                        xenon: 'yes',
-                        whiteLight: true,
-                    },
-                    trunk: {
-                        carbon: false,
-                        color: 'black'
-                    }
-                }
-            }
-        }
-    };
+ console.log(`%ccopiedObject`, 'background-color: red; color: yellow; padding: 0 5px;');
+ console.log(copiedObject);
 
 
+ let myMap = new Map();
+ myMap.set('myKey', 'myval');
+ myMap.set('myKey1', 'myval1');
 
-}
+ let myArr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 7, 6, 5, 4, 3, 2, 1, 0, -1, -2, -3];
+ let mySet = new Set(myArr);
+
+ console.log(mySet);
+
+ console.log(myMap);
+
+ theObject.myMap = myMap;
+ theObject.mySet = mySet;
+ console.log(theObject);
+
+ let myClone = cloneObject(theObject);
+ myClone.myMap.set('myKey1', 'SECONDVALUE');
+ console.log(myClone);
+
+ console.log(`HERE ==========================`);
+ let myObject = Object.assign({}, theObject);
+ console.log(myObject);
+
+ }
 
 
-*/
+ {
+ let buffer = new ArrayBuffer(100);
+ let view = new Int32Array(buffer);
+
+ console.log(buffer);
+ console.log(view);
+ }
+
+ conditionalOperatorAkaTernary: {
+ // (condition) ? ifTrue: ifFalse;
+ }
+
+
+ {
+ let boolObj = new Boolean(false);
+ let boolVal = false;
+
+ if (boolObj) {
+ console.log(`BoolObj `);
+ }
+
+ console.log(boolObj);
+
+ if (boolVal) {
+ console.log(`boolval`);
+ }
+
+ let string = 'true';
+ let boolean = Boolean(string);
+
+ console.log(boolean);
+ console.log(`boolObj.valueOf(): ${boolObj.valueOf()}`);
+
+ console.log((boolVal instanceof Object) ? 'is instance of Object' : 'no it is not instance of object');
+ console.log((boolObj instanceof Object) ? 'is instance of Object' : 'no it is not instance of object');
+ }
+
+ import * as angular from '@angular/core';
+
+ {
+ let theObject = {
+ name: 'ElNino',
+ myMap: '',
+ mySet: '',
+ date: '',
+ regExp: '',
+ characteristics: {
+ engine: '16v',
+ capacity: '5000mc',
+ fuel: 'gasoline'
+ },
+ looks: {
+ inside: {
+ leather: 'yes',
+ heat: 'climatronic',
+ color: 'gray',
+ displays: 'led'
+ },
+ outside: {
+ front: {
+ lights: {
+ xenon: 'yes',
+ whiteLight: true,
+ },
+ hood: {
+ carbon: true,
+ color: 'red'
+ }
+ },
+ back: {
+ lights: {
+ xenon: 'yes',
+ whiteLight: true,
+ },
+ trunk: {
+ carbon: false,
+ color: 'black'
+ }
+ }
+ }
+ }
+ };
+
+
+
+ }
+
+
+ */
 // TODO: COMMENT ENDS HERE
 /*
 
-// TODO: rest parameters
-const pia = (...argus) => {
-    console.log(...argus);
+ // TODO: rest parameters
+ const pia = (...argus) => {
+ console.log(...argus);
 
-};
+ };
 
-const stickThem = (separator) => {
-    let args = Array.prototype.slice.call(arguments,1);
-    console.log(args);
-    return args.join(separator);
-};
+ const stickThem = (separator) => {
+ let args = Array.prototype.slice.call(arguments,1);
+ console.log(args);
+ return args.join(separator);
+ };
 
-const returnArguments = (a,b) => {
-    return arguments;
-};
-
-
-import {processIncommingArguments as processIncommingArguments} from './customFunctions'
-
-{
-    console.log(sampleObject);
+ const returnArguments = (a,b) => {
+ return arguments;
+ };
 
 
-    processIncommingArguments( 'biscuiti', 12, 'pulamea', true, false);
-    console.log(`pia`);
-    pia( 'biscuiti', 12, 'pulamea', true, false);
+ import {processIncommingArguments as processIncommingArguments} from './customFunctions'
+
+ {
+ console.log(sampleObject);
 
 
-    let sticked = stickThem(',', 'shushuline', 'buburuza');
-    console.log(sticked);
+ processIncommingArguments( 'biscuiti', 12, 'pulamea', true, false);
+ console.log(`pia`);
+ pia( 'biscuiti', 12, 'pulamea', true, false);
 
 
-    console.log(returnArguments(1,2));
+ let sticked = stickThem(',', 'shushuline', 'buburuza');
+ console.log(sticked);
 
 
-}
+ console.log(returnArguments(1,2));
+
+
+ }
 
 
  */
@@ -3086,39 +3086,589 @@ import {processIncommingArguments as processIncommingArguments} from './customFu
 //      console.log(a);
 //  }
 //
+/*
 
- {
+{
 
-     var x = 15;
+    var x = 15;
 
-     function createVirtualValue1() {
-         let x = 10;
-         return new Function('return x');
-     }
+    function createVirtualValue1() {
+        let x = 10;
+        return new Function('return x');
+    }
 
-     function createVirtualValue2() {
-         var x = 20;
+    function createVirtualValue2() {
+        var x = 20;
 
-         function f() {
-             return x;
-         }
-         return f;
-     }
+        function f() {
+            return x;
+        }
 
-     let f1 = createVirtualValue1();
-     // console.log(f1());
+        return f;
+    }
 
-     let f2 = createVirtualValue2();
-     console.log(f2());
+    let f1 = createVirtualValue1();
+    // console.log(f1());
+
+    let f2 = createVirtualValue2();
+    console.log(f2());
+}
+
+// function* noGen() {
+//     let i = 0;
+//     while (true) {
+//         yield i++;
+//     }
+// }
+
+import * as _arr from '../external-js/ArrayFunctions';
+
+/!*{
+ console.time('count1');
+ let myArr = [1,2,3,4,5,6,7,8,9,0];
+ let res1 = _arr.stringifyMyArray(myArr);
+ console.timeEnd('count1');
+
+ console.log(`stringifyMyArray: ${res1}`);
+
+ console.time('count2');
+ let res2 = myArr.join(',');
+ console.timeEnd('count2');
+
+ console.log(`array.join: ${myArr.join(',')}`);
  }
 
- // function* noGen() {
- //     let i = 0;
- //     while (true) {
- //         yield i++;
- //     }
- // }
-
  {
+ let locales = ['ban', 'id-u-co-pinyin', 'de-ID'];
+ let options = { localeMatcher: 'lookup' };
+ console.log(Intl.Collator.supportedLocalesOf(locales, options).join(', '));
 
  }
+
+ *!/
+
+{
+    let myArr1 = ['banana', 'portocala', 'bufnita'];
+
+    let a = myArr1.filter((curVal, index) => curVal[0] === 'b');
+    let b = myArr1.filter((curVal, index) => curVal.toString()[0] === 'b');
+    let c = myArr1.filter((curVal, index) => curVal.charAt(0) === 'b');
+
+    console.log(a);
+    console.log(b);
+    console.log(c);
+
+
+    const aa = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+
+    let myArr2 = Array.from(aa, (a => a * a));
+    console.log(myArr2);
+
+    let aaa = 'buburuza';
+    let myArr3 = Array.from(aaa, (a => a + String.fromCharCode(a.charCodeAt(0) + 1) ));
+    console.log('bc ab st uv');
+    console.log(myArr3);
+
+
+    let nS = new Set([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]);
+    let myArr4 = Array.from(nS);
+    console.log(nS);
+    console.log(myArr4);
+
+
+    let nM = new Map([['width', 1], ['height', 10], ['depth', 15]]);
+    let myArr7 = Array.from(nM, (([a, b]) => a));
+    console.log(myArr7);
+    //["width", "height", "depth"]
+
+
+    let myArr5 = Array.from(nM);
+
+    console.log(nM);
+    console.log(myArr5);
+
+    let nM1 = new Map([[1, 2], [3, 4], [5, 6], [7, 8], [9, 10]]);
+    let myArr6 = Array.from(nM1, (([a, b]) => a));
+
+
+    console.log(nM1);
+    console.log(myArr6);
+
+}
+
+//Array.isArray
+{
+    console.log(`Array.isArray(null): ${Array.isArray(null)}`);
+    console.log(`Array.isArray([]): ${Array.isArray([])}`);
+    console.log(`Array.isArray(null): ${Array.isArray(null)}`);
+    console.log(`Array.isArray('foo'): ${Array.isArray('foo')}`);
+    console.log(`Array.isArray(undefined): ${Array.isArray(undefined)}`);
+    console.log(`Array.isArray({a:'b'}): ${Array.isArray({a: 'b'})}`);
+
+}
+
+const myF = (...args) => {
+    return Array.of.call(...args);
+};
+
+const myF1 = (ar) => {
+    console.log(ar);
+    return Array.from(ar);
+};
+
+const createArray = (n) => {
+    let tempArray = [];
+    for (let i = 1; i <= n; i++) {
+        tempArray.push(Math.floor(Math.random() * 100));
+    }
+    return tempArray;
+};
+
+{
+    let mya = [1, 2, 3, 4, 5, 6, 7];
+    let myArray1 = createArray(1000);
+    console.time('myF');
+    let myNewA1 = myF(null, ...myArray1);
+    console.timeEnd('myF');
+
+    console.log(myArray1);
+    console.log(myNewA1);
+
+    console.log('%cmyF1', 'background-color:red; padding: 0 5px; color: white;');
+
+    console.time('myF1');
+    let myNewB1 = myF1(myArray1);
+    console.timeEnd('myF1');
+
+    console.log(myNewB1);
+
+
+    // let myArray2 = createArray (1000);
+    // console.time('myF');
+    // let myNewA2 = myF(null,...myArray2);
+    // console.timeEnd('myF');
+    //
+    // console.log(myArray2);
+    // console.log(myNewA2);
+    //
+    // let myArray3 = createArray (10000);
+    // console.time('myF');
+    // let myNewA3 = myF(null,...myArray2);
+    // console.timeEnd('myF');
+    //
+    // console.log(myArray3);
+    // console.log(myNewA3);
+
+}
+
+
+const genArr = (n) => {
+    let tA = [], rand;
+    for (let i = 0; i < n; i++) {
+        rand = Math.floor(Math.random() * 100);
+        tA.push(rand);
+    }
+    return tA;
+};
+
+{
+    let arr1 = ['a', 'b', 'c'];
+    let arr2 = ['d', 'e', 'f'];
+
+    let arrConcat = arr1.concat(arr2);
+
+    console.log(arrConcat);
+
+    arrConcat.push(15);
+
+    console.time('ArrayFrom');
+    let myErr = Array.from({length: 1000}, (v, i) => i);
+    console.timeEnd('ArrayFrom');
+
+    // console.log(myErr);
+
+    // let myErr1 = Array.from({length:1000}, (v,i) => [i, null]);
+    // console.log(myErr1);
+    //
+    // let myMap = new Map(Array.from({length:1000}, (v,i) => [`A${i}`,v]));
+    // console.log(myMap);
+
+
+    console.time('myGen');
+    let myA = genArr(1000);
+    console.timeEnd('myGen');
+
+    console.log(myA);
+}
+
+//CopyWithin
+
+{
+    let myA = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+    myA.copyWithin(2, 0, 2);
+
+    console.log(myA);
+}
+
+//Array.entries();
+
+{
+    let myA = [1, 2, 3, 4, 5, 6, 7];
+    let it = myA.entries();
+
+    // for (let [,val] of it) {
+    //     console.log(val);
+    // }
+    console.log('next iterator on entries()');
+
+    let ind, val;
+
+    [ind, val] = it.next().value;
+    console.log(val);
+
+}
+
+//Array.every()
+
+const validate = (v, i, theArray) => (v > 10);
+
+{
+    let myArr = [9, 10, 11, 12, 13, 154];
+    console.log(`myArr.every(validate): ${myArr.every(validate)}`);
+
+    let myArr1 = [11, 12, 113, 144, 15];
+    console.log(`myArr1.every(validate): ${myArr1.every(validate)}`);
+}
+
+
+//Array.fill()
+{
+    let a = [].fill.call({length: 3}, 4);
+    console.log(a);
+
+    console.log(Array(10).fill(1));
+
+}
+
+//Array.filter
+
+const customFilter = v => v.length > 3;
+
+{
+    let Arr = ['apa', 'mere', 'papanas', 'buburuza', 'cacareaza', 'nasture', 'butoi', 'coi'];
+    let filteredArray = Arr.filter(customFilter);
+
+    console.log(Arr);
+    console.log(filteredArray);
+}
+
+//Array.find();
+
+const customFilterFind = v => v > 100;
+
+{
+    let myArr = [1, 230, 233, 254, 3434, 12];
+    let found = myArr.find(customFilterFind);
+
+    console.log(found);
+}
+
+//Array.findIndex();
+//Array.forEach();
+
+const logMe = (v, i, arr) => {
+    console.log(`at index ${i} value ${v} is found`);
+}
+
+{
+    let myArr = [1, 90, 100, 200, 300, 400];
+    let found = myArr.findIndex(customFilterFind);
+
+    console.log(found);
+    let sum = 0
+    myArr.forEach((v, i) => {
+        console.log(`at index ${i} value ${v} is present`);
+        sum += v;
+    });
+
+    console.log(sum);
+
+    console.log(`using separate function`);
+    myArr.forEach(logMe);
+
+    //Array.includes
+
+    let myRandomArray = Array.from({length:1000}, i => Math.floor(Math.random()*100));
+
+    console.log(myRandomArray);
+
+    console.log(myRandomArray.includes(99));
+    let index = myRandomArray.findIndex(v => v===99);
+    console.log(`index at which value 99 was encountered is ${index}`);
+
+    let test = {length:9};
+    console.log(test);
+}
+
+{
+    let a = [1,2,3,4,5,6,7,8,9,0];
+    console.log(a.indexOf(9));
+
+    let mA = Array.from({length:1000}, v => Math.round(Math.random()*100));
+
+    console.log(mA);
+
+    if (mA.indexOf(100) === -1) {
+        console.log('elementul 100 nu exista in array');
+        mA.push(101);
+    } else {
+        console.log(`index of 100: ${mA.indexOf(100)}`);
+    }
+    console.log(mA);
+}
+
+{
+    let arr1 = [1, 2, 3, 4, 5, 6];
+    let arr2 = [2, 4, 6, 8, 10, 12, 14];
+
+    let arr = Array.from(new Set(arr1.concat(arr2)));
+    console.log(`Arr with unique elements - START`);
+    console.log(arr);
+    console.log(`Arr with unique elements - END`);
+
+    let arr3 = Array.from({length: 20}, v => Math.round(Math.random() * 100));
+    arr3 = Array.from(new Set(arr3));
+
+    let arrConcat = arr3.concat(arr);
+
+    console.log(arrConcat);
+
+    for (let i = 0; i < arr3.length; i++) {
+        let firstIndex = arrConcat.indexOf(arrConcat[i]);
+        let lastIndex = arrConcat.lastIndexOf(arrConcat[i]);
+        if (firstIndex !== lastIndex) {
+            console.log(`Element ${arrConcat[i]} is present in both arrays`);
+        }
+    }
+
+
+    //Array.join
+    let joinedString = arrConcat.join();
+    console.log(joinedString);
+    console.log(arrConcat.join(' + '));
+    console.log(arrConcat.join(''));
+    console.log(arrConcat.join(', '));
+
+    //Array.keys()
+
+    let a = ['a', , 'c'];
+
+    console.log([...a.keys()]);
+    console.log([...Object.keys(a)]);
+
+
+}
+*/
+
+{
+    //Array.map()
+
+    let myArr = [1,2,3,4,5,6,7,8,9,10,11,12];
+
+    console.log(myArr);
+
+    let myArr1 = myArr.map((v,i,curArr) => {
+        return v*i;
+    });
+
+    console.log(myArr1);
+
+    let myArr2 = myArr.map(Math.sqrt);
+    console.log(myArr2);
+
+    //Array.reduce
+
+    let myDiffs = myArr2.reduce( (coll, currentValue) => {
+        coll.push(currentValue);
+        return coll;
+    }, []);
+
+
+    let myDiffs1 = myArr2.reduce( (coll, currentValue) => {
+        let theVal = ( coll.length > 0 ) ? currentValue - myArr2[ coll.length-1 ] : currentValue;
+        coll.push( theVal );
+        return coll;
+    }, []);
+
+    myDiffs1.shift();
+
+    console.log(`myDiffs: ===============`);
+    console.log(myDiffs);
+    console.log(`myDiffs1: ===============`);
+    console.log(myDiffs1);
+
+
+    let myRandArray = Array.from({length:200}, (currentValue,i) => Math.sqrt(i));
+    let myDiffs2 = myRandArray.reduce((coll, currentValue, currentIndex, tehArray) => {
+        let theVal = ( currentIndex > 0 ) ? currentValue - tehArray[ currentIndex - 1 ] : currentValue;
+        coll.push( theVal );
+        return coll;
+    }, []);
+
+    myDiffs2.shift();
+    myDiffs2.shift();
+
+    console.log(`myDiffs2: ===============`);
+    console.log(myDiffs2);
+
+
+    let myAdjustedDiffs = myDiffs2.reduce((acc, v, i) => {
+        acc.push(Math.floor(v*100));
+        return acc;
+    },[]);
+
+    console.log(myAdjustedDiffs);
+}
+
+{
+    let arr = [1,2,3,4,5,6,7,8,9];
+    arr.push(10);
+    console.log(arr);
+    arr.pop();
+    console.log(arr);
+    arr.shift();
+    console.log(arr);
+    arr.unshift(10);
+    console.log(arr);
+
+    let sumOfAll = arr.reduce((sum,v) => sum += v);
+    console.log(`sumOfAll: ${sumOfAll}`);
+
+
+    let sumOfAllRight = arr.reduceRight((sum,v) => sum += v);
+
+    console.log(`sumOfAllRight: ${sumOfAllRight}`);
+
+    console.log(arr.reverse());
+
+
+    console.log(arr.slice(0,3));
+}
+
+{
+    let bmw = {color: 'red', wheels: 4, engine: {cilinders: 4, size: 2.2}};
+    let myBmw = [bmw,2,'cherry condition', 'purchased 2005'];
+
+    let myco = myBmw.slice(0,2);
+
+    console.log(`my bmw: ${JSON.stringify(myBmw)}`);
+    console.log(`copy bmw: ${JSON.stringify(myco)}`);
+    console.log(`my bmw color: ${myBmw[0].color}`);
+    console.log(`copy bmw color: ${myco[0].color}`);
+
+    myBmw[0].color = 'orange';
+
+    console.log(`my bmw color: ${myBmw[0].color}`);
+    console.log(`copy bmw color: ${myco[0].color}`);
+}
+
+{
+    let arr = [10,11,12,13,11];
+
+    let cond = arr.some(v => v>13) ? 'array has values greater than 13' : 'array doesn\'t have values greater than 13';
+    console.log(cond);
+}
+
+{
+    //Array.sort
+
+    let myRandArray = Array.from({length: 100}, v => Math.floor(Math.random()*100));
+    console.log(myRandArray);
+    myRandArray.sort();
+}
+
+{
+    // the array to be sorted
+    var list = ['Delta', 'alpha', 'CHARLIE', 'bravo'];
+
+// temporary array holds objects with position and sort-value
+    var mapped = list.map(function(el, i) {
+        return { index: i, value: el.toLowerCase() };
+    })
+
+// sorting the mapped array containing the reduced values
+    mapped.sort(function(a, b) {
+        return +(a.value > b.value) || +(a.value === b.value) - 1;
+    });
+
+// container for the resulting order
+    var result = mapped.map(function(el){
+        return list[el.index];
+    });
+
+    console.log(result);
+}
+
+//Array.splice
+
+{
+    let myCars = ['BMW', 'Ferrari', 'Audi', 'Citroen', 'GM'];
+
+    console.log('Before');
+    console.log(myCars);
+    myCars.splice(1, 0, 'Dacia');
+    console.log('After');
+    console.log(myCars);
+
+    console.log('remove elements with indexes 2,3');
+    myCars.splice(2,2);
+    console.log(myCars);
+    //["BMW", "Dacia", "Citroen", "GM"]
+
+    let myNewCars = ['Dacia', 'Lada', 'Trabant'];
+
+    myCars.splice(2,0,...myNewCars);
+    console.log('after adding my new cars');
+    console.log(myCars);
+
+    console.log(myCars.toLocaleString());
+
+    let currentDate = Date.now();
+
+    myCars.splice(4,0,currentDate);
+
+    console.log(myCars);
+    console.log(myCars.toLocaleString());
+
+    console.log(myCars.toString());
+
+    let newCars = ['Bugatti', 'HArley'];
+    myCars.unshift(...newCars);
+
+    console.log(myCars);
+
+
+    for (let a of myCars) {
+        console.log(a);
+    }
+
+    var myRandArray = Array.from({length: 100}, v => Math.round(Math.random()*1000));
+}
+
+/*{
+    console.log(JSON.parse('null'));
+    console.log(JSON.parse('"null"'));
+
+    JSON.parse('{}');              // {}
+    JSON.parse('true');            // true
+    JSON.parse('"foo"');           // "foo"
+    JSON.parse('[1, 5, "false"]'); // [1, 5, "false"]
+    JSON.parse('null');            // null
+}*/
+
+{
+    let a = [1,2,3,4,5,6];
+    // console.log(JSON.parse('[1,2,3,4,5,6]'));
+    let myStr = "{'a' : '1'}" ;
+    console.log(JSON.parse(myStr));
+}

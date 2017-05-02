@@ -180,6 +180,7 @@ $background_color_flex_menu: $color1;
   color: invert($background_color_flex_menu);
 
 }
+
 /*
 .flex-menu-item:hover {
     background: white;
@@ -307,8 +308,11 @@ $background_color_flex_menu: $color1;
 .menu-column {
   display: flex;
   position: relative;
-  perspective: 150px;
-  perspective-origin: 10% 10%;
+  //perspective: 50px;
+  perspective: 10px;
+  //perspective-origin: -20% 50%;
+  perspective-origin: 50% 100%;
+
 }
 .sub-menu-products:not(:empty) {
   position:absolute;
@@ -328,7 +332,8 @@ $background_color_flex_menu: $color1;
   transform: rotateX(-90deg);
   transform-style: preserve-3d;
 
-  transition: all 0.3s;
+
+  transition: all 0.2s;
   z-index: 1 ;
 }
 /* show menu when mouse over - style only the sub-menus that have content, to avoid displaying empty styled divs */

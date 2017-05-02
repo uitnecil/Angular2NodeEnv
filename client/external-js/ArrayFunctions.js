@@ -65,6 +65,9 @@ export const stringifyMyArray = (arr) => {
         });
     }
     return str;
+    // console.log(`str: ${str} ` );
+    // console.log(`str arr.join: ${arr.join(',')}`);
+    // return arr.join(',');
 };
 
 /**
