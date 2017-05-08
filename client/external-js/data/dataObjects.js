@@ -74,3 +74,26 @@ export let sampleObject = {
         }
     }
 };
+
+export let profileTest = {
+    name: 'Licentiu',
+    profession: 'programmer wannabe',
+    age: 34,
+    location: {
+        country: 'Romania',
+        state: 'Cluj',
+        City: 'Floresti',
+        exactAddress: {
+            streetName: 'Florilor',
+            streetNumber: '88G',
+            apartment: 1
+        }
+    },
+    experience: '10y',
+    experienceDomain: 'IT',
+    roles: {
+        role1: 'QA',
+        role2: 'TL',
+        role3: 'BA'
+    }
+};
