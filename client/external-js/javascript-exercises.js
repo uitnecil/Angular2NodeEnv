@@ -4294,6 +4294,7 @@ import {myStruct} from '../external-js/data/dataStructures';
 
 
 //REFLECT methods
+/*
 
 function listMe(v) {
     console.log(v);
@@ -4340,15 +4341,24 @@ const function2 = obj => {
     let sum = obj.theArray.reduce((cummul, v) => cummul += v, 0);
     console.log(`the sum is: ${sum}`);
 
-    return Object.defineProperty(obj, 'elementsSumGreaterThan1000', {
-        value: (sum > 1000),
-        writable: true,
-        enumerable: true
-    });
+    if (sum > 1000) {
+        if (Reflect.defineProperty(obj, 'elementsSumGreaterThan1000', {
+                value: (sum > 1000),
+                writable: true,
+                enumerable: true
+            })) {
+            return obj;
+        } else {
+            throw new Error('Error occurred while adding the Property to the object');
+        }
+    } else {
+        throw new Error('Sum is not greater than 1000k. Halting...');
+
+    }
 };
 
 {
-    let myR = Array.from({length: 100}, v => Math.round(Math.random() * 100) + 4);
+    let myR = Array.from({length: 5}, v => Math.round(Math.random() * 100) + 4);
 
     let myPromise = new Promise((accept, reject) => {
         // consider pass if all values from the array are greater than 5, otherwise fail
@@ -4356,11 +4366,15 @@ const function2 = obj => {
         let toReturn = {
             theArray: myR
         };
-        Object.defineProperty(toReturn, 'isEveryElementGreaterThan5', {
-            value: isEveryElementGreaterThan5,
-            enumerable: true,
-            writable: true
-        });
+        if (!Reflect.defineProperty(toReturn, 'isEveryElementGreaterThan5', {
+                value: isEveryElementGreaterThan5,
+                enumerable: true,
+                writable: true
+            })) {
+            console.log('here=============');
+            throw new Error('Error occurred while adding property `isEveryElementGreaterThan5` to the Object!');
+        }
+        ;
 
         if (isEveryElementGreaterThan5 === true) {
             accept(toReturn);
@@ -4379,13 +4393,93 @@ const function2 = obj => {
         })
         .then(success => function1(success)) // if all elements are greater than 5, proceed and verify if at least one value from the array is exactly divisible by 5
         .then(success => function2(success)) //if previous test passes proceed to next step only if the sum of all elements is greater than 1000
-        .then(success => function3(success))
+        .then(success => console.log(success))
         .catch(err => {
-            console.log('Not elements are greater than 5 -> answer: ');
+            console.log('Catch: Not elements are greater than 5 -> answer: ');
             console.log(err);
         });
 
     console.log(myR);
 
     console.log(Math.sqrt(16));
+}
+*/
+
+// create 3 promises that process a very large array with logging the parallel operations
+
+const cloneMyArray = inputArray => {
+    // let myTempArray = [];
+    //
+    // if (Array.isArray(inputArray)) {
+    //     inputArray.forEach(v => {
+    //         myTempArray.push(v)
+    //     });
+    // }
+    //
+    // return myTempArray;
+
+    return inputArray.map(v => v);
+
+};
+
+
+{
+    let myTestArray = Array.from({length: 100000}, v => Math.round(Math.random() * 1000000)); // my test Array
+
+    let myPromise0 = new Promise((success, failure) => {
+        // create a new Array having all values from the original array but with sqrt.
+
+        console.log('myPromise0 -- starting');
+        console.time('myPromise0');
+
+
+        let myNewArray = myTestArray.map(currentValue => {
+            return Math.round(Math.sqrt(currentValue));
+        });
+
+        console.timeEnd('myPromise0');
+
+        if (myNewArray.length === myTestArray.length) {
+            success(myNewArray);
+        } else {
+            failure('The resulting array has an unexpected length. Something wrong happened')
+        }
+    });
+    let myPromise1 = new Promise((success, failure) => {
+
+         console.log('myPromise1 -- starting');
+         console.time('myPromise1');
+
+        let myArrayTmp = cloneMyArray(myTestArray);
+
+        for (let i = 0; i <= 1; i++) {
+            let myArray = myArrayTmp.map(currVal => {
+                return Math.sqrt(currVal);
+            });
+
+            myArrayTmp = cloneMyArray(myArray);
+        }
+
+        console.timeEnd('myPromise1');
+
+        if (myArrayTmp.length === myTestArray.length) {
+            success(myArrayTmp);
+        } else {
+            failure('The length of the resulting Array is unexpected. Something very bad happened.')
+        }
+    });
+
+    let myPromise2 = new Promise ( (success, failure) => {
+
+    });
+
+
+    Promise
+        .all([myPromise0, myPromise1])
+        .then(success => {
+            if (Array.isArray(success)) {
+                console.log(success);
+            }
+        })
+        .catch(err => console.log(err))
 }
