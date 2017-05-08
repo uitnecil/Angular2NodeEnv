@@ -4207,6 +4207,7 @@ import {myStruct} from '../external-js/data/dataStructures';
  .then(processFurther1)
  .then(processFurther2)
  .then(listResults)
+ //sau ce e mai jos
  // .then(success => processFurther1(success))
  // .then(success => processFurther2(success))
  // .then(success => listResults(success))
@@ -4231,61 +4232,160 @@ import {myStruct} from '../external-js/data/dataStructures';
 //         // console.log(obj);
 //     }
 // }
+/*
 
-const logValues = input => {
-    console.log(input);
-    console.log(typeof input);
+ const logValues = input => {
+ console.log(input);
+ console.log(typeof input);
 
-    if (typeof input === 'object') {
-        for (let i in input) {
-            console.log(`${i}: ${input[i]}`);
-        }
-    }
+ if (typeof input === 'object') {
+ for (let i in input) {
+ console.log(`${i}: ${input[i]}`);
+ }
+ }
+ };
+
+ const logFailure = input => {
+ console.log(`Error occured: ${input}`);
+ }
+
+ {
+ let promise1 = new Promise((good, bad) => {
+ let myTimeOut = Math.round(Math.random() * 5000) + 100;
+ console.log('Promise 1 started');
+ console.log('Timeout: ' + myTimeOut);
+ setTimeout(function () {
+ let myRandValue = Math.round(Math.random()*100);
+
+ if (myRandValue % 2 === 0) {
+ console.log('Promise 1 ended');
+ good(Math.round(Math.random() * 100))
+ } else {
+ console.log('Promise 1 ended');
+ bad('Promise 1 failed')
+ }
+ }, myTimeOut);
+ });
+
+ let promise2 = new Promise((good, bad) => {
+ console.log('Promise 2 started');
+
+ setTimeout(function () {
+ let MyRand = Math.round(Math.random() * 100);
+
+ if (MyRand % 2 === 0) {
+ console.log('Promise 2 ended');
+ good(1)
+ } else {
+ console.log('Promise 2 ended');
+
+ bad('Promise 2 failed')
+ }
+ }, 15000)
+ });
+
+
+ Promise
+ .all([promise1, promise2])
+ .then(logValues)
+ .catch(logFailure);
+ }
+ */
+
+
+//REFLECT methods
+
+function listMe(v) {
+    console.log(v);
+
+    return String.fromCharCode(v);
+
 };
 
-const logFailure = input => {
-    console.log(`Error occured: ${input}`);
+{
+    let a = Reflect.apply(listMe, null, [104, 101, 108, 108, 111]);
+
+    console.log(a);
+
+    console.log('function.prototype.apply');
+    console.log(listMe.apply(undefined, [104, 101, 108, 108, 111]));
+
+    console.log('function.prototype.call');
+    console.log(listMe.call(undefined, ...[104, 101, 108, 108, 111]));
+
+    //
+    // console.log(Reflect.apply(String.fromCharCode, undefined, [104, 101, 108, 108, 111]));
+    //
+    // console.log('Reflect.apply(Math.sqrt, undefined, [1,2,3,4,5,6,7,8,9,0]) ');
+    //
+    // console.log(Reflect.apply(Math.sqrt , Math.sqrt, [1,2,3,4,5,6,7,8,9,0]));
+    // console.log(Reflect.apply(Math.floor, undefined, [1,2.15,3,4,5,6,7,8,9,0]));
+
+    let f = Function.prototype.apply.call(Math.floor, undefined, [1.75, 1.56]);
+    console.log(f);
+
 }
+
+const function1 = obj => {
+    let doesIt = obj.theArray.some(v => Math.sqrt(v) === Math.round(Math.sqrt(v)));
+    return Object.defineProperty(obj, 'atLeastOnePerfectSquareExist', {
+        value: doesIt,
+        enumerable: true,
+        writable: true
+    });
+    // obj;
+};
+
+const function2 = obj => {
+    let sum = obj.theArray.reduce((cummul, v) => cummul += v, 0);
+    console.log(`the sum is: ${sum}`);
+
+    return Object.defineProperty(obj, 'elementsSumGreaterThan1000', {
+        value: (sum > 1000),
+        writable: true,
+        enumerable: true
+    });
+};
 
 {
-    let promise1 = new Promise((good, bad) => {
-        let myTimeOut = Math.round(Math.random() * 5000) + 100;
-        console.log('Promise 1 started');
-        console.log('Timeout: ' + myTimeOut);
-        setTimeout(function () {
-            let myRandValue = Math.round(Math.random()*100);
+    let myR = Array.from({length: 100}, v => Math.round(Math.random() * 100) + 4);
 
-            if (myRandValue % 2 === 0) {
-                console.log('Promise 1 ended');
-                good(Math.round(Math.random() * 100))
-            } else {
-                console.log('Promise 1 ended');
-                bad('Promise 1 failed')
-            }
-        }, myTimeOut);
+    let myPromise = new Promise((accept, reject) => {
+        // consider pass if all values from the array are greater than 5, otherwise fail
+        let isEveryElementGreaterThan5 = myR.every(v => v > 5);
+        let toReturn = {
+            theArray: myR
+        };
+        Object.defineProperty(toReturn, 'isEveryElementGreaterThan5', {
+            value: isEveryElementGreaterThan5,
+            enumerable: true,
+            writable: true
+        });
+
+        if (isEveryElementGreaterThan5 === true) {
+            accept(toReturn);
+
+        } else {
+            toReturn.isEveryElementGreaterThan5 = false;
+            reject(toReturn);
+        }
     });
 
-    let promise2 = new Promise((good, bad) => {
-        console.log('Promise 2 started');
+    myPromise // this is executed async
+        .then(success => {
+            console.log('All elements from the Array are greater than 5');
+            console.log(success);
+            return success;
+        })
+        .then(success => function1(success)) // if all elements are greater than 5, proceed and verify if at least one value from the array is exactly divisible by 5
+        .then(success => function2(success)) //if previous test passes proceed to next step only if the sum of all elements is greater than 1000
+        .then(success => function3(success))
+        .catch(err => {
+            console.log('Not elements are greater than 5 -> answer: ');
+            console.log(err);
+        });
 
-        setTimeout(function () {
-            let MyRand = Math.round(Math.random() * 100);
+    console.log(myR);
 
-            if (MyRand % 2 === 0) {
-                console.log('Promise 2 ended');
-                good(1)
-            } else {
-                console.log('Promise 2 ended');
-
-                bad('Promise 2 failed')
-            }
-        }, 15000)
-    });
-
-
-    Promise
-        .all([promise1, promise2])
-        .then(logValues)
-        .catch(logFailure);
+    console.log(Math.sqrt(16));
 }
-
