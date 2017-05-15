@@ -2878,7 +2878,7 @@ ul.pagination li a {
       margin: 0;
       padding: 0;
       border-radius: 50%;
-      transition: 0.3s ease-in-out;
+      transition: 0.2s ease-in-out;
        /*
        TODO: rewrite everything with transform-origin: center center ?;
        */
@@ -3717,7 +3717,7 @@ myHero {
 
 /*TODO: include in a final version*/
 
-$effect_duration: 1s;
+$effect_duration: 0.5s;
 .mg-link-effect-container {
   position: relative;
   margin: 10px;

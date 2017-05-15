@@ -13,16 +13,3 @@ describe('App', () => {
     });
 });
 
-// LICE: am comentat asta pentru ca dadea erorile astea
-/*
-ERROR in /home/lice/Projects/Angular2NodeEnv/client/app/app.component.spec.ts
-(6,1): error TS2304: Cannot find name 'describe'.
-
-    ERROR in /home/lice/Projects/Angular2NodeEnv/client/app/app.component.spec.ts
-(7,5): error TS2304: Cannot find name 'beforeEach'.
-
-    ERROR in /home/lice/Projects/Angular2NodeEnv/client/app/app.component.spec.ts
-(10,5): error TS2304: Cannot find name 'it'.
-
-    ERROR in /home/lice/Projects/Angular2NodeEnv/client/app/app.component.spec.ts
-(12,9): error TS2304: Cannot find name 'expect'.*/

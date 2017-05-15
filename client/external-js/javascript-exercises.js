@@ -4296,190 +4296,635 @@ import {myStruct} from '../external-js/data/dataStructures';
 //REFLECT methods
 /*
 
-function listMe(v) {
-    console.log(v);
+ function listMe(v) {
+ console.log(v);
 
-    return String.fromCharCode(v);
+ return String.fromCharCode(v);
 
-};
+ };
+
+ {
+ let a = Reflect.apply(listMe, null, [104, 101, 108, 108, 111]);
+
+ console.log(a);
+
+ console.log('function.prototype.apply');
+ console.log(listMe.apply(undefined, [104, 101, 108, 108, 111]));
+
+ console.log('function.prototype.call');
+ console.log(listMe.call(undefined, ...[104, 101, 108, 108, 111]));
+
+ //
+ // console.log(Reflect.apply(String.fromCharCode, undefined, [104, 101, 108, 108, 111]));
+ //
+ // console.log('Reflect.apply(Math.sqrt, undefined, [1,2,3,4,5,6,7,8,9,0]) ');
+ //
+ // console.log(Reflect.apply(Math.sqrt , Math.sqrt, [1,2,3,4,5,6,7,8,9,0]));
+ // console.log(Reflect.apply(Math.floor, undefined, [1,2.15,3,4,5,6,7,8,9,0]));
+
+ let f = Function.prototype.apply.call(Math.floor, undefined, [1.75, 1.56]);
+ console.log(f);
+
+ }
+
+ const function1 = obj => {
+ let doesIt = obj.theArray.some(v => Math.sqrt(v) === Math.round(Math.sqrt(v)));
+ return Object.defineProperty(obj, 'atLeastOnePerfectSquareExist', {
+ value: doesIt,
+ enumerable: true,
+ writable: true
+ });
+ // obj;
+ };
+
+ const function2 = obj => {
+ let sum = obj.theArray.reduce((cummul, v) => cummul += v, 0);
+ console.log(`the sum is: ${sum}`);
+
+ if (sum > 1000) {
+ if (Reflect.defineProperty(obj, 'elementsSumGreaterThan1000', {
+ value: (sum > 1000),
+ writable: true,
+ enumerable: true
+ })) {
+ return obj;
+ } else {
+ throw new Error('Error occurred while adding the Property to the object');
+ }
+ } else {
+ throw new Error('Sum is not greater than 1000k. Halting...');
+
+ }
+ };
+
+ {
+ let myR = Array.from({length: 5}, v => Math.round(Math.random() * 100) + 4);
+
+ let myPromise = new Promise((accept, reject) => {
+ // consider pass if all values from the array are greater than 5, otherwise fail
+ let isEveryElementGreaterThan5 = myR.every(v => v > 5);
+ let toReturn = {
+ theArray: myR
+ };
+ if (!Reflect.defineProperty(toReturn, 'isEveryElementGreaterThan5', {
+ value: isEveryElementGreaterThan5,
+ enumerable: true,
+ writable: true
+ })) {
+ console.log('here=============');
+ throw new Error('Error occurred while adding property `isEveryElementGreaterThan5` to the Object!');
+ }
+ ;
+
+ if (isEveryElementGreaterThan5 === true) {
+ accept(toReturn);
+
+ } else {
+ toReturn.isEveryElementGreaterThan5 = false;
+ reject(toReturn);
+ }
+ });
+
+ myPromise // this is executed async
+ .then(success => {
+ console.log('All elements from the Array are greater than 5');
+ console.log(success);
+ return success;
+ })
+ .then(success => function1(success)) // if all elements are greater than 5, proceed and verify if at least one value from the array is exactly divisible by 5
+ .then(success => function2(success)) //if previous test passes proceed to next step only if the sum of all elements is greater than 1000
+ .then(success => console.log(success))
+ .catch(err => {
+ console.log('Catch: Not elements are greater than 5 -> answer: ');
+ console.log(err);
+ });
+
+ console.log(myR);
+
+ console.log(Math.sqrt(16));
+ }
+ */
+
+// create 3 promises that process a very large array with logging the parallel operations
+/*
+ const cloneMyArray = inputArray => {
+ // let myTempArray = [];
+ //
+ // if (Array.isArray(inputArray)) {
+ //     inputArray.forEach(v => {
+ //         myTempArray.push(v)
+ //     });
+ // }
+ //
+ // return myTempArray;
+
+ return inputArray.map(v => v);
+
+ };
+
+
+ {
+ let myTestArray = Array.from({length: 100000}, v => Math.round(Math.random() * 1000000)); // my test Array
+
+ let myPromise0 = new Promise((success, failure) => {
+ // create a new Array having all values from the original array but with sqrt.
+
+ console.log('myPromise0 -- starting');
+ console.time('myPromise0');
+
+
+ let myNewArray = myTestArray.map(currentValue => {
+ return Math.round(Math.sqrt(currentValue));
+ });
+
+ console.timeEnd('myPromise0');
+
+ if (myNewArray.length === myTestArray.length) {
+ success(myNewArray);
+ } else {
+ failure('The resulting array has an unexpected length. Something wrong happened')
+ }
+ });
+ let myPromise1 = new Promise((success, failure) => {
+
+ console.log('myPromise1 -- starting');
+ console.time('myPromise1');
+
+ let myArrayTmp = cloneMyArray(myTestArray);
+
+ for (let i = 0; i <= 100; i++) {
+ let myArray = myArrayTmp.map(currVal => {
+ return Math.sqrt(currVal);
+ });
+
+ myArrayTmp = cloneMyArray(myArray);
+ }
+
+ console.timeEnd('myPromise1');
+
+ if (myArrayTmp.length === myTestArray.length) {
+ success(myArrayTmp);
+ } else {
+ failure('The length of the resulting Array is unexpected. Something very bad happened.')
+ }
+ });
+
+ let myPromise2 = new Promise((success, failure) => {
+ console.log('myPromise2 -- starting');
+ console.time('myPromise2');
+
+ let myFilteredArray = myTestArray.filter(v => v > 50);
+ let myTempArray = [];
+ if (myFilteredArray.length > 5) {
+ for (let i = 0; i < 10; i++) {
+ myTempArray = myFilteredArray.map(v => Math.sqrt(v));
+ myFilteredArray = cloneMyArray(myTempArray);
+ }
+ console.timeEnd('myPromise2');
+ success(myFilteredArray);
+ }
+ else {
+ failure('Undesired results. array length is not 5 elements minimum...')
+ }
+ });
+
+
+ Promise
+ .all([myPromise0, myPromise1, myPromise2])
+ .then(values => {
+
+ console.log('success!!');
+ console.log(values);
+ console.log(typeof values);
+ })
+ .catch(err => {
+ console.log('An error has occured');
+ console.log(err)
+ });
+
+ Promise
+ .race([myPromise0, myPromise1, myPromise2])
+ .then(output => console.log(output))
+ .catch(err => console.log(err));
+
+ }
+
+ {
+ let pro1 = new Promise((success, failure) => {
+ console.log(`pro1 - started`);
+
+ console.time('pro1');
+ let randomValue = Math.round(Math.random()*100);
+ setTimeout(success, 500, randomValue);
+ console.timeEnd('pro1');
+ });
+
+ pro1
+ .then(successValue => console.log(`Success: ${successValue}`))
+ .catch(reason => console.log(`Failure ${reason}`));
+
+ }*/
+
+//REGEXP
+/*
+ {
+ let re = /ab+c/;
+ let re1 = new RegExp('ab+c');
+
+ let myRandomChars = Array.from({length: 100}, v => String.fromCharCode(Math.round(Math.random()*30)+90)).join('');
+ console.log(myRandomChars);
+
+ let myRegExp = /\s\d*!/;
+
+ let res = myRegExp.exec('this5 is a 5 ');
+
+ console.log(`results are: ${res}`);
+
+ let findMyNum = /(\d+)\.\d*!/;
+
+ let res1 = findMyNum.exec('Intotdeauna mi-am dorit sa pot sa spun ca media 5.467984353465345t e mai mare decat media ce-a luat-o el la bac 6.780983434qa');;
+
+ console.log(res1);
+
+ }
+
+ {
+ let names = 'Harry Trump ;Fred Barney; Helen Rigby ; Bill Abel ; Chris Hand ';
+
+ let pattern1 = /\s*;\s*!/;
+
+ let myArray = names.split(pattern1);
+
+ console.log(myArray);
+ }
+
+ {
+ var re = /(?:\d{3}|\(\d{3}\))([-\/\.])\d{3}\1\d{4}/;
+ //phone number accepted formats:
+ // (123)-/. 123 -/. 1234
+
+ let myNumber = (123)-456-789;
+
+ let result = re.test(myNumber)
+ console.log(`does the string match the format ? : ${result}`);
+ }
+
+ */
+/*
+ {
+
+ // \ - escape special chars
+ //e.g.
+
+ let myRgx = /a+/;
+
+ let myrez = myRgx.exec('papanas');
+ console.log(myrez);
+
+ // validare format email
+
+ // let myEmailRgx = /(?:^(?!\.))(?:\.(?!@))[a-z0-9]+@\w+\.\w+/;
+ let myEmailRgx = /(?:[a-z0-9]+)@(?:)\.com/;
+ //[!#$%&'*+\/=?^_`{|}~.]*
+
+ let emailFormatValid = myEmailRgx.test('aaasa@aaa.com');
+ console.log(`Is the email format valid ?: ${emailFormatValid}`);
+
+ let myR = /(?:^(?!\.))[a-z]+(?:\.(?!&))&/;
+ let valid = myR.test('a.asdf&');
+ console.log(`myR: ${valid}`);
+ }
+
+ {
+ let myRex = /(?:([a-z0-9]+)(?:[_-]*)(?:[a-z0-9]+))/;
+ let a = myRex.exec('abc09-dfg34');
+ console.log(a);
+ }
+
+ {
+ //remove the duplicates in the following string
+ let string = 'buburuza buburuza cocotier buburuza cocotier cocotier buburuza cocotier';
+
+ let myRegx = /(?:\s*(\w+)\s+\1)|(?:\s+(\w+)\s+\1)/g;
+ console.log(myRegx.exec(string));
+ }
+
+ {
+ let array = ['an A','An a','america','Anuta','Inuta Anuta'];
+ let myExpr = /\bA\w*!/;
+
+ array.forEach(v => {
+
+ console.log('%c' + v + '%c -> is expression /\\b\A\\w\*\/ tested true or false ?:  '+ /\b(A\w*)/.test(v), 'background-color: red; color: white; padding: 0 5px;', 'background-color: white; color: black; padding: 0;');
+ let execR = /\bA\w*!/.exec(v);
+ console.log(Array.isArray(execR) ? execR[0]: null);
+ })
+ }
+
+ const displaySet = set => {
+ set.forEach((v,i) => {
+ console.log(`index ${i} has value ${v}`);
+ });
+ };
+
+
+ //SETS Recapitulare
+ {
+
+ let a = [1, 2, 3, 4, 5, 6, 7, 7, 7, 8, 9, 0];
+
+ let newSet = new Set(a);
+
+ console.log(a);
+ console.log(newSet);
+
+ console.log(newSet.size);
+
+
+ newSet.add(10, 11, 12);
+ console.log(newSet);
+
+ let myArr = Array.from({length: 10}, v => Math.round(Math.random() * 100));
+
+ console.log('myArr');
+ console.log(myArr);
+
+ newSet.add(...myArr);
+ console.log(newSet);
+
+ //add elements from an array to a set
+
+ //1. switch set to array and concat.
+
+ let arrToAdd = Array.from({length: 10}, v => Math.round(Math.random() * 100));
+ let tempArrayToStoreSet = new Array(...newSet);
+ console.log(tempArrayToStoreSet);
+
+ let newS = new Set(tempArrayToStoreSet.concat(arrToAdd));
+ console.log(newS);
+
+ //2. foreach on array and add to set
+ /!*    arrToAdd.forEach(v => newSet.add(v));
+ console.log(newSet);
+
+ let array1 = [1,2,3,4,3,3,3,2,4,5,6,7];
+ let noDups = new Array(...new Set(array1));
+ let noDups1 = new Array(...new Set(array1).values());
+
+ console.log(noDups);
+ console.log(noDups1);*!/
+
+ //3. iterate through the array add values that don;t yet exist.
+
+ console.log(`Set size before the operations: ${newSet.size}`);
+ let numberOfAdditions = 0;
+ arrToAdd.forEach(v => {
+ console.log(`does the set have value ${v} ? : ${newSet.has(v)} ${newSet.has(v) ? 'Current value will not be added to the set' : 'Current value will be added to the set'}`);
+ if (!newSet.has(v)) {
+ newSet.add(v);
+ numberOfAdditions++;
+ }
+ });
+
+ console.log(`Number of additions: ${numberOfAdditions}`);
+ console.log(`Set size after the operations: ${newSet.size}`);
+ console.log(newSet);
+
+ displaySet(newSet);
+
+
+ }*/
+
+
+
+// {
+//     var a = 100;
+//     var b = NaN;
+//     b = 101;
+//     switch (true) {
+//         case isNaN(a) || isNaN(b):
+//             console.log('NaNNaN');
+//             break;
+//         case a === b:
+//             console.log(0);
+//             break;
+//         case a < b:
+//             console.log(-1);
+//             break;
+//         default:
+//             console.log(1);
+//     }
+// }
+
+
+//STRING
+/*
+ {
+ let mystring = 'Sometimes, your code will include strings which are very long.\
+ Rather than having lines that go on endlessly, or wrap at the whim of your\
+ editor, you may wish to specifically break the string into multiple lines\
+ in the source code without affecting the actual string contents. There are\
+ two ways you can do this.';
+
+ /!*
+ console.log(mystring);
+
+ //string.fromCharCode(a,b,c)
+ let myArr = Array.from({length: 30}, (v, i) => i + 65);
+
+ let myString = String.fromCharCode(...myArr);
+ console.log(myString);
+ *!/
+
+ //String.charAt()
+
+ // let myString1 = 'This is the new shit!';
+ //
+ // for (let i =0; i<myString1.length; i++) {
+ //     console.log(`charAt(${i}): ${myString1.charAt(i)}`);
+ // }
+ /!*
+
+ for (let i=0; i<myString1.length; i++) {
+ console.log(`Code of char at position ${i} (${myString1.charAt(i)}) is ${myString1.charCodeAt(i)} and .codePointAt(pos) returns: ${myString1.codePointAt(i)} `);
+ }
+
+ console.log('\uD800\uDC00'.codePointAt(0));
+ console.log('\uD800\uDC00'.codePointAt(1));
+ *!/
+
+ //String.concat()
+ let myArr = Array.from({length:100}, v => String.fromCharCode(Math.round(Math.random()*30)+65));
+ let s1 = 'S1';
+ let s2 = 'S2';
+ let sev = s1.concat(s2);
+ console.log(sev);
+
+ console.log(myArr);
+ let myJoinedLetters = ''.concat(...myArr);
+ console.log(myJoinedLetters);
+
+
+ //String.endsWith()
+
+ var str = 'To be, or not to be, that is the question.';
+
+ console.log(str.endsWith('question.')); // true
+ console.log(str.endsWith('to be'));     // false
+ console.log(str.endsWith('to be', 19)); // true
+
+ }*/
+/*
 
 {
-    let a = Reflect.apply(listMe, null, [104, 101, 108, 108, 111]);
+    let str1 = 'This is the bee string in which the search will be performed...';
+    let searchSubstring = 'in which';
+    let searchSubstring1 = 'be';
 
-    console.log(a);
+    let ans = str1.includes(searchSubstring, 20);
+    console.log(ans);
 
-    console.log('function.prototype.apply');
-    console.log(listMe.apply(undefined, [104, 101, 108, 108, 111]));
+    console.log(str1.lastIndexOf(searchSubstring1));
+    console.log(str1.indexOf(searchSubstring1));
 
-    console.log('function.prototype.call');
-    console.log(listMe.call(undefined, ...[104, 101, 108, 108, 111]));
+    let str = 'For more information, see Chapter 3.42.533.1';
+    let myRegExp = /chapter ((\d+\.*)+)/i;
 
-    //
-    // console.log(Reflect.apply(String.fromCharCode, undefined, [104, 101, 108, 108, 111]));
-    //
-    // console.log('Reflect.apply(Math.sqrt, undefined, [1,2,3,4,5,6,7,8,9,0]) ');
-    //
-    // console.log(Reflect.apply(Math.sqrt , Math.sqrt, [1,2,3,4,5,6,7,8,9,0]));
-    // console.log(Reflect.apply(Math.floor, undefined, [1,2.15,3,4,5,6,7,8,9,0]));
+    let results = str.match(myRegExp);
+    console.log(results);
 
-    let f = Function.prototype.apply.call(Math.floor, undefined, [1.75, 1.56]);
-    console.log(f);
+
+    let alp = 'UVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    let matchRegExp = /[A-E]/gi;
+    console.log(alp.match(matchRegExp));
+    let aa = matchRegExp.test(alp);
+    console.log(`aa: ${aa}`);
+
+    let matchRegExp1 = /(?:[A-E]+(?:[^A-E]*))/i;
+    console.log(matchRegExp1.exec(alp));
+
+    let aaa = alp.replace(matchRegExp1, 'SHUSHU');
+    console.log(aaa);
+
+    let u = alp.search(matchRegExp1);
+    console.log(u);
 
 }
 
-const function1 = obj => {
-    let doesIt = obj.theArray.some(v => Math.sqrt(v) === Math.round(Math.sqrt(v)));
-    return Object.defineProperty(obj, 'atLeastOnePerfectSquareExist', {
-        value: doesIt,
-        enumerable: true,
-        writable: true
-    });
-    // obj;
-};
-
-const function2 = obj => {
-    let sum = obj.theArray.reduce((cummul, v) => cummul += v, 0);
-    console.log(`the sum is: ${sum}`);
-
-    if (sum > 1000) {
-        if (Reflect.defineProperty(obj, 'elementsSumGreaterThan1000', {
-                value: (sum > 1000),
-                writable: true,
-                enumerable: true
-            })) {
-            return obj;
-        } else {
-            throw new Error('Error occurred while adding the Property to the object');
-        }
-    } else {
-        throw new Error('Sum is not greater than 1000k. Halting...');
-
-    }
-};
 
 {
-    let myR = Array.from({length: 5}, v => Math.round(Math.random() * 100) + 4);
+    let myName = 'Kovacs Licentiu';
+    console.log(myName);
+    let expr = /(\w+)\s+(\w+)/;
 
-    let myPromise = new Promise((accept, reject) => {
-        // consider pass if all values from the array are greater than 5, otherwise fail
-        let isEveryElementGreaterThan5 = myR.every(v => v > 5);
-        let toReturn = {
-            theArray: myR
-        };
-        if (!Reflect.defineProperty(toReturn, 'isEveryElementGreaterThan5', {
-                value: isEveryElementGreaterThan5,
-                enumerable: true,
-                writable: true
-            })) {
-            console.log('here=============');
-            throw new Error('Error occurred while adding property `isEveryElementGreaterThan5` to the Object!');
-        }
-        ;
+    let a = myName.replace(expr, '$2 $1');
+    console.log(a);
+}
 
-        if (isEveryElementGreaterThan5 === true) {
-            accept(toReturn);
+{
+    let matchRegExp2 = /^(?:[A-E]+[A-E/{=)(&^%$#@!~\\\-]*[A-E]+)$/;
+    let io = 'AB/C{DE\\A';
+    console.log('%cmatchRegExp2.match(io)', 'background-color: red; color: white; padding: 0 5px;');
+    console.log(matchRegExp2.test(io));
 
-        } else {
-            toReturn.isEveryElementGreaterThan5 = false;
-            reject(toReturn);
-        }
-    });
+}
 
-    myPromise // this is executed async
-        .then(success => {
-            console.log('All elements from the Array are greater than 5');
-            console.log(success);
-            return success;
-        })
-        .then(success => function1(success)) // if all elements are greater than 5, proceed and verify if at least one value from the array is exactly divisible by 5
-        .then(success => function2(success)) //if previous test passes proceed to next step only if the sum of all elements is greater than 1000
-        .then(success => console.log(success))
-        .catch(err => {
-            console.log('Catch: Not elements are greater than 5 -> answer: ');
-            console.log(err);
-        });
+{
+    //slice
 
-    console.log(myR);
+    let orig = 'Au venit colindatori, Florile dalbe... si iar au venit colindatori...';
+    let toExtract = 'colindatori';
 
-    console.log(Math.sqrt(16));
+    let replaced = orig.slice(orig.indexOf(toExtract), orig.indexOf(toExtract) + toExtract.length);
+
+    console.log('replaced');
+    console.log(replaced);
+
+    let index = orig.indexOf(toExtract);
+    console.log(index);
+    console.log('typeof orig.indexOf(toExtract): ' + typeof orig.indexOf(toExtract));
+
+
+    let myRegx = /colindatori,\s/;
+
+
+    console.log(myRegx.exec(orig));
+
+    let rez = orig.replace(myRegx, '');
+    console.log(orig);
+    console.log('rez');
+
+
+    console.log(rez);
+    let myArr = ['mere-pere', 'prune-alune', 'capsuni-ciuperci', 'banane-ananas', 'fragute-kaki'];
+
+    let u = myArr.join('|').split('-');
+
+    console.log(u);
 }
 */
 
-// create 3 promises that process a very large array with logging the parallel operations
+{
+    let aa = 'This is a new functionality implemented yesterday.';
+    let src = 'This';
 
-const cloneMyArray = inputArray => {
-    // let myTempArray = [];
-    //
-    // if (Array.isArray(inputArray)) {
-    //     inputArray.forEach(v => {
-    //         myTempArray.push(v)
-    //     });
-    // }
-    //
-    // return myTempArray;
+    console.log(aa.startsWith(src));
+    console.log(aa.startsWith('new', 10));
 
-    return inputArray.map(v => v);
+    let aaS = Array.from(aa);
 
-};
+    aaS.forEach((v, i) => {
+        if (i >= 10) {
+            console.log(v);
+        }
+    });
+
+
+    //slice vs substr vs substring
+    let uu = 'abcd-EFG';
+    let rez1 = uu.slice(4,8);
+
+    let rez2 = uu.substr(4,4);
+
+    let rez3 = uu.substring(4,8);
+
+    console.log(`slice: ${rez1}`);
+
+    console.log(`substr: ${rez2}`);
+    console.log(`substring: ${rez3}`);
+
+    let uu1 = 'ABCD-EFGHIJKL';
+    console.log(`uu1.substring(4,-1): ${uu1.substring(4,12)}`);
+    console.log(`uu1.slice(4,-1): ${uu1.slice(4,-1)}`);
+}
+
+{
+    let myString = 'Ştrampii i s-au rupt, rujul i s-a Ȋntins';
+
+    let lowercase = myString.toLocaleLowerCase();
+    console.log(lowercase);
+    console.log(myString.toLowerCase());
+
+    let uppercase = lowercase.toUpperCase();
+    console.log(uppercase);
+
+    console.log(lowercase.toLocaleUpperCase());
+}
 
 
 {
-    let myTestArray = Array.from({length: 100000}, v => Math.round(Math.random() * 1000000)); // my test Array
+    let myString1 = '       \n\rthis shit has been happening since forever. Linux has some bugs that push ppl away from it. This is probably caused by the fact that the big companies software os making companies do not like linux ....          \r\n        ';
 
-    let myPromise0 = new Promise((success, failure) => {
-        // create a new Array having all values from the original array but with sqrt.
+    console.log(`[${myString1}]`);
+    console.log(`trim(): [${myString1.trim()}]`);
 
-        console.log('myPromise0 -- starting');
-        console.time('myPromise0');
+    let uu = myString1.trim();
+    console.log(`[${String.valueOf(uu)}]`);
 
+    let aaa = String.raw({
+        raw: ['foo', 'bar', 'baz']
+    }, 2 + 3, 'Java' + 'Script'); // 'foo5barJavaScriptbaz'
 
-        let myNewArray = myTestArray.map(currentValue => {
-            return Math.round(Math.sqrt(currentValue));
-        });
+    console.log(aaa);
 
-        console.timeEnd('myPromise0');
-
-        if (myNewArray.length === myTestArray.length) {
-            success(myNewArray);
-        } else {
-            failure('The resulting array has an unexpected length. Something wrong happened')
-        }
-    });
-    let myPromise1 = new Promise((success, failure) => {
-
-         console.log('myPromise1 -- starting');
-         console.time('myPromise1');
-
-        let myArrayTmp = cloneMyArray(myTestArray);
-
-        for (let i = 0; i <= 1; i++) {
-            let myArray = myArrayTmp.map(currVal => {
-                return Math.sqrt(currVal);
-            });
-
-            myArrayTmp = cloneMyArray(myArray);
-        }
-
-        console.timeEnd('myPromise1');
-
-        if (myArrayTmp.length === myTestArray.length) {
-            success(myArrayTmp);
-        } else {
-            failure('The length of the resulting Array is unexpected. Something very bad happened.')
-        }
-    });
-
-    let myPromise2 = new Promise ( (success, failure) => {
-
-    });
-
-
-    Promise
-        .all([myPromise0, myPromise1])
-        .then(success => {
-            if (Array.isArray(success)) {
-                console.log(success);
-            }
-        })
-        .catch(err => console.log(err))
 }
